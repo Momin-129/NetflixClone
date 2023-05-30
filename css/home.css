@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Raleway:ital,wght@0,300;0,900;1,100&family=Rubik+Puddles&display=swap");
+html,
+body {
+  height: 100%;
+}
+
+.firstSection {
+  height: 100%;
+  background-image: url("../images/mainBakcground.png");
+}
+
+.navbar {
+  margin-left: 10%;
+  width: 80%;
+  background-color: transparent;
+}
+
+.navbar #logo {
+  width: 250px;
+}
+
+.content {
+  margin-top: 200px;
+  color: white;
+}
+
+.content .mainTitle {
+  font-size: 48px;
+  font-weight: bolder;
+  font-family: "Nunito", sans-serif;
+}
+
+.content .tagline {
+  font-size: 24px;
+}
+
+.content .signUp {
+  font-size: 20px;
+}
+
+.content .signUp input {
+  width: 25%;
+  height: 70px;
+  margin: auto;
+  display: inline;
+  margin-top: 10px;
+  background: transparent;
+  color: white;
+}
+
+.content .signUp .btn {
+  height: 70px;
+}
+
+.enjoy,
+.download,
+.watch,
+.create {
+  height: 80%;
+  background-color: black;
+  border-top: 10px solid gray;
+  color: white;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 120px;
+}
+.text {
+  font-size: 22px;
+}
+
+.enjoy > img {
+  margin-top: auto;
+  width: 700px;
+}
+
+.faq {
+  height: 100%;
+  background-color: black;
+  border-top: 10px solid gray;
+  color: white;
+}
+
+.faq > p {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.faq .accordion {
+  width: 100%;
+  height: 100px;
+  background-color: grey;
+  border: none;
+}
+
+.footer {
+  height: 70%;
+  background-color: black;
+  border-top: 10px solid gray;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    margin-left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+  #mynavbar {
+    justify-content: left;
+  }
+  .navbar #logo {
+    width: 120px;
+  }
+  .navbar #signIn {
+    font-size: 16px;
+    padding: 5px 5px;
+  }
+}
