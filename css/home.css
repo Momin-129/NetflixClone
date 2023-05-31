@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&family=Raleway:ital,wght@0,300;0,900;1,100&family=Rubik+Puddles&display=swap");
+
 html,
 body {
   height: 100%;
@@ -19,6 +20,11 @@ body {
   width: 250px;
 }
 
+.navbar #signIn {
+  color: white;
+  background-color: #ff0000;
+}
+
 .content {
   margin-top: 200px;
   color: white;
@@ -26,7 +32,7 @@ body {
 
 .content .mainTitle {
   font-size: 48px;
-  font-weight: bolder;
+  font-weight: 900;
   font-family: "Nunito", sans-serif;
 }
 
@@ -46,10 +52,19 @@ body {
   margin-top: 10px;
   background: transparent;
   color: white;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.content .signUp input::placeholder {
+  color: white;
 }
 
 .content .signUp .btn {
+  color: white;
   height: 70px;
+  margin-bottom: 10px;
+  background-color: #ff0000;
 }
 
 .enjoy,
@@ -77,31 +92,93 @@ body {
 }
 
 .faq {
-  height: 100%;
+  height: max-content;
   background-color: black;
   border-top: 10px solid gray;
   color: white;
+  padding-bottom: 20px;
 }
 
-.faq > p {
+.faq #heading {
   font-size: 48px;
   font-weight: bold;
 }
 
 .faq .accordion {
+  text-align: left;
+  color: white;
   width: 100%;
   height: 100px;
-  background-color: grey;
+  background-color: #262626;
   border: none;
+  padding: 5px 15px;
+  align-content: center;
+  font-size: 24px;
+}
+.faq .accordion:hover {
+  background-color: grey;
+}
+
+.faq .panel {
+  font-size: 24px;
+  background-color: #262626;
+  padding: 5px 15px;
+}
+
+.faq #minus {
+  display: none;
+}
+
+.faq .signUp {
+  font-size: 20px;
+  text-align: center;
+}
+
+.faq .signUp input {
+  width: 25%;
+  height: 70px;
+  margin: auto;
+  display: inline;
+  margin-top: 10px;
+  background: transparent;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.faq .signUp input::placeholder {
+  color: white;
+}
+
+.faq .signUp .btn {
+  height: 70px;
+  margin-bottom: 10px;
+  background-color: #ff0000;
 }
 
 .footer {
-  height: 70%;
+  height: max-content;
+  padding: 100px 140px;
+  color: white;
   background-color: black;
   border-top: 10px solid gray;
 }
 
+.footer ul {
+  list-style: none;
+}
+
+.footer li {
+  margin-top: 20px;
+}
+
+.footer a {
+  color: grey;
+}
+
 @media only screen and (max-width: 600px) {
+  .firstsection {
+    height: auto;
+  }
   .navbar {
     margin-left: 0;
     width: 100%;
@@ -113,8 +190,24 @@ body {
   .navbar #logo {
     width: 120px;
   }
-  .navbar #signIn {
+  .navbar #signin {
     font-size: 16px;
+    padding: 5px 5px;
+  }
+  .content .signup input {
+    display: block;
+    width: 100%;
+  }
+  .enjoy,
+  .download,
+  .watch,
+  .create {
+    height: max-content;
+  }
+  img {
+    width: 350px;
+  }
+  .footer {
     padding: 5px 5px;
   }
 }

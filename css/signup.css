@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Raleway:ital,wght@0,300;0,900;1,100&family=Rubik+Puddles&display=swap");
+
+html,
+body {
+  height: 100%;
+}
+
+.firstSection {
+  height: 100%;
+}
+
+.navbar {
+  margin-left: 10%;
+  width: 80%;
+  background-color: transparent;
+}
+
+.navbar #logo {
+  width: 250px;
+}
+
+.navbar #signIn {
+  color: white;
+  background-color: #ff0000;
+}
+
+.signUpForm {
+  height: 80%;
+}
+
+.page1 {
+  display: none;
+}
+.page1 img {
+  width: 250px;
+}
+
+.page1 span {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.page1 .msg {
+  max-width: 350px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+.page1 button {
+  font-size: 24px;
+  padding: 15px 145px;
+  color: white;
+  background-color: #ff0000;
+}
+
+.page1 input {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.page2 button {
+  font-size: 24px;
+  padding: 15px 145px;
+  color: white;
+  background-color: #ff0000;
+  margin: 0 auto;
+}
+
+.page2 ul {
+  list-style: none;
+}
+
+.page2 ul li:before {
+  content: "✔";
+}
+
+.page2 .planBtns {
+  width: max-content;
+  margin: 0 auto;
+}
+
+.page2 .Btn {
+  background-color: #ff0000;
+  color: white;
+  padding: 25px 15px;
+  opacity: 0.65;
+}
+
+.selectedBack {
+  opacity: 1 !important;
+}
+
+.selectedText {
+  color: #ff0000;
+}
+
+.planContent {
+  color: grey;
+  border-bottom: 2px solid #f2f2f2;
+  margin-top: 10px;
+}
+.planContent .month {
+  width: 400px;
+}
+.planContent .monthM {
+  width: 100px;
+  font-weight: bold;
+}
+.planContent .monthB {
+  width: 100px;
+  font-weight: bold;
+}
+.planContent .monthS {
+  width: 110px;
+  font-weight: bold;
+}
+.planContent .monthP {
+  width: 110px;
+  font-weight: bold;
+}
+
+.page2 #point {
+  width: 410px;
+}
+.page2 #detail {
+  width: 100px;
+  border: 2px solid black;
+}
+
+.footer {
+  height: max-content;
+  padding: 100px 140px;
+  color: #737373;
+  border-top: 10px solid gray;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li {
+  margin-top: 20px;
+}
+
+.footer a {
+  color: #737373;
+}
+
+@media only screen and (max-width: 600px) {
+  .firstsection {
+    height: auto;
+  }
+  .navbar {
+    margin-left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+  #mynavbar {
+    justify-content: left;
+  }
+  .navbar #logo {
+    width: 120px;
+  }
+  .navbar #signin {
+    font-size: 16px;
+    padding: 5px 5px;
+  }
+  .planContent .month {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+  }
+  .planContent .monthM {
+    width: 80px;
+  }
+  .planContent .monthB {
+    width: 80px;
+  }
+  .planContent .monthS {
+    width: 80px;
+  }
+  .planContent .monthP {
+    width: 80px;
+  }
+  .page1 input {
+    width: 80%;
+  }
+  .page2 .Btn {
+    padding: 25px 3px;
+  }
+
+  .page2 #point {
+    display: block;
+  }
+  .page2 #detail {
+    display: inline-block;
+  }
+  .footer {
+    padding: 5px 5px;
+  }
+}
