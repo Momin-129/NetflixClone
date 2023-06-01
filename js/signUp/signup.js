@@ -4,10 +4,12 @@ let user_id = localStorage.getItem("user_id") ?? 0;
 
 for (let user of users) {
   if (user["email"] == email) {
-    $(".page1").css("display", "none");
+    $(".page1").hide();
     break;
   }
 }
+
+if ($(".page1").css("display") == "block") $(".page2").hide();
 
 $("#email").val(email);
 
@@ -30,6 +32,7 @@ $("#saveUser").on("click", function () {
     users.push(obj);
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("user_id", user_id + 1);
-    window.location.href = "./plans.html";
+    $(".page1").hide();
+    $(".page2").show();
   } else $("#password").focus();
 });

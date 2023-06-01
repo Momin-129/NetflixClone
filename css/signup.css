@@ -6,7 +6,7 @@ body {
 }
 
 .firstSection {
-  height: 100%;
+  height: max-content;
 }
 
 .navbar {
@@ -25,12 +25,14 @@ body {
 }
 
 .signUpForm {
-  height: 80%;
+  height: max-content;
 }
 
-.page1 {
-  display: none;
+.next:hover {
+  background-color: #ff3333;
+  color: white;
 }
+
 .page1 img {
   width: 250px;
 }
@@ -47,6 +49,9 @@ body {
   font-size: 16px;
 }
 
+.form-control:focus {
+  box-shadow: none;
+}
 .page1 button {
   font-size: 24px;
   padding: 15px 145px;
@@ -59,7 +64,18 @@ body {
   margin: 0 auto;
 }
 
-.page2 button {
+.activeBack {
+  background-color: #ff0000 !important;
+}
+.activeColor {
+  color: #ff0000 !important;
+}
+
+.page2 {
+  width: 70%;
+  margin: 0 auto;
+}
+.page2 .next {
   font-size: 24px;
   padding: 15px 145px;
   color: white;
@@ -75,57 +91,65 @@ body {
   content: "✔";
 }
 
-.page2 .planBtns {
-  width: max-content;
-  margin: 0 auto;
+.page2 .plans {
+  text-align: right;
 }
-
-.page2 .Btn {
-  background-color: #ff0000;
+.page2 .planBtn {
+  background-color: #ff3333;
   color: white;
-  padding: 25px 15px;
-  opacity: 0.65;
+  border: none;
+  border-radius: 5px;
+  width: 120px;
+  height: 120px;
+  margin-left: 15px;
 }
 
-.selectedBack {
-  opacity: 1 !important;
+.page2 table,
+td {
+  text-align: center;
 }
 
-.selectedText {
-  color: #ff0000;
+.page2 #property {
+  font-family: "Ubuntu", sans-serif;
+  text-align: left;
+  font-size: 20px;
+  width: 360px;
+  padding: 5px 5px;
+  color: #737373;
 }
 
-.planContent {
-  color: grey;
-  border-bottom: 2px solid #f2f2f2;
-  margin-top: 10px;
+.page2 .mobile {
+  font-family: "Ubuntu", sans-serif;
+  width: 120px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #737373;
 }
-.planContent .month {
-  width: 400px;
+.page2 .basic {
+  font-family: "Ubuntu", sans-serif;
+  width: 120px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #737373;
 }
-.planContent .monthM {
-  width: 100px;
-  font-weight: bold;
-}
-.planContent .monthB {
-  width: 100px;
-  font-weight: bold;
-}
-.planContent .monthS {
-  width: 110px;
-  font-weight: bold;
-}
-.planContent .monthP {
-  width: 110px;
-  font-weight: bold;
+.page2 .standard {
+  font-family: "Ubuntu", sans-serif;
+  width: 150px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #737373;
 }
 
-.page2 #point {
-  width: 410px;
+.page2 .premium {
+  font-family: "Ubuntu", sans-serif;
+  width: 150px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #737373;
 }
-.page2 #detail {
-  width: 100px;
-  border: 2px solid black;
+
+.page2 tr {
+  border-bottom: 1px solid #737373;
 }
 
 .footer {
@@ -148,8 +172,12 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  .firstsection {
-    height: auto;
+  .firstSection {
+    height: max-content;
+  }
+
+  .page2 {
+    width: 100%;
   }
   .navbar {
     margin-left: 0;
@@ -166,36 +194,47 @@ body {
     font-size: 16px;
     padding: 5px 5px;
   }
-  .planContent .month {
-    display: block;
-    width: max-content;
+  .page2 {
+    width: 100%;
     margin: 0 auto;
   }
-  .planContent .monthM {
-    width: 80px;
-  }
-  .planContent .monthB {
-    width: 80px;
-  }
-  .planContent .monthS {
-    width: 80px;
-  }
-  .planContent .monthP {
-    width: 80px;
-  }
-  .page1 input {
-    width: 80%;
-  }
-  .page2 .Btn {
-    padding: 25px 3px;
-  }
 
-  .page2 #point {
+  .page2 .plans {
+    text-align: left;
+  }
+  .page2 .planBtn {
+    font-size: 14px;
+    width: 90px;
+    height: 90px;
+    margin-left: 0;
+  }
+  .page2 tr {
     display: block;
   }
-  .page2 #detail {
-    display: inline-block;
+  .page2 #property {
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+    text-align: center;
   }
+
+  .page2 .mobile {
+    font-size: 16px;
+    width: 120px;
+  }
+  .page2 .basic {
+    font-size: 16px;
+    width: 120px;
+  }
+  .page2 .standard {
+    font-size: 16px;
+    width: 150px;
+  }
+
+  .page2 .premium {
+    font-size: 16px;
+    width: 150px;
+  }
+
   .footer {
     padding: 5px 5px;
   }

@@ -15,6 +15,20 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/signup.css" />
   </head>
   <body>
@@ -29,11 +43,13 @@
           </div>
         </div>
       </nav>
-      <div class="container signUpForm">
+      <div class="container signUpForm mb-5">
         <div class="page1 mt-5">
-          <img src="../images/Devices.png" alt="devices" />
+          <div class="text-center">
+            <img src="../images/Devices.png" alt="devices" />
+          </div>
           <p class="text-center mt-4">STEP <b>1</b> of <b>3</b></p>
-          <h1>
+          <h1 class="text-center">
             Create a <br />
             password to start <br />
             your membership
@@ -54,40 +70,92 @@
             placeholder="Add a password"
             class="form-control mt-1"
           />
-          <button type="button" class="btn mt-3">Next</button>
+          <div class="text-center">
+            <button type="button" id="saveUser" class="btn next mt-3">
+              Next
+            </button>
+          </div>
         </div>
         <div class="page2 mt-1">
           <p class="text-center mt-4">STEP <b>2</b> of <b>3</b></p>
           <h1>Choose the plan that's right for you</h1>
-          <ul>
+          <ul style="margin: 0; padding: 0">
             <li>Watch all you want. Add-free.</li>
             <li>Recommendations just for you.</li>
             <li>Change or cancel your plan anytime.</li>
           </ul>
-          <div class="container plans">
-            <div class="planBtns">
-              <label class="Btn selectedBack">Mobile</label>
-              <label class="Btn">Basic</label>
-              <label class="Btn">Standard</label>
-              <label class="Btn">Premium</label>
-            </div>
-            <div class="planContent">
-              <label class="month">Monthly plans</label>
-              <label class="monthM selectedText">₹ 149</label>
-              <label class="monthB">₹ 199</label>
-              <label class="monthS">₹ 499</label>
-              <label class="monthP">₹ 649</label>
-            </div>
-            <div class="planContent">
-              <label class="month">Video quality</label>
-              <label class="monthM selectedText">Good</label>
-              <label class="monthB">Good</label>
-              <label class="monthS">Better</label>
-              <label class="monthP">Best</label>
-            </div>
+          <div class="plans">
+            <button type="button" id="mobile" class="planBtn">Mobile</button>
+            <button type="button" id="basic" class="planBtn">Basic</button>
+            <button type="button" id="standard" class="planBtn">
+              Standard
+            </button>
+            <button type="button" id="premium" class="planBtn">Premium</button>
           </div>
+          <table>
+            <tr>
+              <td id="property">Monthly price</td>
+              <td class="mobile">₹ 149</td>
+              <td class="basic">₹ 199</td>
+              <td class="standard">₹ 499</td>
+              <td class="premium">₹ 649</td>
+            </tr>
+            <tr>
+              <td id="property">Video quality</td>
+              <td class="mobile">Good</td>
+              <td class="basic">Good</td>
+              <td class="standard">Better</td>
+              <td class="premium">Best</td>
+            </tr>
+            <tr>
+              <td id="property">Resolution</td>
+              <td class="mobile">480p</td>
+              <td class="basic">720p</td>
+              <td class="standard">1080p</td>
+              <td class="premium">4K+HDR</td>
+            </tr>
+            <tr>
+              <td id="property">Devices you can use to watch</td>
+              <td class="mobile">
+                <i class="material-icons" style="font-size: 16px">smartphone</i>
+                <span style="display: block; font-size: 12px">Phone</span>
+                <i class="material-icons" style="font-size: 16px">tablet_mac</i>
+                <span style="display: block; font-size: 12px">Tablet</span>
+              </td>
+              <td class="basic">
+                <i class="material-icons" style="font-size: 16px">smartphone</i>
+                <span style="display: block; font-size: 12px">Phone</span>
+                <i class="material-icons" style="font-size: 16px">tablet_mac</i>
+                <span style="display: block; font-size: 12px">Tablet</span>
+                <i class="material-icons" style="font-size: 16px">computer</i>
+                <span style="display: block; font-size: 12px">Computer</span>
+                <i class="material-icons" style="font-size: 16px">tv</i>
+                <span style="display: block; font-size: 12px">TV</span>
+              </td>
+              <td class="standard">
+                <i class="material-icons" style="font-size: 16px">smartphone</i>
+                <span style="display: block; font-size: 12px">Phone</span>
+                <i class="material-icons" style="font-size: 16px">tablet_mac</i>
+                <span style="display: block; font-size: 12px">Tablet</span>
+                <i class="material-icons" style="font-size: 16px">computer</i>
+                <span style="display: block; font-size: 12px">Computer</span>
+                <i class="material-icons" style="font-size: 16px">tv</i>
+                <span style="display: block; font-size: 12px">TV</span>
+              </td>
+              <td class="premium">
+                <i class="material-icons" style="font-size: 16px">smartphone</i>
+                <span style="display: block; font-size: 12px">Phone</span>
+                <i class="material-icons" style="font-size: 16px">tablet_mac</i>
+                <span style="display: block; font-size: 12px">Tablet</span>
+                <i class="material-icons" style="font-size: 16px">computer</i>
+                <span style="display: block; font-size: 12px">Computer</span>
+                <i class="material-icons" style="font-size: 16px">tv</i>
+                <span style="display: block; font-size: 12px">TV</span>
+              </td>
+            </tr>
+          </table>
           <div class="text-center">
-            <button type="button" class="btn mt-3">Next</button>
+            <button type="button" class="btn next mt-3">Next</button>
           </div>
         </div>
       </div>
@@ -127,4 +195,5 @@
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="../js/signUp/signup.js"></script>
+  <script src="../js/signUp/plans.js"></script>
 </html>

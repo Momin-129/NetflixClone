@@ -1,3 +1,5 @@
+let users = JSON.parse(localStorage.getItem("users")) ?? [];
+
 $("#signUpBtn").on("click", function (e) {
   e.preventDefault();
   if ($("#email").val().length == 0) {
