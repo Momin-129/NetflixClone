@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Raleway:ital,wght@0,300;0,900;1,100&family=Rubik+Puddles&display=swap");
+
+html,
+body {
+  height: 100%;
+}
+
+.firstSection {
+  height: 100%;
+  background-image: url("../images/mainBakcground.png");
+}
+
+.navbar {
+  margin-left: 10%;
+  width: 80%;
+  background-color: transparent;
+}
+
+.navbar #logo {
+  width: 250px;
+}
+
+.navbar #signIn {
+  color: white;
+  background-color: #ff0000;
+}
+
+.footer {
+  height: max-content;
+  padding: 100px 140px;
+  color: white;
+  background-color: black;
+  border-top: 10px solid gray;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li {
+  margin-top: 20px;
+}
+
+.footer a {
+  color: grey;
+}
+
+@media only screen and (max-width: 600px) {
+  .firstsection {
+    height: auto;
+  }
+  .navbar {
+    margin-left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+  #mynavbar {
+    justify-content: left;
+  }
+  .navbar #logo {
+    width: 120px;
+  }
+  .navbar #signin {
+    font-size: 16px;
+    padding: 5px 5px;
+  }
+  .footer {
+    padding: 5px 5px;
+  }
+}

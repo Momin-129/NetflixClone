@@ -1,10 +1,23 @@
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
 
+function isRegistered() {
+  let signup = false;
+  for (let user of users) {
+    if (user["email"] === $("#email").val()) {
+      if (user["plan"] && user["payMethod"]) {
+        signup = true;
+      }
+    }
+  }
+  return signup;
+}
 $("#signUpBtn").on("click", function (e) {
+  let registered = isRegistered();
   e.preventDefault();
   if ($("#email").val().length == 0) {
     $("#email").focus();
-  } else {
+  } else if (registered) window.location.href = "../html/signin.html";
+  else {
     localStorage.setItem("email", $("#email").val());
     window.location.href = "../html/signup.html";
   }
