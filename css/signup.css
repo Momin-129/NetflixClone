@@ -9,21 +9,6 @@ body {
   height: max-content;
 }
 
-.navbar {
-  margin-left: 10%;
-  width: 80%;
-  background-color: transparent;
-}
-
-.navbar #logo {
-  width: 250px;
-}
-
-.navbar #signIn {
-  color: white;
-  background-color: #ff0000;
-}
-
 .signUpForm {
   height: max-content;
 }
@@ -174,25 +159,6 @@ td {
   cursor: pointer;
 }
 
-.footer {
-  height: max-content;
-  padding: 100px 140px;
-  color: #737373;
-  border-top: 10px solid gray;
-}
-
-.footer ul {
-  list-style: none;
-}
-
-.footer li {
-  margin-top: 20px;
-}
-
-.footer a {
-  color: #737373;
-}
-
 @media only screen and (max-width: 600px) {
   .firstSection {
     height: max-content;
@@ -200,21 +166,6 @@ td {
 
   .page2 {
     width: 100%;
-  }
-  .navbar {
-    margin-left: 0;
-    width: 100%;
-    background-color: transparent;
-  }
-  #mynavbar {
-    justify-content: left;
-  }
-  .navbar #logo {
-    width: 120px;
-  }
-  .navbar #signin {
-    font-size: 16px;
-    padding: 5px 5px;
   }
   .page2 {
     width: 100%;
@@ -262,9 +213,5 @@ td {
   }
   .upi {
     width: 100%;
-  }
-
-  .footer {
-    padding: 5px 5px;
   }
 }

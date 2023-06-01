@@ -9,7 +9,10 @@ for (let user of users) {
   }
 }
 
-if ($(".page1").css("display") == "block") $(".page2").hide();
+if ($(".page1").css("display") == "block") {
+  $(".page2").hide();
+  $(".page3").hide();
+}
 
 $("#email").val(email);
 

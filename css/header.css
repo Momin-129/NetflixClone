@@ -1,0 +1,32 @@
+.navbar {
+  margin-left: 10%;
+  width: 80%;
+  background-color: transparent;
+}
+
+.navbar #logo {
+  width: 250px;
+}
+
+.navbar #signIn {
+  color: white;
+  background-color: #ff0000;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    margin-left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+  #mynavbar {
+    justify-content: left;
+  }
+  .navbar #logo {
+    width: 120px;
+  }
+  .navbar #signin {
+    font-size: 16px;
+    padding: 5px 5px;
+  }
+}
