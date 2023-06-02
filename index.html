@@ -106,4 +106,8 @@
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/links.js"></script>
+  <script>
+    let base_url = localStorage.getItem("base_url");
+    $("head").append(`<base href="${base_url}" target="_self">`);
+  </script>
 </html>

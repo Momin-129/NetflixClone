@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Bootstrap Example</title>
+    <base href="window.location.href" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/signup.css" />
@@ -151,4 +152,8 @@
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/links.js"></script>
+  <script>
+    let base_url = localStorage.getItem("base_url");
+    $("head").append(`<base href="${base_url}" target="_self">`);
+  </script>
 </html>
