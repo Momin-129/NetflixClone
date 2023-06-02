@@ -1,5 +1,5 @@
 let users = JSON.parse(localStorage.getItem("users"));
-let base_url = localStorage.getItem("base_url");
+base_url = localStorage.getItem("base_url");
 $("#signIn").hide();
 
 $("#signup").on("click", () => {
