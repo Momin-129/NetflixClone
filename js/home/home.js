@@ -20,13 +20,15 @@ $("#faq").append(`
         <div class="signUp mt-5">
           Ready to watch? Enter your email to create or restart your membership.
           <br />
+          <form>
           <input
             type="email"
-            class="form-control"
+            class="form-control email"
             name="email"
             placeholder="Email address"
           />
-          <button type="button" class="btn btn-danger">Get Started ></button>
+          <button  type="button" class="btn btn-danger signUpBtn">Get Started ></button>
+          </form>
         </div>
 `);
 
