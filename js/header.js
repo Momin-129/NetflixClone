@@ -1,3 +1,8 @@
+console.log(window.location.origin);
+
+// if (!localStorage.getItem("base_url"))
+//   localStorage.setItem("base_url", window.location.origin);
+
 $("#header").append(`
       <nav class="navbar">
         <div class="container-fluid">
