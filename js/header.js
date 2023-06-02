@@ -1,4 +1,4 @@
-let base_url = localStorage.getItem("base_url");
+base_url = localStorage.getItem("base_url");
 
 $("#header").append(`
       <nav class="navbar">
