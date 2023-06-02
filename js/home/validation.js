@@ -16,10 +16,10 @@ $("#signUpBtn").on("click", function (e) {
   e.preventDefault();
   if ($("#email").val().length == 0) {
     $("#email").focus();
-  } else if (registered) window.location.href = base_url + "/html/signin.html";
+  } else if (registered) window.location.href = base_url + "html/signin.html";
   else {
     localStorage.setItem("email", $("#email").val());
-    window.location.href = base_url + "/html/signup.html";
+    window.location.href = base_url + "html/signup.html";
   }
 });
 

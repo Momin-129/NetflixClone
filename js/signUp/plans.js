@@ -50,5 +50,5 @@ $(".pay").on("click", function () {
     }
   }
   localStorage.setItem("users", JSON.stringify(users));
-  window.location.href = base_url + "/html/signin.html";
+  window.location.href = base_url + "html/signin.html";
 });
