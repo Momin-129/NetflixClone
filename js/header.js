@@ -1,4 +1,4 @@
-console.log(window.location.origin);
+console.log(window.location.href);
 
 // if (!localStorage.getItem("base_url"))
 //   localStorage.setItem("base_url", window.location.origin);
