@@ -1,5 +1,5 @@
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
-
+let base_url = localStorage.getItem("base_url");
 function isRegistered() {
   let signup = false;
   for (let user of users) {
@@ -16,10 +16,10 @@ $("#signUpBtn").on("click", function (e) {
   e.preventDefault();
   if ($("#email").val().length == 0) {
     $("#email").focus();
-  } else if (registered) window.location.href = "../html/signin.html";
+  } else if (registered) window.location.href = base_url + "/html/signin.html";
   else {
     localStorage.setItem("email", $("#email").val());
-    window.location.href = "../html/signup.html";
+    window.location.href = base_url + "/html/signup.html";
   }
 });
 

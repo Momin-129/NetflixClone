@@ -1,7 +1,7 @@
 if (!localStorage.getItem("base_url"))
   localStorage.setItem("base_url", window.location.href);
 
-let base_url = localStorage.getItem("base_url");
+base_url = localStorage.getItem("base_url");
 
 $("#header").append(`
       <nav class="navbar">
