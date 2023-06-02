@@ -1,4 +1,4 @@
-let base_url = localStorage.getItem("base_url");
+// base_url = localStorage.getItem("base_url");
 
 for (let user of users) {
   if (user["email"] == email) {
@@ -50,5 +50,5 @@ $(".pay").on("click", function () {
     }
   }
   localStorage.setItem("users", JSON.stringify(users));
-  window.location.href = base_url + "html/signin.html";
+  window.location.href = "../html/signin.html";
 });

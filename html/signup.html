@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <title>Bootstrap Example</title>
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/signup.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/signup.css" />
   </head>
   <body>
     <div class="container-fluid firstSection">
@@ -12,7 +12,7 @@
       <div class="container signUpForm mb-5">
         <div class="page1 mt-5">
           <div class="text-center">
-            <img src="images/Devices.png" alt="devices" />
+            <img src="../images/Devices.png" alt="devices" />
           </div>
           <p class="text-center mt-4">STEP <b>1</b> of <b>3</b></p>
           <h1 class="text-center">
@@ -145,14 +145,11 @@
     </div>
     <span id="footer"></span>
   </body>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="js/signUp/signup.js"></script>
-  <script src="js/signUp/plans.js"></script>
-  <script src="js/header.js"></script>
-  <script src="js/footer.js"></script>
-  <script src="js/links.js"></script>
-  <script>
-    let base_url = localStorage.getItem("base_url");
-    $("head").append(`<base href="${base_url}" target="_self">`);
-  </script>
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+  <script src="../js/links.js"></script>
+  <script src="../js/signUp/signup.js"></script>
+  <script src="../js/signUp/plans.js"></script>
 </html>
