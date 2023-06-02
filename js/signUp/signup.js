@@ -24,7 +24,6 @@ $("#password").on("keyup", () => {
 });
 
 $("#saveUser").on("click", function () {
-  console.log($("#password").css("border"));
   if ($("#password").css("border") === "2px solid rgb(0, 128, 0)") {
     let email = $("#email").val();
     let pass = $("#password").val();

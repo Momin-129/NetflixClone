@@ -5,6 +5,18 @@ body {
   height: 100%;
 }
 
+.page1 .next:hover {
+  background-color: #ff3333;
+  color: white;
+}
+.page2 .next:hover {
+  background-color: #ff3333;
+  color: white;
+}
+.page3 .next:hover {
+  background-color: #ff3333;
+  color: white;
+}
 .firstSection {
   height: max-content;
 }
