@@ -1,5 +1,5 @@
 base_url = localStorage.getItem("base_url");
-
+console.log(base_url);
 $("#header").append(`
       <nav class="navbar">
         <div class="container-fluid">
