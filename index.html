@@ -100,6 +100,10 @@
     </div>
     <span id="footer"></span>
   </body>
+  <script>
+    if (!localStorage.getItem("base_url"))
+      localStorage.setItem("base_url", window.location.href);
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="js/home/home.js" type="module"></script>
   <script src="js/home/validation.js" type="module"></script>
