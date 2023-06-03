@@ -17,6 +17,6 @@ $("#signInPage").on("click", () => {
     }
   }
 
-  if (valid) console.log("Signed In Succesfully.");
+  if (valid) window.location.href = base_url + "html/showMovies.html";
   else console.log("Ivalid email or password.");
 });

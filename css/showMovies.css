@@ -1,0 +1,88 @@
+html,
+body,
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.navbar {
+  width: 100%;
+  background-color: transparent;
+  padding: 0 20px;
+  margin: 0;
+  position: absolute;
+}
+
+.navbar .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar #logo {
+  width: 150px;
+}
+
+.navbar .rightLink {
+  justify-content: right;
+}
+
+.firstSection {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.firstSection #backVideo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.2, 1.4);
+  z-index: -1;
+}
+
+.firstSection .options {
+  margin-top: 15%;
+  color: white;
+}
+
+.firstSection .options .title {
+  font-size: 48px;
+  font-weight: bold;
+}
+.firstSection .options #desc {
+  display: block;
+  max-width: 800px;
+  word-wrap: break-word;
+}
+.firstSection .options button {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.secondSection {
+  background-color: black;
+  position: relative;
+  top: -100px;
+  padding: 0 10px;
+}
+.slide img {
+  width: 200px;
+}
+.slide .item {
+  border: 1px solid #000;
+  background-color: red;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .firstSection {
+    height: 30%;
+  }
+}
