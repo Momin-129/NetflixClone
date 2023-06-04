@@ -16,17 +16,19 @@ body {
 }
 
 .content .mainTitle {
-  font-size: 48px;
-  font-weight: 900;
+  font-size: calc(35px + 0.390625vw);
+  font-weight: bolder;
+  margin: 0 auto;
+  max-width: 80vw;
   font-family: "Nunito", sans-serif;
 }
 
 .content .tagline {
-  font-size: 24px;
+  font-size: calc(12px + 0.390625vw);
 }
 
 .content .signUp {
-  font-size: 20px;
+  font-size: calc(10px + 0.390625vw);
 }
 
 .content .form-control:focus {
@@ -35,15 +37,16 @@ body {
 
 .content .signUp input {
   width: 25%;
-  height: 70px;
+  height: 10vh;
   margin: auto;
   display: inline;
   margin-top: 10px;
-  background: transparent;
+  background: black;
+  opacity: 0.65;
   color: white;
   margin-bottom: 10px;
-  border: 3px solid white;
-  outline: none;
+  border: 1px solid white;
+  border-radius: 2px;
 }
 
 .content .signUp input::placeholder {
@@ -72,20 +75,20 @@ body {
 }
 
 .title {
-  font-size: 40px;
+  font-size: calc(20px + 0.390625vw);
   font-weight: bold;
   margin-top: 120px;
 }
 .text {
-  font-size: 22px;
+  font-size: calc(10px + 0.390625vw);
 }
 
-.enjoy > img {
+img {
   margin-top: auto;
-  width: 700px;
 }
 
 .faq {
+  text-align: center;
   height: max-content;
   background-color: black;
   border-top: 10px solid gray;
@@ -94,7 +97,7 @@ body {
 }
 
 .faq #heading {
-  font-size: 48px;
+  font-size: calc(25px + 0.390625vw);
   font-weight: bold;
 }
 
@@ -107,14 +110,14 @@ body {
   border: none;
   padding: 5px 15px;
   align-content: center;
-  font-size: 24px;
+  font-size: calc(12px + 0.390625vw);
 }
 .faq .accordion:hover {
   background-color: grey;
 }
 
 .faq .panel {
-  font-size: 24px;
+  font-size: calc(10px + 0.390625vw);
   background-color: #262626;
   padding: 5px 15px;
 }
@@ -124,19 +127,22 @@ body {
 }
 
 .faq .signUp {
-  font-size: 20px;
-  text-align: center;
+  font-size: calc(20px + 0.390625vw);
+  /* text-align: center; */
 }
 
 .faq .signUp input {
-  width: 25%;
-  height: 70px;
+  width: calc(350px + 0.390625vw);
+  height: 10vh;
   margin: auto;
   display: inline;
   margin-top: 10px;
-  background: transparent;
+  background: black;
+  opacity: 0.65;
   color: white;
   margin-bottom: 10px;
+  border: 1px solid white;
+  border-radius: 2px;
 }
 
 .faq .signUp input::placeholder {
@@ -150,10 +156,12 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  .firstsection {
-    height: auto;
+  .firstSection {
+    width: auto;
+    height: max-content;
   }
-  .content .signup input {
+
+  .content .signUp input {
     display: block;
     width: 100%;
   }
@@ -161,9 +169,10 @@ body {
   .download,
   .watch,
   .create {
+    text-align: center;
     height: max-content;
   }
   img {
-    width: 350px;
+    width: calc(300px + 0.390625vw);
   }
 }

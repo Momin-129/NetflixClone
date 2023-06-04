@@ -28,3 +28,10 @@ export async function fetchComedy() {
   );
   return anime.json();
 }
+
+export async function fetchPoster(movie_id) {
+  let poster = await fetch(
+    ` https://api.themoviedb.org/3/movie/${movie_id}/images?api_key=${api_key}&,null`
+  );
+  return poster.json();
+}

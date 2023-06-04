@@ -18,5 +18,8 @@ $("#signInPage").on("click", () => {
   }
 
   if (valid) window.location.href = base_url + "html/showMovies.html";
-  else console.log("Ivalid email or password.");
+  else {
+    $(".error").show();
+    $("#password").val("");
+  }
 });

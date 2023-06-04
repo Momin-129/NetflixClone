@@ -15,6 +15,7 @@
 }
 
 .footer a {
+  font-size: calc(10px + 0.390625vw);
   color: grey;
 }
 
