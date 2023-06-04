@@ -17,17 +17,17 @@
     <link href="../css/showMovies.css" rel="stylesheet" />
   </head>
   <body>
+    <span id="header"></span>
     <div class="container-fluid firstSection">
-      <span id="header"></span>
       <iframe
         id="backVideo"
         src="https://www.youtube.com/embed/yjRHZEUamCc?autoplay=1&loop=1&rel=0&playlist=yjRHZEUamCc"
       ></iframe>
-      <div class="container-fluid p-5">
+      <div class="container-fluid details">
         <div class="options">
-          <img src="../images/Nlogo.png" width="40" alt="" />M O V I E
+          <img src="../images/Nlogo.png" alt="" />M O V I E
           <p class="title">JOHN WICK Chapter 4</p>
-          <p>Watch John Wick Chapter 4 Now</p>
+          <p class="watch">Watch John Wick Chapter 4 Now</p>
           <span id="desc"
             >Legendary assassin John Wick (Keanu Reeves) retired from his
             violent career after marrying the love of his life. Her sudden death
@@ -40,9 +40,17 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid secondSection">
+    <div class="container-fluid secondSection text-white">
+      Popular Movies
       <div class="owl-carousel owl-theme slide" id="section1"></div>
+      Bollywood
+      <div class="owl-carousel owl-theme slide" id="section2"></div>
+      Anime
+      <div class="owl-carousel owl-theme slide" id="section3"></div>
+      Comedy
+      <div class="owl-carousel owl-theme slide" id="section4"></div>
     </div>
+    <span id="footer"></span>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
@@ -50,5 +58,6 @@
 
   <script src="../js/links.js"></script>
   <script src="../js/headerMain.js"></script>
+  <script src="../js/footerMain.js"></script>
   <script src="../js/mainPage/posters.js" type="module"></script>
 </html>

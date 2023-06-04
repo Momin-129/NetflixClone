@@ -1,7 +1,7 @@
 base_url = localStorage.getItem("base_url");
 
 $("#header").append(`
- <nav class="navbar navbar-expand-sm">
+ <nav class="navbar navbar-fixed-top  navbar-expand-sm">
   <div class="container-fluid">
           <img id="logo" src="${base_url}/images/logo.png" onclick="window.location.href='${base_url}';" />
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">

@@ -16,6 +16,7 @@ body {
   padding: 0 20px;
   margin: 0;
   position: absolute;
+  z-index: 1000;
 }
 
 .navbar .navbar-nav > li > a {
@@ -44,12 +45,16 @@ body {
   transform: scale(1.2, 1.4);
   z-index: -1;
 }
-
+.firstSection .details {
+  padding: 45px;
+}
 .firstSection .options {
   margin-top: 15%;
   color: white;
 }
-
+.firstSection .options img {
+  width: 40px;
+}
 .firstSection .options .title {
   font-size: 48px;
   font-weight: bold;
@@ -66,23 +71,98 @@ body {
   background-color: white;
   border-radius: 5px;
 }
+.firstSection .options button:hover {
+  color: black;
+}
 
 .secondSection {
   background-color: black;
-  position: relative;
-  top: -100px;
-  padding: 0 10px;
+  /* position: relative; */
+  /* top: -100px; */
+  padding-left: 45px;
+  height: 100%;
 }
-.slide img {
-  width: 200px;
+.slide .owl-item img {
+  width: 295px;
 }
-.slide .item {
-  border: 1px solid #000;
-  background-color: red;
-  text-align: center;
+
+.owl-nav button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
+
+.owl-prev {
+  left: 0;
+}
+
+.owl-next {
+  right: 0;
+}
+
+.owl-nav button i {
+  color: white;
+  font-size: 25px;
+}
+.footer {
+  height: max-content;
+  padding: 100px 140px;
+  color: white;
+  background-color: black;
+  border-top: 10px solid gray;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li {
+  margin-top: 20px;
+}
+
+.footer a {
+  color: grey;
+}
+
 @media only screen and (max-width: 600px) {
+  .navbar {
+    padding: 0;
+  }
+
+  .navbar .navbar-collapse,
+  .rightLink {
+    width: 100%;
+    background-color: black;
+  }
   .firstSection {
-    height: 30%;
+    height: 35%;
+  }
+  .firstSection .details {
+    margin-top: 10px;
+    padding: 15px;
+  }
+  .firstSection .options .watch {
+    display: none;
+  }
+  .firstSection .options #desc {
+    display: none;
+  }
+  .firstSection .options .title {
+    font-size: 16px;
+  }
+  .firstSection .options button {
+    padding-left: 5px;
+    font-size: 10px;
+  }
+
+  .secondSection {
+    top: 0;
+    padding: 0 10px;
+  }
+  .slide .owl-item img {
+    width: 150px;
+  }
+  .footer {
+    padding: 5px 5px;
   }
 }
