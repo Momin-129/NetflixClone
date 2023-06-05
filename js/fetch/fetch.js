@@ -1,10 +1,10 @@
 let api_key = "f0da4eeabfc41aacee7225b73da8b902";
 
 export async function fetchPopular() {
-  let trailer = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=
+  let popular = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=
 ${api_key}`);
 
-  return trailer.json();
+  return popular.json();
 }
 
 export async function fetchBollyWood() {
@@ -32,6 +32,20 @@ export async function fetchComedy() {
 export async function fetchPoster(movie_id) {
   let poster = await fetch(
     ` https://api.themoviedb.org/3/movie/${movie_id}/images?api_key=${api_key}&,null`
+  );
+  return poster.json();
+}
+
+export async function fetchTrailer(movie_id) {
+  let poster = await fetch(
+    ` https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${api_key}`
+  );
+  return poster.json();
+}
+
+export async function fetchMovieDetails(movie_id) {
+  let poster = await fetch(
+    ` https://api.themoviedb.org/3/movie/${movie_id}?api_key=${api_key}`
   );
   return poster.json();
 }
