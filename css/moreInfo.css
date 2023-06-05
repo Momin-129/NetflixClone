@@ -41,6 +41,8 @@
   z-index: 10001;
 }
 .moreInfo .options .title {
+  max-width: 600px;
+  word-wrap: break-word;
   font-weight: bold;
   font-size: calc(16px + 0.390625vw);
   color: white;
