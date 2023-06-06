@@ -5,9 +5,12 @@ import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
 
+import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+
 Header();
 Footer();
 Links();
+onYouTubeIframeAPIReady("backVideo", "qEVUtrk8_B4");
 
 $(".secondSection").on("click", "#play", function () {
   let id = $(this).parent().attr("value");

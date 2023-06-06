@@ -1,8 +1,10 @@
+import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+
 export function moreInfo(movie, key) {
-  console.log(movie);
   $(".secondSection").append(`      
       <div class="container moreInfo">
         <div class="trailer">
+          <div id="trailerVideo"></div>
           <i class="material-icons" id="closeInfo" >close</i>
           <div class="options">
             <p class="title">${movie.title}</p>
@@ -18,13 +20,12 @@ export function moreInfo(movie, key) {
             <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
              style="font-size:30px">thumb_up</i>
             </button>
+            <i class="material-icons volume"  data-toggle="tooltip" title="Like"
+             style="font-size:30px;float:right">volume_off</i>
           </div>
-          <iframe
-            id="backVideo"
-            src="https://www.youtube.com/embed/${key}?autoplay=1&loop=1&rel=0&playlist=${key}"
-          ></iframe>
           <p class="overview">${movie.overview}</p>
         </div>
       </div>
 `);
+  onYouTubeIframeAPIReady("trailerVideo", key);
 }

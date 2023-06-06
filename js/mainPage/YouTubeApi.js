@@ -1,24 +1,25 @@
 var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player("backVideo", {
-    videoId: "qEVUtrk8_B4",
+export function onYouTubeIframeAPIReady(container, id) {
+  console.log(id);
+  player = new YT.Player(container, {
+    videoId: id,
     playerVars: {
       controls: 0,
       autoplay: 1,
       mute: 1,
       loop: 1,
       rel: 0,
-      playlist: "qEVUtrk8_B4",
+      playlist: id,
     },
   });
 }
 
-$("#volume").on("click", function () {
+$(document).on("click", ".volume", function () {
   if (player.isMuted()) {
-    $("#volume").html("volume_up");
+    $(".volume").html("volume_up");
     player.unMute();
   } else {
-    $("#volume").html("volume_off");
+    $(".volume").html("volume_off");
     player.mute();
   }
 });
