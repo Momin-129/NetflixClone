@@ -16,10 +16,10 @@ export function onYouTubeIframeAPIReady(container, id) {
 
 $(document).on("click", ".volume", function () {
   if (player.isMuted()) {
-    $(".volume").html("volume_up");
+    $(this).html("volume_up");
     player.unMute();
   } else {
-    $(".volume").html("volume_off");
+    $(this).html("volume_off");
     player.mute();
   }
 });

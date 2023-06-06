@@ -1,6 +1,7 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
-export function moreInfo(movie, key) {
+export function moreInfo(movie, key, similar) {
+  console.log(similar);
   $(".secondSection").append(`      
       <div class="container moreInfo">
         <div class="trailer">
@@ -23,9 +24,32 @@ export function moreInfo(movie, key) {
             <i class="material-icons volume"  data-toggle="tooltip" title="Like"
              style="font-size:30px;float:right">volume_off</i>
           </div>
-          <p class="overview">${movie.overview}</p>
+          <div class="container similar">
+              <p class="overview">${movie.overview}</p>
+              More Like This
+              <br><br>
+              <div class="row  text-white">
+              </div>
+          </div>
         </div>
       </div>
 `);
   onYouTubeIframeAPIReady("trailerVideo", key);
+
+  for (let item of similar) {
+    console.log(item);
+    $(".moreInfo .row").append(`
+        <div class="col-md-4 col-sm-12 mt-2">
+            <div class="similarMovie">
+              <img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}"/>
+                <b>${item.title}             
+                <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites" style="font-size:24px">add_circle_outline</i>
+                </b>
+              <div class="description">
+                ${item.overview}
+              </div>
+            </div>
+        </div>
+      `);
+  }
 }

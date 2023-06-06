@@ -49,3 +49,10 @@ export async function fetchMovieDetails(movie_id) {
   );
   return poster.json();
 }
+
+export async function fetchSimilar(movie_id) {
+  let poster = await fetch(
+    ` https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${api_key}`
+  );
+  return poster.json();
+}
