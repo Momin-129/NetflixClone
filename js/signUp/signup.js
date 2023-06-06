@@ -1,3 +1,11 @@
+import { Header } from "../header.js";
+import { Footer } from "../footer.js";
+import { Links } from "../links.js";
+
+Header();
+Footer();
+Links();
+
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
 let email = localStorage.getItem("email");
 let user_id = localStorage.getItem("user_id") ?? 0;

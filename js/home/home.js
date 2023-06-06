@@ -1,4 +1,11 @@
 import { faq } from "./faq.js";
+import { Header } from "../header.js";
+import { Footer } from "../footer.js";
+import { Links } from "../links.js";
+
+Header();
+Footer();
+Links();
 
 for (let i = 0; i < faq.length; i++) {
   let item = faq[i];

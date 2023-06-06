@@ -1,6 +1,6 @@
-base_url = localStorage.getItem("base_url");
-
-$("#header").append(`
+export function Header() {
+  let base_url = localStorage.getItem("base_url");
+  $("#header").append(`
  <nav class="navbar navbar-fixed-top  navbar-expand-sm">
   <div class="container-fluid">
           <img id="logo" src="${base_url}/images/logo.png" onclick="window.location.href='${base_url}';" />
@@ -42,3 +42,4 @@ $("#header").append(`
       </div>
   </div>
 </nav> `);
+}

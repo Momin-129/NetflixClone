@@ -42,10 +42,7 @@
     <span id="footer"></span>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="../js/header.js"></script>
-  <script src="../js/footer.js"></script>
-  <script src="../js/links.js"></script>
-  <script src="../js/signIn/signin.js"></script>
+  <script src="../js/signIn/signin.js" type="module"></script>
   <script>
     let base_url = localStorage.getItem("base_url");
     $("head").prepend(`<base href="${base_url}" target="_blank">`);

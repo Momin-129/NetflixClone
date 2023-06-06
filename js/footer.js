@@ -1,4 +1,5 @@
-$("#footer").append(`
+export function Footer() {
+  $("#footer").append(`
 
     <div class="container-fluid footer">
       Questions? Call 000-800-919-1694
@@ -33,3 +34,4 @@ $("#footer").append(`
       </div>
     </div>
 `);
+}

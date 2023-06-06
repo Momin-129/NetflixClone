@@ -56,12 +56,12 @@ export function createPosters() {
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
-           style="font-size:16px">play_circle_filled</i>
+           >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           style="font-size:16px">add_circle_outline</i>
+           >add_circle_outline</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           style="font-size:16px">thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="font-size:16px;float:right;">arrow_drop_down_circle</i>
+           >thumb_up</i>
+          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
     );
@@ -73,12 +73,12 @@ export function createPosters() {
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
-           style="font-size:16px">play_circle_filled</i>
+           >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           style="font-size:16px">add_circle_outline</i>
+           >add_circle_outline</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           style="font-size:16px">thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="font-size:16px;float:right;">arrow_drop_down_circle</i>
+           >thumb_up</i>
+          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
     );
@@ -90,12 +90,12 @@ export function createPosters() {
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
-           style="font-size:16px">play_circle_filled</i>
+          >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           style="font-size:16px">add_circle_outline</i>
+           >add_circle_outline</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           style="font-size:16px">thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="font-size:16px;float:right;">arrow_drop_down_circle</i>
+           >thumb_up</i>
+          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
     );
@@ -107,12 +107,12 @@ export function createPosters() {
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
-           style="font-size:16px">play_circle_filled</i>
+           >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           style="font-size:16px">add_circle_outline</i>
+           >add_circle_outline</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           style="font-size:16px">thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="font-size:16px;float:right;">arrow_drop_down_circle</i>
+           >thumb_up</i>
+          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
     );

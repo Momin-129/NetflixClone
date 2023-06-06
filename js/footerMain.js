@@ -1,4 +1,5 @@
-$("#footer").append(`
+export function Footer() {
+  $("#footer").append(`
 
     <div class="container-fluid footer">
       <i class='fab fa-facebook-f' style='font-size:18px'></i>
@@ -38,3 +39,4 @@ $("#footer").append(`
      @1997-2023 Netflix Inc 
     </div>
 `);
+}

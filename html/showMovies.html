@@ -20,10 +20,7 @@
   <body>
     <span id="header"></span>
     <div class="container-fluid firstSection">
-      <iframe
-        id="backVideo"
-        src="https://www.youtube.com/embed/yjRHZEUamCc?autoplay=1&loop=1&rel=0&playlist=yjRHZEUamCc"
-      ></iframe>
+      <div id="backVideo"></div>
       <div class="container-fluid details">
         <div class="options">
           <img src="../images/Nlogo.png" alt="" />M O V I E
@@ -42,6 +39,12 @@
             <i class="material-icons">info_outline</i>
             <span>More Info</span>
           </button>
+          <i
+            class="material-icons"
+            style="float: right; cursor: pointer"
+            id="volume"
+            >volume_off</i
+          >
         </div>
       </div>
     </div>
@@ -62,9 +65,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-  <script src="../js/links.js"></script>
-  <script src="../js/headerMain.js"></script>
-  <script src="../js/footerMain.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="../js/mainPage/main.js" type="module"></script>
+  <script src="../js/mainPage/YouTubeApi.js"></script>
 </html>
