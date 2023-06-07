@@ -26,6 +26,10 @@ export function showMovie(obj) {
         <div class="container-fluid p-3" id="movieContainer">
           <i class="material-icons" id="closeInfo" >close</i>
           <div id="displayMovie"></div>
+          <div class="options" id="3">
+            <i class="material-icons playBtn" >play_arrow</i>
+            <i class="material-icons volume" >volume_off</i>
+          </div>
         </div>
     `);
     onYouTubeIframeAPIReady(3, "displayMovie", randomMovie.key);

@@ -35,3 +35,28 @@ $(".firstSection").on("click", ".volume", function () {
     players[index].mute();
   }
 });
+
+$("#movieShow").on("click", ".volume", function () {
+  let index = parseInt($(this).parent().attr("id"));
+  if (players[index].isMuted()) {
+    $(this).html("volume_up");
+    players[index].unMute();
+  } else {
+    $(this).html("volume_off");
+    players[index].mute();
+  }
+});
+
+let play = true;
+$("#movieShow").on("click", ".playBtn", function () {
+  let index = parseInt($(this).parent().attr("id"));
+  if (play) {
+    $(this).html("pause");
+    play = false;
+    players[index].pauseVideo();
+  } else {
+    $(this).html("play_arrow");
+    play = true;
+    players[index].playVideo();
+  }
+});

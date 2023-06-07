@@ -26,3 +26,9 @@
   cursor: pointer;
   z-index: 10001;
 }
+
+#movieContainer .options {
+  position: absolute;
+  bottom: 10px;
+  color: white;
+}
