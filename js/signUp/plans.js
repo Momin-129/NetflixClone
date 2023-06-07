@@ -29,6 +29,8 @@ $(".planBtn").on("click", function () {
 });
 
 $("#savePlan").on("click", function () {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = localStorage.getItem("user_id") ?? 0;
   let id = $(".activeBack").attr("id");
   plan = id;
   for (let user of users) {
@@ -43,6 +45,8 @@ $("#savePlan").on("click", function () {
 });
 
 $(".pay").on("click", function () {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = localStorage.getItem("user_id") ?? 0;
   let payMethod = $(this).attr("id");
   for (let user of users) {
     if (user["user_id"] == user_id) {
