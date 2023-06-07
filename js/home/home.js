@@ -7,6 +7,10 @@ Header();
 Footer();
 Links();
 
+if (!localStorage.getItem("base_url")) {
+  localStorage.setItem("base_url", window.location.href);
+}
+
 for (let i = 0; i < faq.length; i++) {
   let item = faq[i];
   $("#faq").append(`        
