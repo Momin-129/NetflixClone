@@ -85,18 +85,20 @@
 }
 
 .moreInfo .similar .row .similarMovie {
+  padding: 15px;
   width: 280px;
   height: 400px;
   background-color: #333333;
   border-radius: 5px;
+  overflow-y: hidden;
+  align-items: center;
 }
 .moreInfo .similar .row .similarMovie img {
   width: 100%;
 }
 .moreInfo .similar .row .similarMovie .description {
-  padding: 5px;
+  font-size: 10px;
   height: 150px;
-  overflow-y: scroll;
 }
 
 @media only screen and (max-width: 600px) {

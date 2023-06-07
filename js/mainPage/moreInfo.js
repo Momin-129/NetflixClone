@@ -1,7 +1,6 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
 export function moreInfo(movie, key, similar) {
-  console.log(similar);
   $(".secondSection").append(`      
       <div class="container moreInfo">
         <div class="trailer">
@@ -39,7 +38,7 @@ export function moreInfo(movie, key, similar) {
   for (let item of similar) {
     console.log(item);
     $(".moreInfo .row").append(`
-        <div class="col-md-4 col-sm-12 mt-2">
+        <div class="col-md-4 col-sm-12 mt-4">
             <div class="similarMovie">
               <img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}"/>
                 <b>${item.title}             

@@ -14,7 +14,17 @@ export function onYouTubeIframeAPIReady(container, id) {
   });
 }
 
-$(document).on("click", ".volume", function () {
+$(".secondSection").on("click", ".volume", function () {
+  if (player.isMuted()) {
+    $(this).html("volume_up");
+    player.unMute();
+  } else {
+    $(this).html("volume_off");
+    player.mute();
+  }
+});
+
+$(".firstSection").on("click", ".volume", function () {
   if (player.isMuted()) {
     $(this).html("volume_up");
     player.unMute();
