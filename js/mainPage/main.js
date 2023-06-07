@@ -10,9 +10,6 @@ Header();
 Footer();
 Links();
 
-let users = JSON.parse(localStorage.getItem("users")) ?? [];
-let user_id = sessionStorage.getItem("user_id");
-
 let date = localStorage.getItem("date") ?? 0;
 let curr_date = new Date().getDate();
 let randomTrailer = "";
