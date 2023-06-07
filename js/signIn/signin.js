@@ -8,6 +8,9 @@ Links();
 
 let users = JSON.parse(localStorage.getItem("users"));
 base_url = localStorage.getItem("base_url");
+
+let user_id = "";
+
 $("#signIn").hide();
 
 $("#signup").on("click", () => {
@@ -21,12 +24,15 @@ $("#signInPage").on("click", () => {
   for (let user of users) {
     if (user["email"] == email && user["pass"] == password) {
       valid = true;
+      user_id = user.user_id;
       break;
     }
   }
 
-  if (valid) window.location.href = base_url + "html/showMovies.html";
-  else {
+  if (valid) {
+    sessionStorage.setItem("user_id", user_id);
+    window.location.href = base_url + "html/showMovies.html";
+  } else {
     $(".error").show();
     $("#password").val("");
   }

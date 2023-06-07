@@ -11,6 +11,10 @@ let bollywood = await fetchBollyWood().then((data) => data.results);
 let comedy = await fetchComedy().then((data) => data.results);
 let anime = await fetchAnime().then((data) => data.results);
 let poster = "";
+let users = JSON.parse(localStorage.getItem("users")) ?? [];
+let user_id = sessionStorage.getItem("user_id");
+let favourites = users[user_id].favourites;
+let fav_button = "";
 
 for (let item of movies) {
   poster = await fetchPoster(item.id).then((data) => data.backdrops);
@@ -51,14 +55,17 @@ for (let item of comedy) {
 
 export function createPosters() {
   for (let item of movies) {
+    if (!favourites.includes(item.id.toString()))
+      fav_button = "add_circle_outline";
+    else fav_button = "check_circle";
+
     $("#section1").append(
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           >add_circle_outline</i>
+          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
@@ -68,14 +75,16 @@ export function createPosters() {
   }
 
   for (let item of bollywood) {
+    if (!favourites.includes(item.id)) fav_button = "add_circle_outline";
+    else fav_button = "check_circle";
+
     $("#section2").append(
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           >add_circle_outline</i>
+          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
@@ -85,14 +94,16 @@ export function createPosters() {
   }
 
   for (let item of anime) {
+    if (!favourites.includes(item.id)) fav_button = "add_circle_outline";
+    else fav_button = "check_circle";
+
     $("#section3").append(
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
-          >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           >add_circle_outline</i>
+           >play_circle_filled</i>
+          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
@@ -102,14 +113,16 @@ export function createPosters() {
   }
 
   for (let item of comedy) {
+    if (!favourites.includes(item.id)) fav_button = "add_circle_outline";
+    else fav_button = "check_circle";
+
     $("#section4").append(
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites"
-           >add_circle_outline</i>
+          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>

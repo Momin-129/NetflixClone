@@ -1,0 +1,27 @@
+#movieContainer {
+  width: 98%;
+  height: 98%;
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  z-index: 10000;
+  border: 2px solid white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+#displayMovie {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.2, 1.5);
+  z-index: 1000;
+}
+
+#movieContainer #closeInfo {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: white;
+  cursor: pointer;
+  z-index: 10001;
+}

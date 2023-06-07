@@ -1,3 +1,6 @@
+let users = JSON.parse(localStorage.getItem("users")) ?? [];
+let user_id = localStorage.getItem("user_id") ?? 0;
+
 for (let user of users) {
   if (user["email"] == email) {
     user_id = user["user_id"];

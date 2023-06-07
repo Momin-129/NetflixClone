@@ -1,7 +1,6 @@
-var player;
-export function onYouTubeIframeAPIReady(container, id) {
-  console.log(id);
-  player = new YT.Player(container, {
+let players = [];
+export function onYouTubeIframeAPIReady(index, container, id) {
+  let player = new YT.Player(container, {
     videoId: id,
     playerVars: {
       controls: 0,
@@ -12,24 +11,27 @@ export function onYouTubeIframeAPIReady(container, id) {
       playlist: id,
     },
   });
+  players[index] = player;
 }
 
 $(".secondSection").on("click", ".volume", function () {
-  if (player.isMuted()) {
+  let index = parseInt($(this).parent().attr("id"));
+  if (players[index].isMuted()) {
     $(this).html("volume_up");
-    player.unMute();
+    players[index].unMute();
   } else {
     $(this).html("volume_off");
-    player.mute();
+    players[index].mute();
   }
 });
 
 $(".firstSection").on("click", ".volume", function () {
-  if (player.isMuted()) {
+  let index = parseInt($(this).parent().attr("id"));
+  if (players[index].isMuted()) {
     $(this).html("volume_up");
-    player.unMute();
+    players[index].unMute();
   } else {
     $(this).html("volume_off");
-    player.mute();
+    players[index].mute();
   }
 });
