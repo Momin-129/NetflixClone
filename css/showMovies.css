@@ -10,28 +10,6 @@ body {
   height: 100%;
 }
 
-.navbar {
-  width: 100%;
-  background-color: transparent;
-  padding: 0 20px;
-  margin: 0;
-  top: 0;
-  position: fixed;
-  z-index: 1000;
-}
-
-.navbar .navbar-nav > li > a {
-  color: white;
-}
-
-.navbar #logo {
-  width: 150px;
-}
-
-.navbar .rightLink {
-  justify-content: right;
-}
-
 .firstSection {
   width: 100%;
   height: 100%;
@@ -134,39 +112,7 @@ body {
   font-size: 25px;
 }
 
-.footer {
-  height: max-content;
-  padding: 100px 140px;
-  color: white;
-  background-color: black;
-  border-top: 10px solid gray;
-}
-
-.footer ul {
-  list-style: none;
-}
-
-.footer li {
-  margin-top: 20px;
-}
-
-.footer a {
-  color: grey;
-}
-
 @media only screen and (max-width: 600px) {
-  .navbar {
-    padding: 0;
-  }
-
-  .navbar .navbar-collapse,
-  .rightLink {
-    width: 100%;
-    background-color: black;
-  }
-  .navbar .navbar-nav > li > a {
-    font-size: 12px;
-  }
   .firstSection {
     height: 35%;
     pointer-events: none;
@@ -194,8 +140,14 @@ body {
     top: 0;
     padding: 0 10px;
   }
+  .owl-item {
+    max-height: 100px;
+  }
+  .owl-item i {
+    font-size: 16px;
+  }
   .slide .owl-item img {
-    width: 200px;
+    width: 100%;
   }
 
   .footer {

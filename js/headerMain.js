@@ -10,10 +10,10 @@ export function Header() {
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="showMovies.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">TV Shows</a>
+          <a class="nav-link" href="tvShows.html">TV Shows</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Movies</a>
@@ -22,7 +22,7 @@ export function Header() {
           <a class="nav-link" href="#">New & Popular</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">My List</a>
+          <a class="nav-link" href="myList.html">My List</a>
         </li>
       </ul>
       </div>

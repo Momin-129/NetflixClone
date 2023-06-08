@@ -1,0 +1,25 @@
+.footer {
+  height: max-content;
+  padding: 100px 140px;
+  color: white;
+  background-color: black;
+  border-top: 10px solid gray;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li {
+  margin-top: 20px;
+}
+
+.footer a {
+  color: grey;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer {
+    padding: 5px 5px;
+  }
+}

@@ -40,6 +40,7 @@ $("#saveUser").on("click", function () {
     obj.email = email;
     obj.pass = pass;
     obj.favourites = [];
+    obj.favouritesTV = [];
     users.push(obj);
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("user_id", user_id + 1);
