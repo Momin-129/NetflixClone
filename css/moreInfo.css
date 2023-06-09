@@ -29,11 +29,11 @@
 
 .moreInfo #closeInfo {
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 0;
   color: white;
   cursor: pointer;
-  z-index: 10001;
+  z-index: 10011;
 }
 
 .moreInfo .options {
@@ -103,8 +103,8 @@
 
 @media only screen and (max-width: 600px) {
   .moreInfo {
-    left: 0;
-    width: 100%;
+    left: 5px;
+    width: 95%;
   }
   .moreInfo .options {
     top: 5px;

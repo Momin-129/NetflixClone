@@ -31,6 +31,7 @@ body {
 .firstSection .options {
   margin-top: 15%;
   color: white;
+  z-index: 1000;
 }
 .firstSection .options img {
   width: 40px;
@@ -127,7 +128,6 @@ body {
 @media only screen and (max-width: 600px) {
   .firstSection {
     height: 35%;
-    pointer-events: none;
   }
   .firstSection .details {
     margin-top: 10px;
