@@ -12,7 +12,7 @@ let animeTV = await fetchAnimeTV().then((data) => data.results);
 let poster = "";
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
 let user_id = sessionStorage.getItem("user_id");
-let favourites = users[user_id].favourites;
+let favourites = users[user_id].favouritesTV;
 let fav_button = "";
 
 for (let item of tvShows) {
@@ -54,7 +54,7 @@ export function createPosters() {
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
+          <i class="material-icons" id="playTV" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
@@ -73,7 +73,7 @@ export function createPosters() {
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
+          <i class="material-icons" id="playTV" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
@@ -92,7 +92,7 @@ export function createPosters() {
       `
       <div class="item" value="${item.id}">
            <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="play" data-toggle="tooltip" title="Play"
+          <i class="material-icons" id="playTV" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"

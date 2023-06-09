@@ -16,7 +16,7 @@ export function Header() {
           <a class="nav-link" href="tvShows.html">TV Shows</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Movies</a>
+          <a class="nav-link" href="movies.html">Movies</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">New & Popular</a>
@@ -34,9 +34,18 @@ export function Header() {
           </a>    
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="material-icons" style="font-size:24px">account_circle</i>
-          </a>    
+            <div class="dropdown dropstart" >
+                <button type="button" data-bs-toggle="dropdown" style="padding:0;background:transparent;outline:none;border:none;">
+                    <a class="nav-link" href="#">
+                      <i class="material-icons" style="font-size:24px;color:white;">account_circle</i>
+                    </a>    
+                </button>
+                <ul class="dropdown-menu bg-dark">
+                  <li><a class="dropdown-item text-white" href="#">Profile</a></li>
+                  <li><a class="dropdown-item text-white" href="#"></a></li>
+                  <li><a class="dropdown-item text-white" href="#">Logout</a></li>
+                </ul>
+              </div>
           </li>
         </ul>
       </div>

@@ -40,6 +40,24 @@ $(document).on("click", "#fav", function () {
   window.location.reload();
 });
 
+$(document).on("click", "#favTV", function () {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = sessionStorage.getItem("user_id");
+  let tv_id = $(this).parent().attr("value");
+
+  if ($(this).html() == "add_circle_outline") {
+    users[user_id].favouritesTV.push(tv_id);
+    $(`div[value="${tv_id}"] i[id='fav']`).html("check_circle");
+  } else {
+    let index = users[user_id].favouritesTV.indexOf(tv_id.toString());
+    users[user_id].favouritesTV.splice(index, 1);
+    $(`div[value="${tv_id}"] i[id='fav']`).html("add_circle_outline");
+  }
+  $(".row").remove();
+  localStorage.setItem("users", JSON.stringify(users));
+  window.location.reload();
+});
+
 $(".myList").on("click", "#closeInfo", function () {
   $(".moreInfo").remove();
 });

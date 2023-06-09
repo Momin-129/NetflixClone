@@ -10,7 +10,7 @@ Header();
 Footer();
 Links();
 
-let date = localStorage.getItem("date") ?? 0;
+let date = localStorage.getItem("moviedate") ?? 0;
 let curr_date = new Date().getDate();
 let randomTrailer = "";
 let randomMovie = "";
@@ -19,16 +19,16 @@ createPosters();
 
 // Generate random trailer every day
 if (date == 0 || curr_date != date) {
-  localStorage.setItem("date", curr_date);
+  localStorage.setItem("moviedate", curr_date);
   let popularMovies = await fetchPopular().then((data) => data.results);
   randomMovie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
   let trailer = await fetchTrailer(randomMovie.id).then((data) => data.results);
   randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
-  localStorage.setItem("home", JSON.stringify(randomMovie));
-  localStorage.setItem("trailerHome", randomTrailer);
+  localStorage.setItem("movie", JSON.stringify(randomMovie));
+  localStorage.setItem("trailerMovie", randomTrailer);
 } else {
-  randomTrailer = localStorage.getItem("trailerHome");
-  randomMovie = JSON.parse(localStorage.getItem("home"));
+  randomTrailer = localStorage.getItem("trailerMovie");
+  randomMovie = JSON.parse(localStorage.getItem("movie"));
 }
 onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
 trailerInfo(randomMovie);

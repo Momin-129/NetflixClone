@@ -2,6 +2,7 @@
   width: 98%;
   height: 98%;
   position: fixed;
+  background-color: black;
   top: 10px;
   left: 20px;
   z-index: 10000;
@@ -31,4 +32,10 @@
   position: absolute;
   bottom: 10px;
   color: white;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  #movieContainer {
+    left: 0;
+  }
 }

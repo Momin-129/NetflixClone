@@ -10,7 +10,7 @@ Header();
 Footer();
 Links();
 
-let date = localStorage.getItem("date") ?? 0;
+let date = localStorage.getItem("tvdate") ?? 0;
 let curr_date = new Date().getDate();
 let randomTrailer = "";
 let randomTV = "";
@@ -19,7 +19,7 @@ createPosters();
 
 // Generate random trailer every day
 if (date == 0 || curr_date != date) {
-  localStorage.setItem("date", curr_date);
+  localStorage.setItem("tvdate", curr_date);
   let popularTV = await fetchPopularTV().then((data) => data.results);
   randomTV = popularTV[Math.floor(Math.random() * popularTV.length)];
   let trailer = await fetchTrailerTV(randomTV.id).then((data) => data.results);
@@ -35,7 +35,7 @@ trailerInfo(randomTV);
 
 // Generate random trailer every day
 
-$(document).on("click", "#play", function () {
+$(document).on("click", "#playTV", function () {
   showMovie($(this));
 });
 

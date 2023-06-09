@@ -47,6 +47,17 @@ $("#movieShow").on("click", ".volume", function () {
   }
 });
 
+$(".myList").on("click", ".volume", function () {
+  let index = parseInt($(this).parent().attr("id"));
+  if (players[index].isMuted()) {
+    $(this).html("volume_up");
+    players[index].unMute();
+  } else {
+    $(this).html("volume_off");
+    players[index].mute();
+  }
+});
+
 let play = true;
 $("#movieShow").on("click", ".playBtn", function () {
   let index = parseInt($(this).parent().attr("id"));

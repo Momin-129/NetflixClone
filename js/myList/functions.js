@@ -67,7 +67,7 @@ export function favMovies() {
             <img src="https://image.tmdb.org/t/p/original/${item.poster}" alt="" />
             <i class="material-icons" id="playTV" data-toggle="tooltip" title="Play"
               >play_circle_filled</i>
-            <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites" >${fav_button}</i>
+            <i class="material-icons" id="favTV" data-toggle="tooltip" title="Add to Favourites" >${fav_button}</i>
             <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
               >thumb_up</i>
             <i class="material-icons" id="more" data-toggle="tooltip" title="More Info" style="float: right" >arrow_drop_down_circle</i>

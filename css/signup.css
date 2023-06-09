@@ -172,25 +172,38 @@ td {
 }
 
 @media only screen and (max-width: 600px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
   .firstSection {
     height: max-content;
+    padding: 0;
+    margin: 0;
+  }
+  .page1 input {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .page1 .next {
+    padding: 10px;
+    width: 60%;
   }
 
   .page2 {
     width: 100%;
-  }
-  .page2 {
-    width: 100%;
-    margin: 0 auto;
   }
 
   .page2 .plans {
     text-align: left;
   }
   .page2 .planBtn {
-    font-size: 14px;
-    width: 90px;
-    height: 90px;
+    font-size: 12px;
+    width: 75px;
+    height: 75px;
     margin-left: 0;
   }
   .page2 tr {
@@ -200,24 +213,29 @@ td {
     font-family: Arial, Helvetica, sans-serif;
     float: left;
     text-align: center;
+    font-size: 14px;
   }
 
   .page2 .mobile {
     font-size: 16px;
-    width: 120px;
+    width: 70px;
   }
   .page2 .basic {
     font-size: 16px;
-    width: 120px;
+    width: 85px;
   }
   .page2 .standard {
     font-size: 16px;
-    width: 150px;
+    width: 80px;
   }
 
   .page2 .premium {
     font-size: 16px;
-    width: 150px;
+    width: 120px;
+  }
+
+  .page2 .next {
+    padding: 10px 25px;
   }
 
   .dcCard {

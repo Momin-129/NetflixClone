@@ -5,11 +5,13 @@ export function moreInfo(movie, key, similar, container) {
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
   let fav_button = "";
-
+  console.log(container);
   if (!favourites.includes(movie.id.toString()))
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
-  let name = movie.title? movie.tile: movie.name;
+  let name = movie.title ? movie.title : movie.name;
+  let play = movie.title ? "playMovie" : "playTV";
+
   $(`.${container}`).append(`      
       <div class="container moreInfo">
         <div class="trailer">
@@ -17,7 +19,7 @@ export function moreInfo(movie, key, similar, container) {
           <i class="material-icons" id="closeInfo" >close</i>
           <div class="options" value="${movie.id}" id="1">
             <p class="title">${name}</p>
-            <button type="button" id="play" class="btn play mt-2">
+            <button type="button" id="${play}" class="btn play mt-2">
               <i class="material-icons">play_arrow</i>
               <span>Play</span>
             </button>
