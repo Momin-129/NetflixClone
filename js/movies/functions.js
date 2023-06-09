@@ -4,8 +4,8 @@ import {
   fetchSimilar,
   fetchTrailerTV,
 } from "../fetch/fetch.js";
-import { moreInfo } from "./moreInfo.js";
-import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+import { moreInfo } from "../mainPage/moreInfo.js";
+import { onYouTubeIframeAPIReady } from "../mainPage/YouTubeApi.js";
 
 export function showInfo(obj, container) {
   let id = $(obj).parent().attr("value");

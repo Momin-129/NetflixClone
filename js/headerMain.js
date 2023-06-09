@@ -1,3 +1,12 @@
+$("#header").on("click", ".nav-link", function () {
+  console.log("Inside");
+  let base_url = localStorage.getItem("base_url");
+  $(".active").removeClass("active");
+  $(this).addClass("active");
+  let value = $(this).attr("value");
+  window.location.href = value;
+});
+
 export function Header() {
   let base_url = localStorage.getItem("base_url");
   $("#header").append(`
@@ -10,19 +19,19 @@ export function Header() {
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="showMovies.html">Home</a>
+          <a class="nav-link" value="showMovies.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tvShows.html">TV Shows</a>
+          <a class="nav-link" value="tvShows.html">TV Shows</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="movies.html">Movies</a>
+          <a class="nav-link" value="movies.html">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">New & Popular</a>
+          <a class="nav-link" value="#">New & Popular</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="myList.html">My List</a>
+          <a class="nav-link" value="myList.html">My List</a>
         </li>
       </ul>
       </div>

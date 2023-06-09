@@ -10,6 +10,12 @@
 
 .navbar .navbar-nav > li > a {
   color: white;
+  cursor: pointer;
+}
+
+.navbar .navbar-nav > li > .active {
+  color: white;
+  font-weight: bold;
 }
 
 .navbar #logo {

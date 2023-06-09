@@ -4,7 +4,7 @@ import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
 import { showInfo, showMovie, trailerInfo } from "./functions.js";
-import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+import { onYouTubeIframeAPIReady } from "../mainPage/YouTubeApi.js";
 
 Header();
 Footer();
