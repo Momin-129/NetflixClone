@@ -4,7 +4,7 @@ $("#header").on("click", ".nav-link", function () {
   $(".active").removeClass("active");
   $(this).addClass("active");
   let value = $(this).attr("value");
-  window.location.href = value;
+  if (value != "profile") window.location.href = value;
 });
 
 export function Header() {
@@ -28,7 +28,7 @@ export function Header() {
           <a class="nav-link" value="movies.html">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" value="#">New & Popular</a>
+          <a class="nav-link" value="newPopular.html">New & Popular</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" value="myList.html">My List</a>
@@ -45,7 +45,7 @@ export function Header() {
           <li class="nav-item">
             <div class="dropdown dropstart" >
                 <button type="button" data-bs-toggle="dropdown" style="padding:0;background:transparent;outline:none;border:none;">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" value="profile">
                       <i class="material-icons" style="font-size:24px;color:white;">account_circle</i>
                     </a>    
                 </button>

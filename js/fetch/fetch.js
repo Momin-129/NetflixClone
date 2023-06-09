@@ -7,6 +7,13 @@ ${api_key}`);
   return popular.json();
 }
 
+export async function fetchTrendin() {
+  let trending = await fetch(
+    ` https://api.themoviedb.org/3/trending/movie/day?api_key=${api_key}&with_origin_country=IN`
+  );
+  return trending.json();
+}
+
 export async function fetchPopularTV() {
   let popular = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=
 ${api_key}&with_original_language=en`);
