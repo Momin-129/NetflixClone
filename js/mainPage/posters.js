@@ -75,7 +75,7 @@ export function createPosters() {
     $("#section1").append(
       `
       <div class="item" value="${item.id}">
-           <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
+           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
@@ -95,7 +95,7 @@ export function createPosters() {
     $("#section2").append(
       `
       <div class="item" value="${item.id}">
-           <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
+           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
@@ -115,7 +115,7 @@ export function createPosters() {
     $("#section3").append(
       `
       <div class="item" value="${item.id}">
-           <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
+           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
@@ -135,7 +135,7 @@ export function createPosters() {
     $("#section4").append(
       `
       <div class="item" value="${item.id}">
-           <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
+           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
@@ -155,7 +155,7 @@ export function createPosters() {
     $("#section5").append(
       `
       <div class="item" value="${item.id}">
-           <img id="movieImg" src="https://image.tmdb.org/t/p/original${item.poster}" />
+           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
           <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
