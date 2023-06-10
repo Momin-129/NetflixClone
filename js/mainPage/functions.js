@@ -28,7 +28,7 @@ export function showMovie(obj) {
           <i class="material-icons" id="closeInfo" >close</i>
           <div id="displayMovie"></div>
           <div class="options" id="3">
-            <i class="material-icons playBtn" >play_arrow</i>
+            <i class="material-icons playBtn" >pause</i>
             <i class="material-icons volume" >volume_off</i>
           </div>
         </div>
@@ -67,7 +67,7 @@ export function trailerInfo(movie) {
           <span id="desc">
             ${movie.overview}
           </span>
-          <button type="button" id="play"  class="btn mt-2">
+          <button type="button" id="playMovie"  class="btn mt-2">
             <i class="material-icons">play_arrow</i>
             <span>Play</span>
           </button>

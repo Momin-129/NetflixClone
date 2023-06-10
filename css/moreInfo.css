@@ -77,6 +77,9 @@
   left: 2%;
   word-wrap: break-word;
 }
+.moreInfo .similar img {
+  width: 100%;
+}
 
 .moreInfo .overview {
   border-bottom: 1px solid grey;

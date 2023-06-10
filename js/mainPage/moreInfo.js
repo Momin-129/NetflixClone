@@ -49,11 +49,12 @@ export function moreInfo(movie, key, similar, container) {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
+    let name = item.title ? item.title : item.name;
     $(".moreInfo .row").append(`
         <div class="col-md-4 col-sm-12 mt-4">
             <div class="similarMovie" value="${item.id}">
               <img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}"/>
-                <b>${item.title}</b>
+                <b>${name}</b>
                 <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites" style="font-size:24px">${fav_button}</i>
               <div class="description">
                 ${item.overview}

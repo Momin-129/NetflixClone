@@ -28,7 +28,7 @@ export function showMovie(obj) {
           <i class="material-icons" id="closeInfo" >close</i>
           <div id="displayMovie"></div>
           <div class="options" id="3">
-            <i class="material-icons playBtn" >play_arrow</i>
+            <i class="material-icons playBtn" >pause</i>
             <i class="material-icons volume" >volume_off</i>
           </div>
         </div>
