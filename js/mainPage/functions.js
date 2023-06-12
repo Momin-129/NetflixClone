@@ -56,6 +56,23 @@ export function showTV(obj) {
   })();
 }
 
+export function hoverItem(id, trailer) {
+  $(".secondSection").append(`
+      <div class="hoverItem" value="${id}">
+        <div class="trailerBox">
+        <div id="itemTrailer"></div>
+        </div>
+          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
+           >play_circle_filled</i>
+          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">add_circle_outline</i>
+          <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
+           >thumb_up</i>
+          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
+      </div>
+  `);
+  onYouTubeIframeAPIReady(4, "itemTrailer", trailer);
+}
+
 export function trailerInfo(movie) {
   let name = movie.title ? movie.title : movie.name;
   let type = "M O V I E";
@@ -80,4 +97,9 @@ export function trailerInfo(movie) {
           >
         </div>
 `);
+  $(".loader").remove();
+  $("#header").show();
+  $(".firstSection").show();
+  $(".secondSection").show();
+  $("#footer").show();
 }

@@ -3,8 +3,13 @@ import { fetchPopular, fetchTrailer } from "../fetch/fetch.js";
 import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
-import { showInfo, showMovie, trailerInfo } from "./functions.js";
+import { showInfo, showMovie, trailerInfo, hoverItem } from "./functions.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+
+$("#header").hide();
+$(".firstSection").hide();
+$(".secondSection").hide();
+$("#footer").hide();
 
 Header();
 Footer();
@@ -65,6 +70,23 @@ $(".secondSection").on("click", "#closeInfo", function () {
 
 $("#movieShow").on("click", "#closeInfo", function () {
   $("#movieContainer").remove();
+});
+
+$(".secondSection").on("mouseenter", ".item", function () {
+  let [id, trailer] = $(this).attr("value").split(",");
+  hoverItem(id,trailer);
+  $(".hoverItem").css(
+    "top",
+    $(this).offset().top - $(".secondSection").offset().top
+  );
+  $(".hoverItem").css(
+    "left",
+    $(this).offset().left - $(".secondSection").offset().left
+  );
+});
+
+$(".secondSection").on("mouseleave", ".hoverItem", function () {
+  $(".hoverItem").remove();
 });
 
 window.onscroll = function () {

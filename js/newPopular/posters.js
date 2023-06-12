@@ -191,4 +191,9 @@ export function createPosters() {
       },
     });
   })(jQuery);
+  $(".loader").remove();
+  $("#header").show();
+  $(".firstSection").show();
+  $(".secondSection").show();
+  $("#footer").show();
 }

@@ -47,7 +47,7 @@ export function trailerInfo(movie) {
           <span id="desc">
             ${movie.overview}
           </span>
-          <button type="button" id="play"  class="btn mt-2">
+          <button type="button" id="playTV"  class="btn mt-2">
             <i class="material-icons">play_arrow</i>
             <span>Play</span>
           </button>
@@ -60,4 +60,9 @@ export function trailerInfo(movie) {
           >
         </div>
 `);
+  $(".loader").remove();
+  $("#header").show();
+  $(".firstSection").show();
+  $(".secondSection").show();
+  $("#footer").show();
 }

@@ -10,6 +10,11 @@ Header();
 Footer();
 Links();
 
+$("#header").hide();
+$(".firstSection").hide();
+$(".secondSection").hide();
+$("#footer").hide();
+
 let date = localStorage.getItem("moviedate") ?? 0;
 let curr_date = new Date().getDate();
 let randomTrailer = "";

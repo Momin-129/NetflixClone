@@ -3,11 +3,15 @@ import { fetchTrendin } from "../fetch/fetch.js";
 import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
-import { showInfo, showMovie, trailerInfo } from "./functions.js";
+import { showInfo, showMovie } from "./functions.js";
 
 Header();
 Footer();
 Links();
+
+$("#header").hide();
+$(".secondSection").hide();
+$("#footer").hide();
 
 fetchTrendin().then((data) => console.log(data));
 

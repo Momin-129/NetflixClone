@@ -132,7 +132,7 @@ img {
 }
 
 .faq .signUp input {
-  width: calc(350px + 0.390625vw);
+  width: 25%;
   height: 10vh;
   margin: auto;
   display: inline;
@@ -162,6 +162,10 @@ img {
   }
 
   .content .signUp input {
+    display: block;
+    width: 100%;
+  }
+  .faq .signUp input {
     display: block;
     width: 100%;
   }

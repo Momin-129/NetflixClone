@@ -55,29 +55,3 @@ export function showTV(obj) {
     onYouTubeIframeAPIReady(3, "displayMovie", randomShow.key);
   })();
 }
-
-export function trailerInfo(movie) {
-  let name = movie.title ? movie.title : movie.name;
-  let type = "M O V I E";
-  $(".details").append(`
-         <div class="options" value="${movie.id}" id="0">
-          <img src="../images/Nlogo.png" alt="" />${type}
-          <p class="title">${name}</p>
-          <p class="watch">Watch ${name} Now</p>
-          <span id="desc">
-            ${movie.overview}
-          </span>
-          <button type="button" id="play"  class="btn mt-2">
-            <i class="material-icons">play_arrow</i>
-            <span>Play</span>
-          </button>
-          <button type="button" id="more" class="btn mt-2">
-            <i class="material-icons">info_outline</i>
-            <span>More Info</span>
-          </button>
-          <i class="material-icons volume" style="float: right; cursor: pointer"
-            >volume_off</i
-          >
-        </div>
-`);
-}

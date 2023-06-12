@@ -6,6 +6,8 @@ import {
   fetchPoster,
   fetchPopularTV,
   fetchPosterTV,
+  fetchTrailer,
+  fetchTrailerTV,
 } from "../fetch/fetch.js";
 
 let movies = await fetchPopular().then((data) => data.results);
@@ -21,48 +23,74 @@ let favouritesTV = users[user_id].favouritesTV;
 let fav_button = "";
 
 for (let item of movies) {
-  poster = await fetchPoster(item.id).then((data) => data.backdrops);
-  for (let j of poster) {
-    if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-      item.poster = j.file_path;
-      break;
-    } else item.poster = j.file_path;
+  let trailer = await fetchTrailer(item.id).then((data) => data.results);
+  if (trailer.length > 0) {
+    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+    item.trailer = randomMovie.key;
+    poster = await fetchPoster(item.id).then((data) => data.backdrops);
+    for (let j of poster) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        item.poster = j.file_path;
+        break;
+      } else item.poster = j.file_path;
+    }
   }
 }
 for (let item of anime) {
-  poster = await fetchPoster(item.id).then((data) => data.backdrops);
-  for (let j of poster) {
-    if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-      item.poster = j.file_path;
-      break;
-    } else item.poster = j.file_path;
+  let trailer = await fetchTrailer(item.id).then((data) => data.results);
+  if (trailer.length > 0) {
+    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+    item.trailer = randomMovie.key;
+    poster = await fetchPoster(item.id).then((data) => data.backdrops);
+    for (let j of poster) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        item.poster = j.file_path;
+        break;
+      } else item.poster = j.file_path;
+    }
   }
 }
 for (let item of bollywood) {
-  poster = await fetchPoster(item.id).then((data) => data.backdrops);
-  for (let j of poster) {
-    if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-      item.poster = j.file_path;
-      break;
-    } else item.poster = j.file_path;
+  let trailer = await fetchTrailer(item.id).then((data) => data.results);
+  let poster = await fetchPoster(item.id).then((data) => data.backdrops);
+  if (trailer.length > 0 && poster.length > 0) {
+    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+    item.trailer = randomMovie.key;
+    for (let j of poster) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        item.poster = j.file_path;
+        break;
+      } else item.poster = j.file_path;
+    }
   }
+  console.log(item.poster);
 }
 for (let item of comedy) {
-  poster = await fetchPoster(item.id).then((data) => data.backdrops);
-  for (let j of poster) {
-    if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-      item.poster = j.file_path;
-      break;
-    } else item.poster = j.file_path;
+  let trailer = await fetchTrailer(item.id).then((data) => data.results);
+  if (trailer.length > 0) {
+    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+    item.trailer = randomMovie.key;
+    poster = await fetchPoster(item.id).then((data) => data.backdrops);
+    for (let j of poster) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        item.poster = j.file_path;
+        break;
+      } else item.poster = j.file_path;
+    }
   }
 }
 for (let item of tv) {
-  poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
-  for (let j of poster) {
-    if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-      item.poster = j.file_path;
-      break;
-    } else item.poster = j.file_path;
+  let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
+  if (trailer.length > 0) {
+    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+    item.trailer = randomMovie.key;
+    poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
+    for (let j of poster) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        item.poster = j.file_path;
+        break;
+      } else item.poster = j.file_path;
+    }
   }
 }
 
@@ -71,10 +99,10 @@ export function createPosters() {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
-
+    let values = [item.id, item.trailer];
     $("#section1").append(
       `
-      <div class="item" value="${item.id}">
+      <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
@@ -91,10 +119,10 @@ export function createPosters() {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
-
+    let values = [item.id, item.trailer];
     $("#section2").append(
       `
-      <div class="item" value="${item.id}">
+      <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
@@ -112,9 +140,10 @@ export function createPosters() {
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
 
+    let values = [item.id, item.trailer];
     $("#section3").append(
       `
-      <div class="item" value="${item.id}">
+      <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
@@ -131,10 +160,11 @@ export function createPosters() {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
+    let values = [item.id, item.trailer];
 
     $("#section4").append(
       `
-      <div class="item" value="${item.id}">
+      <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
@@ -151,10 +181,11 @@ export function createPosters() {
     if (!favouritesTV.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
+    let values = [item.id, item.trailer];
 
     $("#section5").append(
       `
-      <div class="item" value="${item.id}">
+      <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
           <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
@@ -174,6 +205,8 @@ export function createPosters() {
       margin: 10,
       nav: true,
       dots: false,
+      touchDrag: true,
+      mouseDrag: true,
       navText: [
         "<i class='material-icons'>chevron_left</i>",
         "<i class='material-icons'>chevron_right</i>",
@@ -186,7 +219,7 @@ export function createPosters() {
           items: 3,
         },
         1000: {
-          items: 6,
+          items: 5,
         },
       },
     });

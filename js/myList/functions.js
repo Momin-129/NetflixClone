@@ -75,4 +75,8 @@ export function favMovies() {
         </div>
     `);
   }
+  $(".loader").remove();
+  $("#header").show();
+  $(".secondSection").show();
+  $("#footer").show();
 }

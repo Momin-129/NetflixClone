@@ -8,6 +8,10 @@ Header();
 Footer();
 Links();
 
+$("#header").hide();
+$(".secondSection").hide();
+$("#footer").hide();
+
 favMovies();
 
 $(document).on("click", "#more", function () {
