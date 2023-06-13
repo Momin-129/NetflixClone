@@ -27,7 +27,7 @@ for (let item of movies) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
-    item.type = "movie";
+    item.type = "M O V I E";
     poster = await fetchPoster(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -42,7 +42,7 @@ for (let item of anime) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
-    item.type = "movie";
+    item.type = "M O V I E";
     poster = await fetchPoster(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -58,7 +58,7 @@ for (let item of bollywood) {
   if (trailer.length) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
-    item.type = "movie";
+    item.type = "M O V I E";
     for (let j of poster) {
       if (j.iso_639_1 == "en") {
         item.poster = j.file_path;
@@ -74,7 +74,7 @@ for (let item of comedy) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
-    item.type = "movie";
+    item.type = "M O V I E";
     poster = await fetchPoster(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -89,7 +89,7 @@ for (let item of tv) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
-    item.type = "tv";
+    item.type = "S E R I E S";
     poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {

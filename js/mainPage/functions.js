@@ -9,17 +9,17 @@ import { moreInfo } from "./moreInfo.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
 export function showInfo(id, trailer, type, container) {
+  console.log(trailer);
   let details = "";
   let similar = "";
   (async function () {
-    if (type == "movie") {
+    if (type == "M O V I E") {
       details = await fetchMovieDetails(id).then((data) => data);
       similar = await fetchSimilar(id).then((data) => data.results);
     } else {
       details = await fetchShowDetails(id).then((data) => data);
       similar = await fetchSimilarTV(id).then((data) => data.results);
     }
-
     moreInfo(details, trailer, similar, container);
   })();
 }
@@ -85,21 +85,19 @@ export function hoverItem(id, trailer, type) {
 }
 
 export function trailerInfo(movie) {
+  console.log(movie.trailer);
   let name = movie.title ? movie.title : movie.name;
-  let type = "M O V I E";
+  let type = movie.title ? "M O V I E" : "S E R I E S";
+  let play = movie.title ? "playMovie" : "playTV";
   $(".details").append(`
-         <div class="options" value="${[
-           movie.id,
-           movie.trailer,
-           "movie",
-         ]}" id="0">
+         <div class="options" value="${[movie.id, movie.trailer, type]}" id="0">
           <img src="../images/Nlogo.png" alt="" />${type}
           <p class="title">${name}</p>
           <p class="watch">Watch ${name} Now</p>
           <span id="desc">
             ${movie.overview}
           </span>
-          <button type="button" id="playMovie"  class="btn mt-2">
+          <button type="button" id="${play}"  class="btn mt-2">
             <i class="material-icons">play_arrow</i>
             <span>Play</span>
           </button>
