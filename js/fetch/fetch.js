@@ -52,10 +52,10 @@ export async function fetchAnimeTV() {
 }
 
 export async function fetchComedy() {
-  let anime = await fetch(
+  let comedy = await fetch(
     ` https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=1&with_genres=35`
   );
-  return anime.json();
+  return comedy.json();
 }
 
 export async function fetchPoster(movie_id) {

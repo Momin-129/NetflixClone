@@ -3,8 +3,20 @@ import { fetchPopular, fetchTrailer } from "../fetch/fetch.js";
 import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
-import { showInfo, showMovie, trailerInfo, hoverItem } from "./functions.js";
+import {
+  showInfo,
+  showMovie,
+  showTV,
+  trailerInfo,
+  hoverItem,
+} from "./functions.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+
+$("body").scroll(function () {
+  if ($("body").scrollTop() >= 200) {
+    $(".navbar").css("background-color", "black");
+  } else $(".navbar").css("background-color", "transparent");
+});
 
 $("#header").hide();
 $(".firstSection").hide();
@@ -29,6 +41,7 @@ if (date == 0 || curr_date != date) {
   randomMovie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
   let trailer = await fetchTrailer(randomMovie.id).then((data) => data.results);
   randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
+  randomMovie.trailer = randomTrailer;
   localStorage.setItem("home", JSON.stringify(randomMovie));
   localStorage.setItem("trailerHome", randomTrailer);
 } else {
@@ -41,31 +54,38 @@ trailerInfo(randomMovie);
 // Generate random trailer every day
 
 $(document).on("click", "#playMovie", function () {
-  showMovie($(this));
+  let [id, trailer] = $(this).parent().attr("value").split(",");
+  showMovie(trailer);
+});
+
+$(document).on("click", "#playTV", function () {
+  let [id, trailer] = $(this).parent().attr("value").split(",");
+  showTV(trailer);
+});
+
+$(document).on("click", "#more", function () {
+  let [id, trailer, type] = $(this).parent().attr("value").split(",");
+  showInfo(id, trailer, type, "secondSection");
+});
+
+$(".secondSection").on("click", "#closeInfo", function () {
+  $(".moreInfo").remove();
 });
 
 $(document).on("click", "#fav", function () {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
-  let movie_id = $(this).parent().attr("value");
+  let movie_id = $(this).parent().attr("value").split(",")[0];
   if ($(this).html() == "add_circle_outline") {
     users[user_id].favourites.push(movie_id);
-    $(`div[value="${movie_id}"] i[id='fav']`).html("check_circle");
+    $(this).html("check_circle");
   } else {
     let index = users[user_id].favourites.indexOf(movie_id.toString());
     users[user_id].favourites.splice(index, 1);
-    $(`div[value="${movie_id}"] i[id='fav']`).html("add_circle_outline");
+    $(this).html("add_circle_outline");
   }
   $("#myList").load(location.href + " #myList");
   localStorage.setItem("users", JSON.stringify(users));
-});
-
-$(document).on("click", "#more", function () {
-  showInfo($(this), "secondSection");
-});
-
-$(".secondSection").on("click", "#closeInfo", function () {
-  $(".moreInfo").remove();
 });
 
 $("#movieShow").on("click", "#closeInfo", function () {
@@ -73,11 +93,11 @@ $("#movieShow").on("click", "#closeInfo", function () {
 });
 
 $(".secondSection").on("mouseenter", ".item", function () {
-  let [id, trailer] = $(this).attr("value").split(",");
-  hoverItem(id,trailer);
+  let [id, trailer, type] = $(this).attr("value").split(",");
+  hoverItem(id, trailer, type);
   $(".hoverItem").css(
     "top",
-    $(this).offset().top - $(".secondSection").offset().top
+    $(this).offset().top - $(".secondSection").offset().top - 20
   );
   $(".hoverItem").css(
     "left",
@@ -88,9 +108,3 @@ $(".secondSection").on("mouseenter", ".item", function () {
 $(".secondSection").on("mouseleave", ".hoverItem", function () {
   $(".hoverItem").remove();
 });
-
-window.onscroll = function () {
-  if ($(window).scrollTop() >= 200) {
-    $(".navbar").css("background-color", "black");
-  } else $(".navbar").css("background-color", "transparent");
-};

@@ -27,6 +27,7 @@ for (let item of movies) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
+    item.type = "movie";
     poster = await fetchPoster(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -41,6 +42,7 @@ for (let item of anime) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
+    item.type = "movie";
     poster = await fetchPoster(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -53,23 +55,26 @@ for (let item of anime) {
 for (let item of bollywood) {
   let trailer = await fetchTrailer(item.id).then((data) => data.results);
   let poster = await fetchPoster(item.id).then((data) => data.backdrops);
-  if (trailer.length > 0 && poster.length > 0) {
+  if (trailer.length) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
+    item.type = "movie";
     for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+      if (j.iso_639_1 == "en") {
         item.poster = j.file_path;
         break;
-      } else item.poster = j.file_path;
+      } else {
+        item.poster = j.file_path;
+      }
     }
   }
-  console.log(item.poster);
 }
 for (let item of comedy) {
   let trailer = await fetchTrailer(item.id).then((data) => data.results);
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
+    item.type = "movie";
     poster = await fetchPoster(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -84,6 +89,7 @@ for (let item of tv) {
   if (trailer.length > 0) {
     let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
     item.trailer = randomMovie.key;
+    item.type = "tv";
     poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
     for (let j of poster) {
       if (j.iso_639_1 != null && j.iso_639_1 == "en") {
@@ -96,43 +102,32 @@ for (let item of tv) {
 
 export function createPosters() {
   for (let item of movies) {
-    if (!favourites.includes(item.id.toString()))
-      fav_button = "add_circle_outline";
-    else fav_button = "check_circle";
-    let values = [item.id, item.trailer];
-    $("#section1").append(
-      `
+    let values = [item.id, item.trailer, item.type];
+    if (item.trailer != undefined && item.poster != undefined) {
+      $("#section1").append(
+        `
       <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
-           >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
-          <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           >thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
-    );
+      );
+    }
   }
 
   for (let item of bollywood) {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
-    let values = [item.id, item.trailer];
-    $("#section2").append(
-      `
+    let values = [item.id, item.trailer, item.type];
+    if (item.trailer != undefined && item.poster != undefined) {
+      $("#section2").append(
+        `
       <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
-           >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
-          <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           >thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
-    );
+      );
+    }
   }
 
   for (let item of anime) {
@@ -140,62 +135,49 @@ export function createPosters() {
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
 
-    let values = [item.id, item.trailer];
-    $("#section3").append(
-      `
+    let values = [item.id, item.trailer, item.type];
+    if (item.trailer != undefined && item.poster != undefined) {
+      $("#section3").append(
+        `
       <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
-           >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
-          <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           >thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
-    );
+      );
+    }
   }
 
   for (let item of comedy) {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
-    let values = [item.id, item.trailer];
+    let values = [item.id, item.trailer, item.type];
 
-    $("#section4").append(
-      `
+    if (item.trailer != undefined && item.poster != undefined) {
+      $("#section4").append(
+        `
       <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
-           >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
-          <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           >thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
-    );
+      );
+    }
   }
 
   for (let item of tv) {
     if (!favouritesTV.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
-    let values = [item.id, item.trailer];
-
-    $("#section5").append(
-      `
+    let values = [item.id, item.trailer, item.type];
+    if (item.trailer != undefined && item.poster != undefined) {
+      $("#section5").append(
+        `
       <div class="item" value="${values}">
            <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
-           >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
-          <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-           >thumb_up</i>
-          <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
       `
-    );
+      );
+    }
   }
 
   (function ($) {

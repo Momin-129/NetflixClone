@@ -2,28 +2,30 @@ import {
   fetchTrailer,
   fetchMovieDetails,
   fetchSimilar,
-  fetchTrailerTV,
+  fetchShowDetails,
+  fetchSimilarTV,
 } from "../fetch/fetch.js";
 import { moreInfo } from "./moreInfo.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
-export function showInfo(obj, container) {
-  let id = $(obj).parent().attr("value");
+export function showInfo(id, trailer, type, container) {
+  let details = "";
+  let similar = "";
   (async function () {
-    let trailer = await fetchTrailer(id).then((data) => data.results);
-    let randomElement = trailer[Math.floor(Math.random() * trailer.length)];
-    let movie = await fetchMovieDetails(id).then((data) => data);
-    let similar = await fetchSimilar(id).then((data) => data.results);
-    moreInfo(movie, randomElement.key, similar, container);
+    if (type == "movie") {
+      details = await fetchMovieDetails(id).then((data) => data);
+      similar = await fetchSimilar(id).then((data) => data.results);
+    } else {
+      details = await fetchShowDetails(id).then((data) => data);
+      similar = await fetchSimilarTV(id).then((data) => data.results);
+    }
+
+    moreInfo(details, trailer, similar, container);
   })();
 }
 
-export function showMovie(obj) {
-  let id = $(obj).parent().attr("value");
-  (async function () {
-    let trailer = await fetchTrailer(id).then((data) => data.results);
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    $("#movieShow").append(`    
+export function showMovie(trailer) {
+  $("#movieShow").append(`    
         <div class="container-fluid p-3" id="movieContainer">
           <i class="material-icons" id="closeInfo" >close</i>
           <div id="displayMovie"></div>
@@ -33,16 +35,11 @@ export function showMovie(obj) {
           </div>
         </div>
     `);
-    onYouTubeIframeAPIReady(3, "displayMovie", randomMovie.key);
-  })();
+  onYouTubeIframeAPIReady(3, "displayMovie", trailer);
 }
 
-export function showTV(obj) {
-  let id = $(obj).parent().attr("value");
-  (async function () {
-    let trailer = await fetchTrailerTV(id).then((data) => data.results);
-    let randomShow = trailer[Math.floor(Math.random() * trailer.length)];
-    $("#movieShow").append(`    
+export function showTV(trailer) {
+  $("#movieShow").append(`    
         <div class="container-fluid p-3" id="movieContainer">
           <i class="material-icons" id="closeInfo" >close</i>
           <div id="displayMovie"></div>
@@ -52,19 +49,33 @@ export function showTV(obj) {
           </div>
         </div>
     `);
-    onYouTubeIframeAPIReady(3, "displayMovie", randomShow.key);
-  })();
+  onYouTubeIframeAPIReady(3, "displayMovie", trailer);
 }
 
-export function hoverItem(id, trailer) {
+export function hoverItem(id, trailer, type) {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = sessionStorage.getItem("user_id");
+  let favourites = users[user_id].favourites;
+  let favouritesTV = users[user_id].favouritesTV;
+  let fav_button = "";
+  if (
+    !favourites.includes(id.toString()) &&
+    !favouritesTV.includes(id.toString())
+  )
+    fav_button = "add_circle_outline";
+  else fav_button = "check_circle";
+
+  let play = "";
+  if (type == "movie") play = "playMovie";
+  else play = "playTV";
   $(".secondSection").append(`
-      <div class="hoverItem" value="${id}">
+      <div class="hoverItem" value="${[id, trailer, type]}">
         <div class="trailerBox">
         <div id="itemTrailer"></div>
         </div>
-          <i class="material-icons" id="playMovie" data-toggle="tooltip" title="Play"
+          <i class="material-icons" id="${play}" data-toggle="tooltip" title="Play"
            >play_circle_filled</i>
-          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">add_circle_outline</i>
+          <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites">${fav_button}</i>
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
@@ -77,7 +88,11 @@ export function trailerInfo(movie) {
   let name = movie.title ? movie.title : movie.name;
   let type = "M O V I E";
   $(".details").append(`
-         <div class="options" value="${movie.id}" id="0">
+         <div class="options" value="${[
+           movie.id,
+           movie.trailer,
+           "movie",
+         ]}" id="0">
           <img src="../images/Nlogo.png" alt="" />${type}
           <p class="title">${name}</p>
           <p class="watch">Watch ${name} Now</p>

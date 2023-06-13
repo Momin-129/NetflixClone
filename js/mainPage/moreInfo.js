@@ -1,14 +1,15 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
-export function moreInfo(movie, key, similar, container) {
+export function moreInfo(movie, trailer, similar, container) {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
   let fav_button = "";
-  console.log(container);
   if (!favourites.includes(movie.id.toString()))
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
+
+  console.log(favourites, movie.id);
   let name = movie.title ? movie.title : movie.name;
   let play = movie.title ? "playMovie" : "playTV";
 
@@ -17,7 +18,7 @@ export function moreInfo(movie, key, similar, container) {
         <div class="trailer">
           <div id="trailerVideo"></div>
           <i class="material-icons" id="closeInfo" >close</i>
-          <div class="options" value="${movie.id}" id="1">
+          <div class="options" value="${[movie.id, trailer]}" id="1">
             <p class="title">${name}</p>
             <button type="button" id="${play}" class="btn play mt-2">
               <i class="material-icons">play_arrow</i>
@@ -43,14 +44,15 @@ export function moreInfo(movie, key, similar, container) {
         </div>
       </div>
 `);
-  onYouTubeIframeAPIReady(1, "trailerVideo", key);
+  onYouTubeIframeAPIReady(1, "trailerVideo", trailer);
 
   for (let item of similar) {
     if (!favourites.includes(item.id.toString()))
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
     let name = item.title ? item.title : item.name;
-    $(".moreInfo .row").append(`
+    if (item.backdrop_path != null) {
+      $(".moreInfo .row").append(`
         <div class="col-md-4 col-sm-12 mt-4">
             <div class="similarMovie" value="${item.id}">
               <img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}"/>
@@ -62,5 +64,6 @@ export function moreInfo(movie, key, similar, container) {
             </div>
         </div>
       `);
+    }
   }
 }

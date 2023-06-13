@@ -18,14 +18,16 @@ $("#signup").on("click", () => {
 });
 
 $("#signInPage").on("click", () => {
-  let email = $("#email").val();
-  let password = $("#password").val();
   let valid = false;
-  for (let user of users) {
-    if (user["email"] == email && user["pass"] == password) {
-      valid = true;
-      user_id = user.user_id;
-      break;
+  if (users != null) {
+    let email = $("#email").val();
+    let password = $("#password").val();
+    for (let user of users) {
+      if (user["email"] == email && user["pass"] == password) {
+        valid = true;
+        user_id = user.user_id;
+        break;
+      }
     }
   }
 
