@@ -9,10 +9,10 @@ import { moreInfo } from "./moreInfo.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
 export function showInfo(id, trailer, type, container) {
-  console.log(trailer);
-  let details = "";
-  let similar = "";
   (async function () {
+    fetchSimilar(id).then((data) => console.log(data));
+    let details = "";
+    let similar = "";
     if (type == "M O V I E") {
       details = await fetchMovieDetails(id).then((data) => data);
       similar = await fetchSimilar(id).then((data) => data.results);
@@ -85,7 +85,7 @@ export function hoverItem(id, trailer, type) {
 }
 
 export function trailerInfo(movie) {
-  console.log(movie.trailer);
+  console.log(movie);
   let name = movie.title ? movie.title : movie.name;
   let type = movie.title ? "M O V I E" : "S E R I E S";
   let play = movie.title ? "playMovie" : "playTV";

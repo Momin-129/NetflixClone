@@ -8,7 +8,6 @@ export function moreInfo(movie, trailer, similar, container) {
   if (!favourites.includes(movie.id.toString()))
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
-
   let name = movie.title ? movie.title : movie.name;
   let play = movie.title ? "playMovie" : "playTV";
 

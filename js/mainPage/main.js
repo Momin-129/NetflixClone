@@ -75,16 +75,23 @@ $(".secondSection").on("click", "#closeInfo", function () {
 $(document).on("click", "#fav", function () {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
-  let movie_id = $(this).parent().attr("value").split(",")[0];
+  let id = $(this).parent().attr("value").split(",")[0];
+  let type = $(this).parent().attr("value").split(",")[2];
+
   if ($(this).html() == "add_circle_outline") {
-    users[user_id].favourites.push(movie_id);
+    if (type == "M O V I E") users[user_id].favourites.push(id);
+    else users[user_id].favouritesTV.push(id);
     $(this).html("check_circle");
   } else {
-    let index = users[user_id].favourites.indexOf(movie_id.toString());
-    users[user_id].favourites.splice(index, 1);
+    if (type == "M O V I E") {
+      let index = users[user_id].favourites.indexOf(id.toString());
+      users[user_id].favourites.splice(index, 1);
+    } else {
+      let index = users[user_id].favouritesTV.indexOf(id.toString());
+      users[user_id].favouritesTV.splice(index, 1);
+    }
     $(this).html("add_circle_outline");
   }
-  $("#myList").load(location.href + " #myList");
   localStorage.setItem("users", JSON.stringify(users));
 });
 
