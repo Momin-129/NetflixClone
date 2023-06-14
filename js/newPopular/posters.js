@@ -17,67 +17,48 @@ let anime = await fetchAnime().then((data) => data.results);
 let tv = await fetchPopularTV().then((data) => data.results);
 let poster = "";
 
-for (let item of movies) {
-  let trailer = await fetchTrailer(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "M O V I E";
-    poster = await fetchPoster(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
+function showPoster(item, section) {
+  let values = [item.id, item.trailer, item.type];
+  if (item.trailer != undefined && item.poster != undefined) {
+    $(`#section${section}`).append(
+      `
+      <div class="item" value="${values}">
+           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
+      </div>
+      `
+    );
   }
 }
-for (let item of anime) {
-  let trailer = await fetchTrailer(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "M O V I E";
-    poster = await fetchPoster(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
-}
-for (let item of bollywood) {
-  let trailer = await fetchTrailer(item.id).then((data) => data.results);
-  let poster = await fetchPoster(item.id).then((data) => data.backdrops);
-  if (trailer.length) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "M O V I E";
-    for (let j of poster) {
-      if (j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else {
-        item.poster = j.file_path;
+
+function setTrailerPoster(item) {
+  (async function () {
+    let trailer = await fetchTrailer(item.id).then((data) => data.results);
+    if (trailer.length > 0) {
+      let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+      item.trailer = randomMovie.key;
+      item.type = "M O V I E";
+      poster = await fetchPoster(item.id).then((data) => data.backdrops);
+      for (let j of poster) {
+        if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+          item.poster = j.file_path;
+          break;
+        } else item.poster = j.file_path;
       }
     }
-  }
+  })();
+}
+
+for (let item of movies) {
+  setTrailerPoster(item);
+}
+for (let item of anime) {
+  setTrailerPoster(item);
+}
+for (let item of bollywood) {
+  setTrailerPoster(item);
 }
 for (let item of comedy) {
-  let trailer = await fetchTrailer(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "M O V I E";
-    poster = await fetchPoster(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
+  setTrailerPoster(item);
 }
 for (let item of tv) {
   let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
@@ -97,69 +78,23 @@ for (let item of tv) {
 
 export function createPosters() {
   for (let item of movies) {
-    let values = [item.id, item.trailer, item.type];
-    if (item.trailer != undefined && item.poster != undefined) {
-      $("#section1").append(
-        `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-      );
-    }
+    showPoster(item, 1);
   }
 
   for (let item of bollywood) {
-    let values = [item.id, item.trailer, item.type];
-    if (item.trailer != undefined && item.poster != undefined) {
-      $("#section2").append(
-        `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-      );
-    }
+    showPoster(item, 2);
   }
 
   for (let item of anime) {
-    let values = [item.id, item.trailer, item.type];
-    if (item.trailer != undefined && item.poster != undefined) {
-      $("#section3").append(
-        `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-      );
-    }
+    showPoster(item, 3);
   }
 
   for (let item of comedy) {
-    let values = [item.id, item.trailer, item.type];
-
-    if (item.trailer != undefined && item.poster != undefined) {
-      $("#section4").append(
-        `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-      );
-    }
+    showPoster(item, 4);
   }
 
   for (let item of tv) {
-    let values = [item.id, item.trailer, item.type];
-    if (item.trailer != undefined && item.poster != undefined) {
-      $("#section5").append(
-        `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-      );
-    }
+    showPoster(item, 5);
   }
 
   (function ($) {
