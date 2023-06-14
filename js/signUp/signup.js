@@ -29,14 +29,15 @@ $("#password").on("keyup", () => {
   let passCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   if (!passCheck.test($("#password").val())) {
     $("#password").css("border", "2px solid red");
-    valid = true;
+    valid = false;
   } else {
     $("#password").css("border", "2px solid green");
-    valid = false;
+    valid = true;
   }
 });
 
 $("#saveUser").on("click", function () {
+  alert(valid);
   if (valid) {
     let email = $("#email").val();
     let pass = $("#password").val();
