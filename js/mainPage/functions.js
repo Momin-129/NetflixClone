@@ -1,5 +1,4 @@
 import {
-  fetchTrailer,
   fetchMovieDetails,
   fetchSimilar,
   fetchShowDetails,
@@ -10,7 +9,7 @@ import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
 export function showInfo(id, trailer, type, container) {
   (async function () {
-    fetchSimilar(id).then((data) => console.log(data));
+    fetchSimilar(id).then((data) => data);
     let details = "";
     let similar = "";
     if (type == "M O V I E") {
@@ -64,9 +63,9 @@ export function hoverItem(id, trailer, type) {
   )
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
-
+  console.log(type);
   let play = "";
-  if (type == "movie") play = "playMovie";
+  if (type == "M O V I E") play = "playMovie";
   else play = "playTV";
   $(".secondSection").append(`
       <div class="hoverItem" value="${[id, trailer, type]}">
@@ -85,7 +84,6 @@ export function hoverItem(id, trailer, type) {
 }
 
 export function trailerInfo(movie) {
-  console.log(movie);
   let name = movie.title ? movie.title : movie.name;
   let type = movie.title ? "M O V I E" : "S E R I E S";
   let play = movie.title ? "playMovie" : "playTV";

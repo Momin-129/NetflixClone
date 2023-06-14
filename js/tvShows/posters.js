@@ -6,6 +6,8 @@ import {
   fetchTrailerTV,
 } from "../fetch/fetch.js";
 
+fetchIndianTV().then((data) => console.log(data));
+
 let tvShows = await fetchPopularTV().then((data) => data.results);
 let indianTV = await fetchIndianTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);

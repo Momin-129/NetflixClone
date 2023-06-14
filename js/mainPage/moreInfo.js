@@ -4,8 +4,12 @@ export function moreInfo(movie, trailer, similar, container) {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
+  let favouritesTV = users[user_id].favouritesTV;
   let fav_button = "";
-  if (!favourites.includes(movie.id.toString()))
+  if (
+    !favourites.includes(movie.id.toString()) &&
+    !favouritesTV.includes(movie.id.toString())
+  )
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
   let name = movie.title ? movie.title : movie.name;

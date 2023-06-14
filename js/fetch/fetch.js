@@ -76,7 +76,7 @@ ${api_key}&with_original_language=en`);
 
 export async function fetchIndianTV() {
   let movies = await fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&with_origin_country=IN&with_original_language=hi`
+    `https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&with_origin_country=IN`
   );
 
   return movies.json();

@@ -5,7 +5,6 @@ import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
 import {
   showInfo,
-  showMovie,
   showTV,
   trailerInfo,
   hoverItem,
@@ -73,10 +72,10 @@ $(document).on("click", "#fav", function () {
   let tv_id = $(this).parent().attr("value").split(",")[0];
 
   if ($(this).html() == "add_circle_outline") {
-    users[user_id].favouritesTV.push(movie_id);
+    users[user_id].favouritesTV.push(tv_id);
     $(this).html("check_circle");
   } else {
-    let index = users[user_id].favouritesTV.indexOf(movie_id.toString());
+    let index = users[user_id].favouritesTV.indexOf(tv_id.toString());
     users[user_id].favouritesTV.splice(index, 1);
     $(this).html("add_circle_outline");
   }

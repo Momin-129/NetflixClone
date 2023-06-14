@@ -16,11 +16,6 @@ let comedy = await fetchComedy().then((data) => data.results);
 let anime = await fetchAnime().then((data) => data.results);
 let tv = await fetchPopularTV().then((data) => data.results);
 let poster = "";
-let users = JSON.parse(localStorage.getItem("users")) ?? [];
-let user_id = sessionStorage.getItem("user_id");
-let favourites = users[user_id].favourites;
-let favouritesTV = users[user_id].favouritesTV;
-let fav_button = "";
 
 for (let item of movies) {
   let trailer = await fetchTrailer(item.id).then((data) => data.results);
@@ -115,9 +110,6 @@ export function createPosters() {
   }
 
   for (let item of bollywood) {
-    if (!favourites.includes(item.id.toString()))
-      fav_button = "add_circle_outline";
-    else fav_button = "check_circle";
     let values = [item.id, item.trailer, item.type];
     if (item.trailer != undefined && item.poster != undefined) {
       $("#section2").append(
@@ -131,10 +123,6 @@ export function createPosters() {
   }
 
   for (let item of anime) {
-    if (!favourites.includes(item.id.toString()))
-      fav_button = "add_circle_outline";
-    else fav_button = "check_circle";
-
     let values = [item.id, item.trailer, item.type];
     if (item.trailer != undefined && item.poster != undefined) {
       $("#section3").append(
@@ -148,9 +136,6 @@ export function createPosters() {
   }
 
   for (let item of comedy) {
-    if (!favourites.includes(item.id.toString()))
-      fav_button = "add_circle_outline";
-    else fav_button = "check_circle";
     let values = [item.id, item.trailer, item.type];
 
     if (item.trailer != undefined && item.poster != undefined) {
@@ -165,9 +150,6 @@ export function createPosters() {
   }
 
   for (let item of tv) {
-    if (!favouritesTV.includes(item.id.toString()))
-      fav_button = "add_circle_outline";
-    else fav_button = "check_circle";
     let values = [item.id, item.trailer, item.type];
     if (item.trailer != undefined && item.poster != undefined) {
       $("#section5").append(
