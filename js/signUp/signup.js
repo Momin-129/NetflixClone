@@ -9,6 +9,7 @@ Links();
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
 let email = localStorage.getItem("email");
 let user_id = localStorage.getItem("user_id") ?? 0;
+let valid = false;
 
 for (let user of users) {
   if (user["email"] == email) {
@@ -28,11 +29,15 @@ $("#password").on("keyup", () => {
   let passCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   if (!passCheck.test($("#password").val())) {
     $("#password").css("border", "2px solid red");
-  } else $("#password").css("border", "2px solid green");
+    valid = true;
+  } else {
+    $("#password").css("border", "2px solid green");
+    valid = false;
+  }
 });
 
 $("#saveUser").on("click", function () {
-  if ($("#password").css("border") === "2px solid rgb(0, 128, 0)") {
+  if (valid) {
     let email = $("#email").val();
     let pass = $("#password").val();
     let obj = {};
