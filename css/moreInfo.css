@@ -106,10 +106,33 @@
 
 @media only screen and (max-width: 600px) {
   .moreInfo {
-    left: 5px;
+    left: 10px;
     width: 95%;
   }
   .moreInfo .options {
-    top: 150px;
+    top: 10%;
+  }
+
+  .moreInfo #trailerVideo {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.4, 1.9);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .trailer {
+    width: 100%;
+    height: 35%;
+    overflow: hidden;
+  }
+  .moreInfo .similar .row .similarMovie {
+    padding: 5px;
+    width: 100%;
+    height: 400px;
+    background-color: #333333;
+    border-radius: 5px;
+    overflow-y: hidden;
+    align-items: center;
   }
 }

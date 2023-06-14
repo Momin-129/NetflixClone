@@ -97,7 +97,7 @@ body {
   margin: 50px;
 }
 
-.owl-item {
+.item {
   padding: 5px;
   max-height: 150px;
   overflow-y: hidden;
@@ -134,7 +134,7 @@ body {
   cursor: pointer;
 }
 
-.slide .owl-item img {
+.slide .item img {
   width: 100%;
   margin-bottom: 15px;
 }
@@ -195,6 +195,9 @@ body {
 @media only screen and (max-width: 600px) {
   .firstSection {
     height: 35%;
+  }
+  .firstSection > #backVideo {
+    transform: scale(1.5, 1.7);
   }
   .firstSection .options {
     margin-top: 25%;

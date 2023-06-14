@@ -63,7 +63,6 @@ export function hoverItem(id, trailer, type) {
   )
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
-  console.log(type);
   let play = "";
   if (type == "M O V I E") play = "playMovie";
   else play = "playTV";

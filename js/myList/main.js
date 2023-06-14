@@ -1,4 +1,4 @@
-import { createPosters } from "./posters.js";
+import { createPosters } from "./poster.js";
 import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
@@ -15,13 +15,16 @@ $("body").scroll(function () {
   } else $(".navbar").css("background-color", "transparent");
 });
 
+$("#header").hide();
+$(".firstSection").hide();
+$(".secondSection").hide();
+$("#footer").hide();
+
 Header();
 Footer();
 Links();
 
 createPosters();
-
-$(".loader").hide();
 
 $(document).on("click", "#playMovie", function () {
   let [id, trailer] = $(this).parent().attr("value").split(",");

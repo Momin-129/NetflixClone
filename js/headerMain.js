@@ -1,6 +1,5 @@
 $("#header").on("click", ".nav-link", function () {
   console.log("Inside");
-  let base_url = localStorage.getItem("base_url");
   $(".active").removeClass("active");
   $(this).addClass("active");
   let value = $(this).attr("value");
