@@ -23,9 +23,9 @@ export async function fetchActionAdventure() {
   return actionAdventure.json();
 }
 
-export async function fetchTrendin() {
+export async function fetchTrending() {
   let trending = await fetch(
-    ` https://api.themoviedb.org/3/trending/movie/day?api_key=${api_key}&with_origin_country=IN`
+    ` https://api.themoviedb.org/3/trending/movie/week?api_key=${api_key}`
   );
   return trending.json();
 }
@@ -50,6 +50,19 @@ export async function fetchComedy() {
     ` https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=1&with_genres=35`
   );
   return comedy.json();
+}
+export async function fetchHorror() {
+  let horror = await fetch(
+    ` https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=1&with_genres=27`
+  );
+  return horror.json();
+}
+
+export async function fetchSciFantasy() {
+  let fantasy = await fetch(
+    ` https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=878|14`
+  );
+  return fantasy.json();
 }
 
 export async function fetchPoster(movie_id) {
