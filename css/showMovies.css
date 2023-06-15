@@ -225,13 +225,6 @@ body {
     padding: 0 10px;
   }
 
-  .secondSection .item {
-    pointer-events: none;
-  }
-
-  .secondSection .item img {
-    pointer-events: auto;
-  }
   .owl-item {
     max-height: 100px;
   }

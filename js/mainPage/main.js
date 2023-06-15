@@ -100,16 +100,20 @@ $("#movieShow").on("click", "#closeInfo", function () {
 });
 
 $(".secondSection").on("mouseenter", ".item", function () {
-  let [id, trailer, type] = $(this).attr("value").split(",");
-  hoverItem(id, trailer, type);
-  $(".hoverItem").css(
-    "top",
-    $(this).offset().top - $(".secondSection").offset().top - 20
-  );
-  $(".hoverItem").css(
-    "left",
-    $(this).offset().left - $(".secondSection").offset().left
-  );
+  var viewportWidth = $(window).width();
+  console.log(viewportWidth);
+  if (viewportWidth >= 600) {
+    let [id, trailer, type] = $(this).attr("value").split(",");
+    hoverItem(id, trailer, type);
+    $(".hoverItem").css(
+      "top",
+      $(this).offset().top - $(".secondSection").offset().top - 20
+    );
+    $(".hoverItem").css(
+      "left",
+      $(this).offset().left - $(".secondSection").offset().left
+    );
+  }
 });
 
 $(".secondSection").on("mouseleave", ".hoverItem", function () {
