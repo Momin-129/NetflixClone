@@ -40,7 +40,6 @@
         break;
       }
     }
-    console.log(user_id);
     localStorage.setItem("users", JSON.stringify(users));
     $(".page2").hide();
     $(".page3").show();

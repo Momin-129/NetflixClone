@@ -19,7 +19,7 @@ export function showInfo(id, trailer, type, container) {
       details = await fetchShowDetails(id).then((data) => data);
       similar = await fetchSimilarTV(id).then((data) => data.results);
     }
-    moreInfo(details, trailer, similar, container);
+    moreInfo(details, trailer, similar, container, type);
   })();
 }
 

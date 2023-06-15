@@ -37,7 +37,6 @@ $("#password").on("keyup", () => {
 });
 
 $("#saveUser").on("click", function () {
-  alert(valid);
   if (valid) {
     let email = $("#email").val();
     let pass = $("#password").val();

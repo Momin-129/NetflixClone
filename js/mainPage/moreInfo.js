@@ -1,6 +1,6 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
-export function moreInfo(movie, trailer, similar, container) {
+export function moreInfo(movie, trailer, similar, container, type) {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
@@ -14,19 +14,22 @@ export function moreInfo(movie, trailer, similar, container) {
   else fav_button = "check_circle";
   let name = movie.title ? movie.title : movie.name;
   let play = movie.title ? "playMovie" : "playTV";
-
   $(`.${container}`).append(`      
       <div class="container moreInfo">
         <div class="trailer">
           <div id="trailerVideo"></div>
           <i class="material-icons" id="closeInfo" >close</i>
-          <div class="options" value="${[movie.id, trailer]}" id="1">
+          <div class="options" value="${[movie.id, trailer, type]}" id="1">
             <p class="title">${name}</p>
             <button type="button" id="${play}" class="btn play mt-2">
               <i class="material-icons">play_arrow</i>
               <span>Play</span>
             </button>
-            <button type="button" class="btn mt-2" value="${movie.id}">
+            <button type="button" class="btn mt-2" value="${[
+              movie.id,
+              trailer,
+              type,
+            ]}">
             <i class="material-icons" id="fav"  data-toggle="tooltip" title="Add to Favourites" style="font-size:30px">${fav_button}</i>
             </button>
             <button type="button" class="btn mt-2">
