@@ -1,9 +1,13 @@
 $("#header").on("click", ".nav-link", function () {
-  console.log("Inside");
   $(".active").removeClass("active");
   $(this).addClass("active");
   let value = $(this).attr("value");
-  if (value != "profile") window.location.href = value;
+  if (value != "profile" && value != "logout" && value != "profileBtn") {
+    window.location.href = value;
+  } else if (value == "logout") {
+    sessionStorage.removeItem("user_id");
+    window.location.href = "/";
+  }
 });
 
 if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
@@ -46,14 +50,14 @@ export function Header() {
           <li class="nav-item">
             <div class="dropdown dropstart" >
                 <button type="button" data-bs-toggle="dropdown" style="padding:0;background:transparent;outline:none;border:none;">
-                    <a class="nav-link" value="profile">
+                    <a class="nav-link" value="profileBtn">
                       <i class="material-icons" style="font-size:24px;color:white;">account_circle</i>
                     </a>    
                 </button>
                 <ul class="dropdown-menu bg-dark">
-                  <li><a class="dropdown-item text-white" href="#">Profile</a></li>
-                  <li><a class="dropdown-item text-white" href="#"></a></li>
-                  <li><a class="dropdown-item text-white" href="#">Logout</a></li>
+                  <li><a class="dropdown-item text-white nav-link" value="profile">Profile</a></li>
+
+                  <li><a class="dropdown-item text-white nav-link" value="logout">Logout</a></li>
                 </ul>
               </div>
           </li>
