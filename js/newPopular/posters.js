@@ -1,20 +1,18 @@
 import {
-  fetchPopular,
-  fetchBollyWood,
-  fetchAnime,
-  fetchComedy,
+  fetchTrending,
+  fetchTrendingTV,
+  fetchUpcoming,
+  fetchAiringTodayTV,
   fetchPoster,
-  fetchPopularTV,
   fetchPosterTV,
   fetchTrailer,
   fetchTrailerTV,
 } from "../fetch/fetch.js";
 
-let movies = await fetchPopular().then((data) => data.results);
-let bollywood = await fetchBollyWood().then((data) => data.results);
-let comedy = await fetchComedy().then((data) => data.results);
-let anime = await fetchAnime().then((data) => data.results);
-let tv = await fetchPopularTV().then((data) => data.results);
+let movies = await fetchTrending().then((data) => data.results);
+let tv = await fetchTrendingTV().then((data) => data.results);
+let upcomingMovies = await fetchUpcoming().then((data) => data.results);
+let airingToday = await fetchAiringTodayTV().then((data) => data.results);
 let poster = "";
 
 function showPoster(item, section) {
@@ -51,15 +49,25 @@ function setTrailerPoster(item) {
 for (let item of movies) {
   setTrailerPoster(item);
 }
-for (let item of anime) {
+for (let item of upcomingMovies) {
   setTrailerPoster(item);
 }
-for (let item of bollywood) {
-  setTrailerPoster(item);
+for (let item of airingToday) {
+  let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
+  if (trailer.length > 0) {
+    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+    item.trailer = randomMovie.key;
+    item.type = "S E R I E S";
+    poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
+    for (let j of poster) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        item.poster = j.file_path;
+        break;
+      } else item.poster = j.file_path;
+    }
+  }
 }
-for (let item of comedy) {
-  setTrailerPoster(item);
-}
+
 for (let item of tv) {
   let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
   if (trailer.length > 0) {
@@ -81,20 +89,14 @@ export function createPosters() {
     showPoster(item, 1);
   }
 
-  for (let item of bollywood) {
+  for (let item of tv) {
     showPoster(item, 2);
   }
-
-  for (let item of anime) {
+  for (let item of upcomingMovies) {
     showPoster(item, 3);
   }
-
-  for (let item of comedy) {
+  for (let item of airingToday) {
     showPoster(item, 4);
-  }
-
-  for (let item of tv) {
-    showPoster(item, 5);
   }
 
   (function ($) {

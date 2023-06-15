@@ -29,7 +29,12 @@ export async function fetchTrending() {
   );
   return trending.json();
 }
-
+export async function fetchUpcoming() {
+  let upcoming = await fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}`
+  );
+  return upcoming.json();
+}
 export async function fetchBollyWood() {
   let movies = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&with_origin_country=IN&with_original_language=hi`
@@ -120,6 +125,13 @@ export async function fetchMysteryTV() {
     ` https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&page=1&with_genres=9648`
   );
   return mystery.json();
+}
+
+export async function fetchAiringTodayTV() {
+  let airingToday = await fetch(
+    `https://api.themoviedb.org/3/tv/airing_today?api_key=${api_key}`
+  );
+  return airingToday.json();
 }
 
 export async function fetchIndianTV() {
