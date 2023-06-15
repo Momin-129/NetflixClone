@@ -88,6 +88,26 @@ ${api_key}&with_original_language=en`);
 
   return popular.json();
 }
+export async function fetchTrendingTV() {
+  let trending =
+    await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=
+${api_key}`);
+
+  return trending.json();
+}
+export async function fetchKdramas() {
+  let kdramas = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=
+${api_key}&with_origin_country=KR&with_original_language=ko`);
+
+  return kdramas.json();
+}
+
+export async function fetchMysteryTV() {
+  let mystery = await fetch(
+    ` https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&page=1&with_genres=9648`
+  );
+  return mystery.json();
+}
 
 export async function fetchIndianTV() {
   let movies = await fetch(
