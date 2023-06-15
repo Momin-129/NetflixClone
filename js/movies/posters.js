@@ -1,5 +1,4 @@
 import {
-  fetchPopular,
   fetchBollyWood,
   fetchAnime,
   fetchComedy,
