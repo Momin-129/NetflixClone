@@ -7,13 +7,20 @@ ${api_key}`);
 
   return popular.json();
 }
-
+//
 export async function fetchTopRated() {
   let popular =
     await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=
 ${api_key}&with_origin_country=IN`);
 
   return popular.json();
+}
+export async function fetchActionAdventure() {
+  let actionAdventure = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=28|12`
+  );
+
+  return actionAdventure.json();
 }
 
 export async function fetchTrendin() {

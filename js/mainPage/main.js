@@ -101,7 +101,6 @@ $("#movieShow").on("click", "#closeInfo", function () {
 
 $(".secondSection").on("mouseenter", ".item", function () {
   var viewportWidth = $(window).width();
-  console.log(viewportWidth);
   if (viewportWidth >= 600) {
     let [id, trailer, type] = $(this).attr("value").split(",");
     hoverItem(id, trailer, type);

@@ -6,6 +6,8 @@ $("#header").on("click", ".nav-link", function () {
   if (value != "profile") window.location.href = value;
 });
 
+if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
+
 export function Header() {
   let base_url = localStorage.getItem("base_url");
   $("#header").append(`
