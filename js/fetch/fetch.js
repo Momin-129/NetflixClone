@@ -1,5 +1,25 @@
 let api_key = "f0da4eeabfc41aacee7225b73da8b902";
 
+export async function SearchIndian() {
+  let movieSearch = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_original_language=hi`
+  );
+  return movieSearch.json();
+}
+export async function SearchHollywood() {
+  let movieSearch = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_original_language=en`
+  );
+  return movieSearch.json();
+}
+
+export async function SearchEngTV() {
+  let movieSearch = await fetch(
+    `https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&with_original_language=en`
+  );
+  return movieSearch.json();
+}
+
 // Movie Section Start
 export async function fetchPopular() {
   let popular = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=

@@ -52,21 +52,23 @@ export function showTV(trailer) {
 }
 
 export function hoverItem(id, trailer, type) {
-  let users = JSON.parse(localStorage.getItem("users")) ?? [];
-  let user_id = sessionStorage.getItem("user_id");
-  let favourites = users[user_id].favourites;
-  let favouritesTV = users[user_id].favouritesTV;
-  let fav_button = "";
-  if (
-    !favourites.includes(id.toString()) &&
-    !favouritesTV.includes(id.toString())
-  )
-    fav_button = "add_circle_outline";
-  else fav_button = "check_circle";
-  let play = "";
-  if (type == "M O V I E") play = "playMovie";
-  else play = "playTV";
-  $(".secondSection").append(`
+  var viewportWidth = $(window).width();
+  if (viewportWidth >= 600) {
+    let users = JSON.parse(localStorage.getItem("users")) ?? [];
+    let user_id = sessionStorage.getItem("user_id");
+    let favourites = users[user_id].favourites;
+    let favouritesTV = users[user_id].favouritesTV;
+    let fav_button = "";
+    if (
+      !favourites.includes(id.toString()) &&
+      !favouritesTV.includes(id.toString())
+    )
+      fav_button = "add_circle_outline";
+    else fav_button = "check_circle";
+    let play = "";
+    if (type == "M O V I E") play = "playMovie";
+    else play = "playTV";
+    $(".secondSection").append(`
       <div class="hoverItem" value="${[id, trailer, type]}">
         <div class="trailerBox">
         <div id="itemTrailer"></div>
@@ -79,7 +81,8 @@ export function hoverItem(id, trailer, type) {
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
       </div>
   `);
-  onYouTubeIframeAPIReady(4, "itemTrailer", trailer);
+    onYouTubeIframeAPIReady(4, "itemTrailer", trailer);
+  }
 }
 
 export function trailerInfo(movie) {

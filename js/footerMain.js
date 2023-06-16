@@ -1,7 +1,8 @@
 export function Footer() {
   $("#footer").append(`
 
-    <div class="container-fluid footer">
+  <div class="container-fluid footer">
+    <div class="container">
       <i class='fab fa-facebook-f' style='font-size:18px'></i>
       <i class='fab fa-instagram' style='font-size:18px'></i>
       <i class='fab fa-twitter' style='font-size:18px'></i>
@@ -38,5 +39,6 @@ export function Footer() {
       </div>
      @1997-2023 Netflix Inc 
     </div>
+  </div>
 `);
 }

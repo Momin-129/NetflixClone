@@ -100,8 +100,6 @@ $("#movieShow").on("click", "#closeInfo", function () {
 });
 
 $(".secondSection").on("mouseenter", ".item", function () {
-  var viewportWidth = $(window).width();
-  if (viewportWidth >= 600) {
     let [id, trailer, type] = $(this).attr("value").split(",");
     hoverItem(id, trailer, type);
     $(".hoverItem").css(
@@ -112,7 +110,6 @@ $(".secondSection").on("mouseenter", ".item", function () {
       "left",
       $(this).offset().left - $(".secondSection").offset().left
     );
-  }
 });
 
 $(".secondSection").on("mouseleave", ".hoverItem", function () {

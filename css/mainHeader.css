@@ -3,15 +3,7 @@
   background-color: transparent;
   padding: 0 20px;
   margin: 0;
-  top: 0;
-  position: fixed;
   z-index: 1000;
-  overflow-y: visible;
-}
-
-.navbar .dropdown {
-  position: relative;
-  z-index: 10000;
 }
 
 .navbar .navbar-nav > li > a {
@@ -28,8 +20,39 @@
   width: 150px;
 }
 
-.navbar .rightLink {
-  justify-content: right;
+.navbar .search {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  width: 20%;
+  border-radius: 5px;
+}
+.navbar .search input {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  display: none;
+  color: white;
+}
+.navbar .search input::placeholder {
+  color: white;
+}
+.navbar .search i {
+  display: inline-block;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.navbar .search #closeSearch {
+  display: none;
+}
+
+.searchContent {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: black;
+  top: 95px;
 }
 
 @media only screen and (max-width: 600px) {
