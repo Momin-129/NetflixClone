@@ -1,4 +1,13 @@
 import { SearchIndian, SearchHollywood, SearchEngTV } from "./fetch/fetch.js";
+import {
+  fetchTrailer,
+  fetchTrailerTV,
+  fetchPoster,
+  fetchPosterTV,
+  fetchSimilar,
+  fetchSimilarTV,
+} from "./fetch/fetch.js";
+if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
@@ -10,31 +19,89 @@ function shuffleArray(array) {
 }
 
 let movieList = [];
-let indianMovie = await SearchIndian().then((data) => data.results);
-let englishMovie = await SearchHollywood().then((data) => data.results);
-let englishTv = await SearchEngTV().then((data) => data.results);
-
-for (let item of indianMovie) movieList.push(item);
-// for (let item of englishMovie) movieList.push(item);
-// for (let item of englishTv) movieList.push(item);
+for (let i = 1; i < 4; i++) {
+  let indianMovie = await SearchIndian(i).then((data) => data.results);
+  let englishMovie = await SearchHollywood(i).then((data) => data.results);
+  let englishTv = await SearchEngTV(i).then((data) => data.results);
+  for (let item of indianMovie) movieList.push(item);
+  for (let item of englishMovie) movieList.push(item);
+  for (let item of englishTv) movieList.push(item);
+}
 
 shuffleArray(movieList);
 
 function filterData(query) {
-  let filterMovie = movieList.map((item) => {
+  let filterMovie = movieList.filter((item) => {
+    let name = item.title ? item.title : item.name;
     if (
       item.overview.toLowerCase().includes(query.toLowerCase()) ||
-      item.title.toLowerCase().includes(query.toLowerCase())
+      name.toLowerCase().includes(query.toLowerCase())
     ) {
       return item;
     }
   });
-  console.log(filterMovie);
+
+  if (filterMovie.length == 1) {
+    let item = filterMovie[0];
+    let type = item.title ? "M O V I E" : "S E R I E S";
+    let moreMovies = "";
+    (async function () {
+      if (type == "M O V I E") {
+        moreMovies = await fetchSimilar(item.id).then((data) => data.results);
+      } else
+        moreMovies = await fetchSimilarTV(item.id).then((data) => data.results);
+      for (let item of moreMovies) filterMovie.push(item);
+      for (let item of filterMovie) console.log(item);
+    })();
+  }
+
+  for (let item of filterMovie) {
+    (async function () {
+      let type = item.title ? "M O V I E" : "S E R I E S";
+      let trailer = "";
+      let poster = "";
+      if (type == "M O V I E")
+        trailer = await fetchTrailer(item.id).then((data) => data.results);
+      else trailer = await fetchTrailerTV(item.id).then((data) => data.results);
+
+      if (trailer.length > 0) {
+        let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+        item.trailer = randomMovie.key;
+        item.type = type;
+        if (type == "M O V I E")
+          poster = await fetchPoster(item.id).then((data) => data.backdrops);
+        else
+          poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
+        for (let j of poster) {
+          if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+            item.poster = j.file_path;
+            break;
+          } else item.poster = j.file_path;
+        }
+      }
+    })();
+  }
+  for (let item of filterMovie) {
+    let values = [item.id, item.trailer, item.type];
+    if (item.trailer != undefined && item.poster != undefined) {
+      $(`#searchContent`).append(
+        `
+        <div class="col-md-2 col-sm-12">
+            <div class="item" value="${values}">
+                 <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
+            </div>
+        </div>
+        `
+      );
+    }
+  }
 }
 
 $(document).on("keyup", ".search input", function () {
+  $("#searchContent").html("");
   let query = $(this).val();
-  filterData(query);
+  if (query != "") filterData(query);
+  else $("searchContent").html("");
 });
 
 $("#header").on("click", ".nav-link", function () {
@@ -48,7 +115,33 @@ $("#header").on("click", ".nav-link", function () {
   }
 });
 
-if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
+$(document).on("click", "#searchBtn", function () {
+  $(".search input").css("display", "inline-block");
+  $(".search input").focus();
+  $(".search").css({
+    width: "max-content",
+    border: "2px solid white",
+    "background-color": "black",
+  });
+  $("#closeSearch").css("display", "inline-block");
+  $(".navbar").css("background-color", "black");
+  $(` <div class="slide">
+        <div class="row" id="searchContent"></div>
+      </div>
+    `).appendTo(".secondSection");
+});
+
+$(document).on("click", "#closeSearch", function () {
+  $(".search input").css("display", "none");
+  $(".search").css({
+    width: "20%",
+    border: "none",
+    "background-color": "transparent",
+  });
+  $("#searchContent").remove();
+  $(".navbar").css("background-color", "transparent");
+  $("#closeSearch").css("display", "none");
+});
 
 export function Header() {
   let base_url = localStorage.getItem("base_url");
@@ -112,27 +205,3 @@ export function Header() {
 </nav>
 `);
 }
-
-$(document).on("click", "#searchBtn", function () {
-  $(".search input").css("display", "inline-block");
-  $(".search").css({
-    width: "max-content",
-    border: "2px solid white",
-    "background-color": "black",
-  });
-  $("#closeSearch").css("display", "inline-block");
-  $(".navbar").css("background-color", "black");
-  $(`<div class="searchContent"></div>`).appendTo("body");
-});
-
-$(document).on("click", "#closeSearch", function () {
-  $(".search input").css("display", "none");
-  $(".search").css({
-    width: "20%",
-    border: "none",
-    "background-color": "transparent",
-  });
-  $(".searchContent").remove();
-  $(".navbar").css("background-color", "transparent");
-  $("#closeSearch").css("display", "none");
-});

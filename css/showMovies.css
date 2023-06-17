@@ -111,7 +111,7 @@ body {
   background-color: #0d0d0d;
   border-radius: 5px;
   position: absolute;
-  z-index: 10000;
+  z-index: 10006;
   transform: scale(1.5, 1.5);
 }
 
