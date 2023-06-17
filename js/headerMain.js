@@ -4,8 +4,6 @@ import {
   fetchTrailerTV,
   fetchPoster,
   fetchPosterTV,
-  fetchSimilar,
-  fetchSimilarTV,
 } from "./fetch/fetch.js";
 if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
 
@@ -35,25 +33,11 @@ function filterData(query) {
     let name = item.title ? item.title : item.name;
     if (
       item.overview.toLowerCase().includes(query.toLowerCase()) ||
-      name.toLowerCase().includes(query.toLowerCase())
+      name.toLowerCase().replace(/-/g, "").includes(query.toLowerCase())
     ) {
       return item;
     }
   });
-
-  if (filterMovie.length == 1) {
-    let item = filterMovie[0];
-    let type = item.title ? "M O V I E" : "S E R I E S";
-    let moreMovies = "";
-    (async function () {
-      if (type == "M O V I E") {
-        moreMovies = await fetchSimilar(item.id).then((data) => data.results);
-      } else
-        moreMovies = await fetchSimilarTV(item.id).then((data) => data.results);
-      for (let item of moreMovies) filterMovie.push(item);
-      for (let item of filterMovie) console.log(item);
-    })();
-  }
 
   for (let item of filterMovie) {
     (async function () {
@@ -82,6 +66,7 @@ function filterData(query) {
     })();
   }
   for (let item of filterMovie) {
+    console.log(item.trailer);
     let values = [item.id, item.trailer, item.type];
     if (item.trailer != undefined && item.poster != undefined) {
       $(`#searchContent`).append(
@@ -123,6 +108,7 @@ $(document).on("click", "#searchBtn", function () {
     border: "2px solid white",
     "background-color": "black",
   });
+  $(".firstSection").css("pointer-events", "none");
   $("#closeSearch").css("display", "inline-block");
   $(".navbar").css("background-color", "black");
   $(` <div class="slide">
@@ -138,6 +124,7 @@ $(document).on("click", "#closeSearch", function () {
     border: "none",
     "background-color": "transparent",
   });
+  $(".firstSection").css("pointer-events", "auto");
   $("#searchContent").remove();
   $(".navbar").css("background-color", "transparent");
   $("#closeSearch").css("display", "none");

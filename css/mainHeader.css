@@ -60,9 +60,6 @@
   padding-right: 45px;
   padding-bottom: 150px;
 }
-#searchContent .hoverItem {
-  z-index: 100000;
-}
 
 @media only screen and (max-width: 600px) {
   .navbar {
