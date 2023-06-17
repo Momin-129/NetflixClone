@@ -5,7 +5,14 @@ import {
   fetchPoster,
   fetchPosterTV,
 } from "./fetch/fetch.js";
+
 if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
+
+let dropPos = "dropstart";
+var viewportWidth = $(window).width();
+if (viewportWidth <= 600) {
+  dropPos = "dropend";
+} else dropPos = "dropstart";
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
@@ -170,7 +177,7 @@ export function Header() {
         <i class="material-icons">notifications_none</i>
         </button>
         </div>
-        <div class="dropstart">
+        <div class="${dropPos}">
           <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false" style="outline:none;border:none;color:white">
           <i class="material-icons">account_circle</i>
           </button>
