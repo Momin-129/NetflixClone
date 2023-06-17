@@ -77,4 +77,7 @@
   .navbar .navbar-nav > li > a {
     font-size: 12px;
   }
+  .navbar .search {
+    display: none;
+  }
 }
