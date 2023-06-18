@@ -6,7 +6,22 @@ import {
   fetchPosterTV,
 } from "./fetch/fetch.js";
 
-if (sessionStorage.getItem("user_id") == null) window.location.href = "/";
+let base_url = localStorage.getItem("base_url");
+if (sessionStorage.getItem("user_id") == null) {
+  window.location.href = base_url;
+}
+
+$("#header").on("click", ".nav-link", function () {
+  let value = $(this).attr("value");
+  console.log(value);
+  if (value != "logout") {
+    window.location.href = value;
+  } else if (value == "logout") {
+    sessionStorage.removeItem("user_id");
+    window.location.href = base_url;
+  }
+});
+
 
 let dropPos = "dropstart";
 var viewportWidth = $(window).width();
@@ -94,17 +109,6 @@ $(document).on("keyup", ".search input", function () {
   let query = $(this).val();
   if (query != "") filterData(query);
   else $("searchContent").html("");
-});
-
-$("#header").on("click", ".nav-link", function () {
-  let value = $(this).attr("value");
-  console.log(value);
-  if (value != "logout") {
-    window.location.href = value;
-  } else if (value == "logout") {
-    sessionStorage.removeItem("user_id");
-    window.location.href = "/";
-  }
 });
 
 $(document).on("click", "#searchBtn", function () {
