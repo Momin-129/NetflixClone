@@ -22,7 +22,6 @@ $("#header").on("click", ".nav-link", function () {
   }
 });
 
-
 let dropPos = "dropstart";
 var viewportWidth = $(window).width();
 if (viewportWidth <= 600) {
