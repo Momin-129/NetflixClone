@@ -66,6 +66,7 @@ $(document).on("click", "#fav", function () {
     $(this).html("add_circle_outline");
   }
   localStorage.setItem("users", JSON.stringify(users));
+  window.location.reload();
 });
 
 $("#movieShow").on("click", "#closeInfo", function () {

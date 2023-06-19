@@ -87,8 +87,14 @@ function filterData(query) {
     })();
   }
   for (let item of filterMovie) {
-    console.log(item.trailer);
-    let values = [item.id, item.trailer, item.type];
+    let genres = [];
+    if (item.genre_ids) genres = item.genre_ids;
+    else {
+      for (let genre of item.genres) {
+        genres.push(genre.id);
+      }
+    }
+    let values = [item.id, item.trailer, item.type, genres.join("-")];
     if (item.trailer != undefined && item.poster != undefined) {
       $(`#searchContent`).append(
         `
