@@ -22,10 +22,10 @@ $("#header").on("click", ".nav-link", function () {
   }
 });
 
-let dropPos = "dropstart";
+let dropPos = "dropleft";
 var viewportWidth = $(window).width();
 if (viewportWidth <= 600) {
-  dropPos = "dropend";
+  dropPos = "dropright";
 } else dropPos = "dropstart";
 
 function shuffleArray(array) {
@@ -182,9 +182,9 @@ export function Header() {
         </div>
         <div class="${dropPos}">
           <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false" style="outline:none;border:none;color:white">
-          <i class="material-icons">account_circle</i>
+          <img src="../images/avatar.png" width=30>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <ul class="dropdown-menu dropdown-menu-dark p-3" aria-labelledby="dropdownMenu2">
             <li>
               <button class="dropdown-item nav-link" value="logout" type="button">
                   Profile
