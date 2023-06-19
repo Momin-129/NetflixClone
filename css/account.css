@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100%;
+}
+
+.navbar {
+  background-color: black;
+  position: static;
+}
+.account {
+  position: relative;
+  padding: 45px;
+  height: 100%;
+}
