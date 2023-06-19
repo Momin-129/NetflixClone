@@ -187,7 +187,7 @@ export function Header() {
           <ul class="dropdown-menu dropdown-menu-dark p-3" aria-labelledby="dropdownMenu2">
             <li>
               <button class="dropdown-item nav-link" value="logout" type="button">
-                  Profile
+                  Account
               </button>
             </li>
             <li>

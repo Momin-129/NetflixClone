@@ -3,10 +3,10 @@ export function Footer() {
 
   <div class="container-fluid footer">
     <div class="container">
-      <i class='fab fa-facebook-f' style='font-size:18px'></i>
-      <i class='fab fa-instagram' style='font-size:18px'></i>
-      <i class='fab fa-twitter' style='font-size:18px'></i>
-      <i class='fab fa-youtube' style='font-size:18px'></i>
+      <i class='fa fa-facebook-official' style='font-size:18px'></i>
+      <i class='fa fa-instagram' style='font-size:18px'></i>
+      <i class='fa fa-twitter' style='font-size:18px'></i>
+      <i class='fa fa-youtube-play' style='font-size:18px'></i>
       <div class="row mt-5">
         <div class="col-md-3 col-sm-12">
           <ul>
