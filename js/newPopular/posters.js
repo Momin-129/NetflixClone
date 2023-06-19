@@ -9,48 +9,23 @@ import {
   fetchTrailerTV,
 } from "../fetch/fetch.js";
 
+import { showPoster, setTrailerPoster } from "../mainPage/posters.js";
+
 let movies = await fetchTrending().then((data) => data.results);
 let tv = await fetchTrendingTV().then((data) => data.results);
 let upcomingMovies = await fetchUpcoming().then((data) => data.results);
 let airingToday = await fetchAiringTodayTV().then((data) => data.results);
 let poster = "";
 
-function showPoster(item, section) {
-  let values = [item.id, item.trailer, item.type];
-  if (item.trailer != undefined && item.poster != undefined) {
-    $(`#section${section}`).append(
-      `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-    );
-  }
-}
-
-function setTrailerPoster(item) {
-  (async function () {
-    let trailer = await fetchTrailer(item.id).then((data) => data.results);
-    if (trailer.length > 0) {
-      let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-      item.trailer = randomMovie.key;
-      item.type = "M O V I E";
-      poster = await fetchPoster(item.id).then((data) => data.backdrops);
-      for (let j of poster) {
-        if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-          item.poster = j.file_path;
-          break;
-        } else item.poster = j.file_path;
-      }
-    }
-  })();
-}
-
 for (let item of movies) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of upcomingMovies) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of airingToday) {
   let trailer = await fetchTrailerTV(item.id).then((data) => data.results);

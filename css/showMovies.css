@@ -107,10 +107,9 @@ body {
 }
 
 .hoverItem {
-  width: 290px;
-  height: 250px;
-  max-width: 300px;
-  overflow-x: hidden;
+  width: 350px;
+  height: 320px;
+  overflow: hidden;
   background-color: #0d0d0d;
   border-radius: 5px;
   position: absolute;

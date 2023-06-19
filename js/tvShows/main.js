@@ -88,8 +88,8 @@ $("#movieShow").on("click", "#closeInfo", function () {
 });
 
 $(".secondSection").on("mouseenter", ".item", function () {
-  let [id, trailer, type] = $(this).attr("value").split(",");
-  hoverItem(id, trailer, type);
+  let [id, trailer, type, genres] = $(this).attr("value").split(",");
+  hoverItem(id, trailer, type,genres);
   $(".hoverItem").css(
     "top",
     $(this).offset().top - $(".secondSection").offset().top - 20
@@ -103,40 +103,3 @@ $(".secondSection").on("mouseenter", ".item", function () {
 $(".secondSection").on("mouseleave", ".hoverItem", function () {
   $(".hoverItem").remove();
 });
-// $(document).on("click", "#playTV", function () {
-//   showMovie($(this));
-// });
-//
-// $(document).on("click", "#fav", function () {
-//   let users = JSON.parse(localStorage.getItem("users")) ?? [];
-//   let user_id = sessionStorage.getItem("user_id");
-//   let movie_id = $(this).parent().attr("value");
-//   if ($(this).html() == "add_circle_outline") {
-//     users[user_id].favouritesTV.push(movie_id);
-//     $(`div[value="${movie_id}"] i[id='fav']`).html("check_circle");
-//   } else {
-//     let index = users[user_id].favouritesTV.indexOf(movie_id.toString());
-//     users[user_id].favouritesTV.splice(index, 1);
-//     $(`div[value="${movie_id}"] i[id='fav']`).html("add_circle_outline");
-//   }
-//   $("#myList").load(location.href + " #myList");
-//   localStorage.setItem("users", JSON.stringify(users));
-// });
-//
-// $(document).on("click", "#more", function () {
-//   showInfo($(this), "secondSection");
-// });
-//
-// $(".secondSection").on("click", "#closeInfo", function () {
-//   $(".moreInfo").remove();
-// });
-//
-// $("#movieShow").on("click", "#closeInfo", function () {
-//   $("#movieContainer").remove();
-// });
-//
-// window.onscroll = function () {
-//   if ($(window).scrollTop() >= 200) {
-//     $(".navbar").css("background-color", "black");
-//   } else $(".navbar").css("background-color", "transparent");
-// };

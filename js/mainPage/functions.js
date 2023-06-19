@@ -3,9 +3,22 @@ import {
   fetchSimilar,
   fetchShowDetails,
   fetchSimilarTV,
+  MovieList,
+  TVList,
 } from "../fetch/fetch.js";
 import { moreInfo } from "./moreInfo.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
+
+let movieGenres = await MovieList().then((data) => data.genres);
+let tvGenres = await TVList().then((data) => data.genres);
+let movieGenMap = new Map();
+let tvGenMap = new Map();
+movieGenres.forEach((element) => {
+  movieGenMap.set(element.id, element.name);
+});
+tvGenres.forEach((element) => {
+  tvGenMap.set(element.id, element.name);
+});
 
 export function showInfo(id, trailer, type, container) {
   (async function () {
@@ -51,9 +64,10 @@ export function showTV(trailer) {
   onYouTubeIframeAPIReady(3, "displayMovie", trailer);
 }
 
-export function hoverItem(id, trailer, type) {
+export function hoverItem(id, trailer, type, genres) {
   var viewportWidth = $(window).width();
   if (viewportWidth >= 600) {
+    let genreList = genres.split("-");
     let users = JSON.parse(localStorage.getItem("users")) ?? [];
     let user_id = sessionStorage.getItem("user_id");
     let favourites = users[user_id].favourites;
@@ -66,8 +80,23 @@ export function hoverItem(id, trailer, type) {
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
     let play = "";
-    if (type == "M O V I E") play = "playMovie";
-    else play = "playTV";
+    if (type == "M O V I E") {
+      play = "playMovie";
+      for (let i = 0; i < genreList.length; i++) {
+        let id = parseInt(genreList[i]);
+        let genreName = movieGenMap.get(id);
+        genreList[i] = genreName;
+      }
+      genreList = genreList.join(" . ");
+    } else {
+      play = "playTV";
+      for (let i = 0; i < genreList.length; i++) {
+        let id = parseInt(genreList[i]);
+        let genreName = tvGenMap.get(id);
+        genreList[i] = genreName;
+      }
+      genreList = genreList.join(" . ");
+    }
     $(".secondSection").append(`
       <div class="hoverItem" value="${[id, trailer, type]}">
         <div class="trailerBox">
@@ -79,6 +108,9 @@ export function hoverItem(id, trailer, type) {
           <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
+
+          <p style="width:100%;word-wrap:break-word;padding:5px;font-size:12px;">${genreList}</p>
+          
       </div>
   `);
     onYouTubeIframeAPIReady(4, "itemTrailer", trailer);

@@ -1,5 +1,4 @@
 import {
-  fetchPopularTV,
   fetchIndianTV,
   fetchAnimeTV,
   fetchPosterTV,
@@ -9,63 +8,34 @@ import {
   fetchTrendingTV,
 } from "../fetch/fetch.js";
 
-// let tvShows = await fetchPopularTV().then((data) => data.results);
+import { showPoster, setTrailerPoster } from "../mainPage/posters.js";
+
 let tvShows = await fetchTrendingTV().then((data) => data.results);
 let indianTV = await fetchIndianTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);
 let kdramas = await fetchKdramas().then((data) => data.results);
 let mystery = await fetchMysteryTV().then((data) => data.results);
 let poster = "";
-let users = JSON.parse(localStorage.getItem("users")) ?? [];
-let user_id = sessionStorage.getItem("user_id");
-let favouritesTV = users[user_id].favouritesTV;
-let fav_button = "";
-
-function setTrailerPoster(item) {
-  (async function () {
-    let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
-    if (trailer.length > 0) {
-      let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-      item.trailer = randomMovie.key;
-      item.type = "S E R I E S";
-      poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
-      for (let j of poster) {
-        if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-          item.poster = j.file_path;
-          break;
-        } else item.poster = j.file_path;
-      }
-    }
-  })();
-}
-
-function showPoster(item, section) {
-  if (!favouritesTV.includes(item.id.toString()))
-    fav_button = "add_circle_outline";
-  else fav_button = "check_circle";
-  let values = [item.id, item.trailer, item.type];
-  if (item.trailer != undefined && item.poster != undefined) {
-    $(`#section${section}`).append(
-      `
-      <div class="item" value="${values}">
-           <img id="more" src="https://image.tmdb.org/t/p/original${item.poster}" />
-      </div>
-      `
-    );
-  }
-}
 
 for (let item of tvShows) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of indianTV) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of kdramas) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of mystery) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 
 for (let item of animeTV) {

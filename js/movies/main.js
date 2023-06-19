@@ -91,8 +91,8 @@ $("#movieShow").on("click", "#closeInfo", function () {
 });
 
 $(".secondSection").on("mouseenter", ".item", function () {
-  let [id, trailer, type] = $(this).attr("value").split(",");
-  hoverItem(id, trailer, type);
+  let [id, trailer, type, genres] = $(this).attr("value").split(",");
+  hoverItem(id, trailer, type, genres);
   $(".hoverItem").css(
     "top",
     $(this).offset().top - $(".secondSection").offset().top - 20

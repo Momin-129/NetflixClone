@@ -1,13 +1,6 @@
-import {
-  fetchPoster,
-  fetchPosterTV,
-  fetchTrailer,
-  fetchTrailerTV,
-  fetchMovieDetails,
-  fetchShowDetails,
-} from "../fetch/fetch.js";
+import { fetchMovieDetails, fetchShowDetails } from "../fetch/fetch.js";
 
-let poster = "";
+import { setTrailerPoster } from "../mainPage/posters.js";
 
 let users = JSON.parse(localStorage.getItem("users"));
 let user_id = sessionStorage.getItem("user_id");
@@ -23,7 +16,14 @@ for (let item of favTV) {
 }
 
 function showPoster(item, section) {
-  let values = [item.id, item.trailer, item.type];
+  let genres = [];
+  if (item.genre_ids) genres = item.genre_ids;
+  else {
+    for (let genre of item.genres) {
+      genres.push(genre.id);
+    }
+  }
+  let values = [item.id, item.trailer, item.type, genres.join("-")];
   if (item.trailer != undefined && item.poster != undefined) {
     $(`#section${section}`).append(
       `
@@ -37,42 +37,34 @@ function showPoster(item, section) {
   }
 }
 
-function setTrailerPoster(item) {
-  (async function () {
-    let trailer = await fetchTrailer(item.id).then((data) => data.results);
-    if (trailer.length > 0) {
-      let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-      item.trailer = randomMovie.key;
-      item.type = "M O V I E";
-      poster = await fetchPoster(item.id).then((data) => data.backdrops);
-      for (let j of poster) {
-        if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-          item.poster = j.file_path;
-          break;
-        } else item.poster = j.file_path;
-      }
-    }
-  })();
-}
+// function setTrailerPoster(item) {
+//   (async function () {
+//     let trailer = await fetchTrailer(item.id).then((data) => data.results);
+//     if (trailer.length > 0) {
+//       let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
+//       item.trailer = randomMovie.key;
+//       item.type = "M O V I E";
+//       poster = await fetchPoster(item.id).then((data) => data.backdrops);
+//       for (let j of poster) {
+//         if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+//           item.poster = j.file_path;
+//           break;
+//         } else item.poster = j.file_path;
+//       }
+//     }
+//   })();
+// }
 
 for (let item of movieList) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 
 for (let item of tvList) {
-  let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "S E R I E S";
-    poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 
 export function createPosters() {

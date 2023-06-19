@@ -21,6 +21,21 @@ export async function SearchEngTV(no) {
 }
 
 // Movie Section Start
+
+export async function MovieList() {
+  let movieList = await fetch(
+    ` https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`
+  );
+  return movieList.json();
+}
+
+export async function TVList() {
+  let movieList = await fetch(
+    ` https://api.themoviedb.org/3/genre/tv/list?api_key=${api_key}`
+  );
+  return movieList.json();
+}
+
 export async function fetchPopular() {
   let popular = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=
 ${api_key}`);

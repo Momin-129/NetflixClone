@@ -19,10 +19,16 @@ let anime = await fetchAnime().then((data) => data.results);
 let tv = await fetchPopularTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);
 let actionAdventure = await fetchActionAdventure().then((data) => data.results);
-let poster = "";
 
-function showPoster(item, section) {
-  let values = [item.id, item.trailer, item.type];
+export function showPoster(item, section) {
+  let genres = [];
+  if (item.genre_ids) genres = item.genre_ids;
+  else {
+    for (let genre of item.genres) {
+      genres.push(genre.id);
+    }
+  }
+  let values = [item.id, item.trailer, item.type, genres.join("-")];
   if (item.trailer != undefined && item.poster != undefined) {
     $(`#section${section}`).append(
       `
@@ -34,68 +40,65 @@ function showPoster(item, section) {
   }
 }
 
-function setTrailerPoster(item) {
-  (async function () {
-    let trailer = await fetchTrailer(item.id).then((data) => data.results);
-    if (trailer.length > 0) {
-      let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-      item.trailer = randomMovie.key;
-      item.type = "M O V I E";
-      poster = await fetchPoster(item.id).then((data) => data.backdrops);
-      for (let j of poster) {
-        if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-          item.poster = j.file_path;
-          break;
-        } else item.poster = j.file_path;
-      }
+export async function setTrailerPoster(item) {
+  let trailers, trailer;
+  let posters, poster;
+  item.type = item.title ? "M O V I E" : "S E R I E S";
+  if (item.type == "M O V I E") {
+    trailers = await fetchTrailer(item.id).then((data) => data.results);
+    posters = await fetchPoster(item.id).then((data) => data.backdrops);
+  } else {
+    trailers = await fetchTrailerTV(item.id).then((data) => data.results);
+    posters = await fetchPosterTV(item.id).then((data) => data.backdrops);
+  }
+
+  if (trailers.length > 0) {
+    let randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
+    trailer = randomTrailer.key;
+    for (let j of posters) {
+      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
+        poster = j.file_path;
+        break;
+      } else poster = j.file_path;
     }
-  })();
+  }
+  return [trailer, poster];
 }
 
 for (let item of movies) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of anime) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of bollywood) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of comedy) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of actionAdventure) {
-  setTrailerPoster(item);
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of tv) {
-  let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randommovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randommovie.key;
-    item.type = "s e r i e s";
-    poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 for (let item of animeTV) {
-  let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randommovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randommovie.key;
-    item.type = "s e r i e s";
-    poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
+  const [trailer, poster] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
 }
 
 export function createPosters() {
