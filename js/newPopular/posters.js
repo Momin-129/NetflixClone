@@ -3,9 +3,7 @@ import {
   fetchTrendingTV,
   fetchUpcoming,
   fetchAiringTodayTV,
-  fetchPoster,
   fetchPosterTV,
-  fetchTrailer,
   fetchTrailerTV,
 } from "../fetch/fetch.js";
 
@@ -95,7 +93,7 @@ export function createPosters() {
           items: 3,
         },
         1000: {
-          items: 5,
+          items: 6,
         },
       },
     });
