@@ -25,7 +25,7 @@ $("#header").on("click", ".nav-link", function () {
 let dropPos = "dropleft";
 var viewportWidth = $(window).width();
 if (viewportWidth <= 600) {
-  dropPos = "dropright";
+  dropPos = "dropend";
 } else dropPos = "dropstart";
 
 function shuffleArray(array) {
