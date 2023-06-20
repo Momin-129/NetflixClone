@@ -28,7 +28,12 @@ export async function MovieList() {
   );
   return movieList.json();
 }
-
+export async function fetchCredits(id) {
+  let credits = await fetch(
+    ` https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}`
+  );
+  return credits.json();
+}
 export async function TVList() {
   let movieList = await fetch(
     ` https://api.themoviedb.org/3/genre/tv/list?api_key=${api_key}`

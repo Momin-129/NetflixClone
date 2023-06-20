@@ -1,6 +1,6 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
-export function moreInfo(movie, trailer, similar, container, type) {
+export function moreInfo(movie, trailer, similar, container, type, genres) {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
@@ -40,8 +40,16 @@ export function moreInfo(movie, trailer, similar, container, type) {
              style="font-size:30px;float:right">volume_off</i>
           </div>
           <div class="container similar">
-              <p class="overview">${movie.overview}</p>
-              More Like This
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="overview">${movie.overview}</p>
+                </div>  
+                <div class="col-md-4">Genre: <b>${genres
+                  .split(" . ")
+                  .join(",")}</b></div>
+                <hr>
+              <h2><b>More Like This</b></h2>
+              </div>
               <br><br>
               <div class="row  text-white">
               </div>
@@ -52,17 +60,23 @@ export function moreInfo(movie, trailer, similar, container, type) {
   onYouTubeIframeAPIReady(1, "trailerVideo", trailer);
 
   for (let item of similar) {
-    if (!favourites.includes(item.id.toString()))
+    if (
+      !favourites.includes(item.id.toString()) &&
+      !favouritesTV.includes(item.id.toString())
+    )
       fav_button = "add_circle_outline";
     else fav_button = "check_circle";
     let name = item.title ? item.title : item.name;
+    let type = item.title ? "M O V I E" : "S E R I E S";
     if (item.backdrop_path != null) {
       $(".moreInfo .row").append(`
         <div class="col-md-4 col-sm-12 mt-4">
-            <div class="similarMovie" value="${item.id}">
-              <img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}"/>
+            <div class="similarMovie" value="${[item.id, "", type]}">
+              <img src="https://image.tmdb.org/t/p/original/${
+                item.backdrop_path
+              }"/>
                 <b>${name}</b>
-                <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites" style="font-size:24px">${fav_button}</i>
+                <i class="material-icons" id="fav" data-toggle="tooltip" title="Add to Favourites" style="font-size:24px;cursor:pointer;">${fav_button}</i>
               <div class="description">
                 ${item.overview}
               </div>

@@ -10,6 +10,8 @@ import {
   fetchTrailerTV,
   fetchAnimeTV,
   fetchActionAdventure,
+  MovieList,
+  TVList,
 } from "../fetch/fetch.js";
 
 let movies = await fetchPopular().then((data) => data.results);
@@ -20,7 +22,20 @@ let tv = await fetchPopularTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);
 let actionAdventure = await fetchActionAdventure().then((data) => data.results);
 
+let movieGenres = await MovieList().then((data) => data.genres);
+let tvGenres = await TVList().then((data) => data.genres);
+let movieGenMap = new Map();
+let tvGenMap = new Map();
+movieGenres.forEach((element) => {
+  movieGenMap.set(element.id, element.name);
+});
+tvGenres.forEach((element) => {
+  tvGenMap.set(element.id, element.name);
+});
+
 export function showPoster(item, section) {
+  let type = item.title ? "M O V I E" : "S E R I E S";
+
   let genres = [];
   if (item.genre_ids) genres = item.genre_ids;
   else {
@@ -28,7 +43,24 @@ export function showPoster(item, section) {
       genres.push(genre.id);
     }
   }
-  let values = [item.id, item.trailer, item.type, genres.join("-")];
+
+  let genreList = genres;
+  if (type == "M O V I E") {
+    for (let i = 0; i < genreList.length; i++) {
+      let id = parseInt(genreList[i]);
+      let genreName = movieGenMap.get(id);
+      genreList[i] = genreName;
+    }
+    genreList = genreList.join(" . ");
+  } else {
+    for (let i = 0; i < genreList.length; i++) {
+      let id = parseInt(genreList[i]);
+      let genreName = tvGenMap.get(id);
+      genreList[i] = genreName;
+    }
+    genreList = genreList.join(" . ");
+  }
+  let values = [item.id, item.trailer, item.type, genreList];
   if (item.trailer != undefined && item.poster != undefined) {
     $(`#section${section}`).append(
       `

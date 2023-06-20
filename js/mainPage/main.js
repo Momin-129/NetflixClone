@@ -64,8 +64,8 @@ $(document).on("click", "#playTV", function () {
 });
 
 $(document).on("click", "#more", function () {
-  let [id, trailer, type] = $(this).parent().attr("value").split(",");
-  showInfo(id, trailer, type, "secondSection");
+  let [id, trailer, type, genres] = $(this).parent().attr("value").split(",");
+  showInfo(id, trailer, type, genres, "secondSection");
 });
 
 $(".secondSection").on("click", "#closeInfo", function () {
@@ -77,7 +77,6 @@ $(document).on("click", "#fav", function () {
   let user_id = sessionStorage.getItem("user_id");
   let id = $(this).parent().attr("value").split(",")[0];
   let type = $(this).parent().attr("value").split(",")[2];
-
   if ($(this).html() == "add_circle_outline") {
     if (type == "M O V I E") users[user_id].favourites.push(id);
     else users[user_id].favouritesTV.push(id);
