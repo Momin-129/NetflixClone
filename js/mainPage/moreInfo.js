@@ -5,13 +5,19 @@ export function moreInfo(movie, trailer, similar, container, type, genres) {
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
   let favouritesTV = users[user_id].favouritesTV;
+  let liked = users[user_id].liked;
   let fav_button = "";
+  let color = "";
   if (
     !favourites.includes(movie.id.toString()) &&
     !favouritesTV.includes(movie.id.toString())
   )
     fav_button = "add_circle_outline";
   else fav_button = "check_circle";
+
+  if (!liked.includes(movie.id.toString())) color = "#0d0d0d";
+  else color = "#fff";
+
   let name = movie.title ? movie.title : movie.name;
   let play = movie.title ? "playMovie" : "playTV";
   $(`.${container}`).append(`      
@@ -32,11 +38,14 @@ export function moreInfo(movie, trailer, similar, container, type, genres) {
             ]}">
             <i class="material-icons" id="fav"  data-toggle="tooltip" title="Add to Favourites" style="font-size:30px">${fav_button}</i>
             </button>
-            <button type="button" class="btn mt-2">
-            <i class="material-icons" id="like" data-toggle="tooltip" title="Like"
-             style="font-size:30px">thumb_up</i>
+            <button type="button" class="btn mt-2" value="${[
+              movie.id,
+              trailer,
+              type,
+            ]}">
+            <i class="material-icons" id="like" data-toggle="tooltip" title="Like" style="font-size:30px;color:${color};text-shadow: 0 0 1px #fff; ">thumb_up</i>
             </button>
-            <i class="material-icons volume"  data-toggle="tooltip" title="Like"
+            <i class="material-icons volume"  data-toggle="tooltip" title="volume"
              style="font-size:30px;float:right">volume_off</i>
           </div>
           <div class="container similar">
@@ -44,7 +53,7 @@ export function moreInfo(movie, trailer, similar, container, type, genres) {
                 <div class="col-md-8">
                   <p class="overview">${movie.overview}</p>
                 </div>  
-                <div class="col-md-4">Genre: <b>${genres
+                <div class="col-md-4">Genre:<b>${genres
                   .split(" . ")
                   .join(",")}</b></div>
                 <hr>

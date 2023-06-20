@@ -7,6 +7,7 @@ import {
   showMovie,
   showTV,
   hoverItem,
+  rgba2hex,
 } from "../mainPage/functions.js";
 
 $("body").scroll(function () {
@@ -34,12 +35,28 @@ $(document).on("click", "#playTV", function () {
 });
 
 $(document).on("click", "#more", function () {
-  let [id, trailer, type] = $(this).parent().attr("value").split(",");
-  showInfo(id, trailer, type, "secondSection");
+  let [id, trailer, type, genres] = $(this).parent().attr("value").split(",");
+  showInfo(id, trailer, type, genres, "secondSection");
 });
 
 $(".secondSection").on("click", "#closeInfo", function () {
   $(".moreInfo").remove();
+});
+
+$(document).on("click", "#like", function () {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = sessionStorage.getItem("user_id");
+  let [id] = $(this).parent().attr("value").split(",");
+  let color = $(this).css("color");
+  if (rgba2hex(color) == "#0d0d0d") {
+    users[user_id].liked.push(id);
+    $(this).css("color", "#fff");
+  } else {
+    let index = users[user_id].liked.indexOf(id.toString());
+    users[user_id].liked.splice(index, 1);
+    $(this).css("color", "#0d0d0d");
+  }
+  localStorage.setItem("users", JSON.stringify(users));
 });
 
 $(document).on("click", "#fav", function () {

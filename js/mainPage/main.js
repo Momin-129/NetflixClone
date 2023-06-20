@@ -1,5 +1,5 @@
 import { createPosters } from "./posters.js";
-import { fetchPopular, fetchTrailer } from "../fetch/fetch.js";
+import { fetchPopular, fetchTrailer, MovieList } from "../fetch/fetch.js";
 import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
@@ -9,6 +9,7 @@ import {
   showTV,
   trailerInfo,
   hoverItem,
+  rgba2hex,
 } from "./functions.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
@@ -48,8 +49,24 @@ if (date == 0 || curr_date != date) {
   randomTrailer = localStorage.getItem("trailerHome");
   randomMovie = JSON.parse(localStorage.getItem("home"));
 }
+
+let movieGenres = await MovieList().then((data) => data.genres);
+let movieGenMap = new Map();
+movieGenres.forEach((element) => {
+  movieGenMap.set(element.id, element.name);
+});
+let genres = [];
+genres = randomMovie.genre_ids;
+let genreList = genres;
+for (let i = 0; i < genreList.length; i++) {
+  let id = parseInt(genreList[i]);
+  let genreName = movieGenMap.get(id);
+  genreList[i] = genreName;
+}
+genreList = genreList.join(" . ");
+
 onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
-trailerInfo(randomMovie);
+trailerInfo(randomMovie, genreList);
 
 // Generate random trailer every day
 
@@ -61,6 +78,22 @@ $(document).on("click", "#playMovie", function () {
 $(document).on("click", "#playTV", function () {
   let [id, trailer] = $(this).parent().attr("value").split(",");
   showTV(trailer);
+});
+
+$(document).on("click", "#like", function () {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = sessionStorage.getItem("user_id");
+  let [id] = $(this).parent().attr("value").split(",");
+  let color = $(this).css("color");
+  if (rgba2hex(color) == "#0d0d0d") {
+    users[user_id].liked.push(id);
+    $(this).css("color", "#fff");
+  } else {
+    let index = users[user_id].liked.indexOf(id.toString());
+    users[user_id].liked.splice(index, 1);
+    $(this).css("color", "#0d0d0d");
+  }
+  localStorage.setItem("users", JSON.stringify(users));
 });
 
 $(document).on("click", "#more", function () {

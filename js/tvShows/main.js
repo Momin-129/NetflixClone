@@ -1,5 +1,5 @@
 import { createPosters } from "./posters.js";
-import { fetchPopularTV, fetchTrailerTV } from "../fetch/fetch.js";
+import { fetchPopularTV, fetchTrailerTV, TVList } from "../fetch/fetch.js";
 import { Header } from "../headerMain.js";
 import { Footer } from "../footerMain.js";
 import { Links } from "../links.js";
@@ -8,6 +8,7 @@ import {
   showTV,
   trailerInfo,
   hoverItem,
+  rgba2hex,
 } from "../mainPage/functions.js";
 import { onYouTubeIframeAPIReady } from "../mainPage/YouTubeApi.js";
 
@@ -47,8 +48,22 @@ if (date == 0 || curr_date != date) {
   randomTrailer = localStorage.getItem("trailerTV");
   randomTV = JSON.parse(localStorage.getItem("tv"));
 }
+let tvGenres = await TVList().then((data) => data.genres);
+let tvGenMap = new Map();
+tvGenres.forEach((element) => {
+  tvGenMap.set(element.id, element.name);
+});
+let genres = [];
+genres = randomTV.genre_ids;
+let genreList = genres;
+for (let i = 0; i < genreList.length; i++) {
+  let id = parseInt(genreList[i]);
+  let genreName = tvGenMap.get(id);
+  genreList[i] = genreName;
+}
+genreList = genreList.join(" . ");
 onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
-trailerInfo(randomTV);
+trailerInfo(randomTV, genreList);
 
 // Generate random trailer every day
 
@@ -58,12 +73,28 @@ $(document).on("click", "#playTV", function () {
 });
 
 $(document).on("click", "#more", function () {
-  let [id, trailer, type] = $(this).parent().attr("value").split(",");
-  showInfo(id, trailer, type, "secondSection");
+  let [id, trailer, type, genres] = $(this).parent().attr("value").split(",");
+  showInfo(id, trailer, type, genres, "secondSection");
 });
 
 $(".secondSection").on("click", "#closeInfo", function () {
   $(".moreInfo").remove();
+});
+
+$(document).on("click", "#like", function () {
+  let users = JSON.parse(localStorage.getItem("users")) ?? [];
+  let user_id = sessionStorage.getItem("user_id");
+  let [id] = $(this).parent().attr("value").split(",");
+  let color = $(this).css("color");
+  if (rgba2hex(color) == "#0d0d0d") {
+    users[user_id].liked.push(id);
+    $(this).css("color", "#fff");
+  } else {
+    let index = users[user_id].liked.indexOf(id.toString());
+    users[user_id].liked.splice(index, 1);
+    $(this).css("color", "#0d0d0d");
+  }
+  localStorage.setItem("users", JSON.stringify(users));
 });
 
 $(document).on("click", "#fav", function () {
@@ -89,7 +120,7 @@ $("#movieShow").on("click", "#closeInfo", function () {
 
 $(".secondSection").on("mouseenter", ".item", function () {
   let [id, trailer, type, genres] = $(this).attr("value").split(",");
-  hoverItem(id, trailer, type,genres);
+  hoverItem(id, trailer, type, genres);
   $(".hoverItem").css(
     "top",
     $(this).offset().top - $(".secondSection").offset().top - 20
