@@ -6,6 +6,8 @@ Header();
 Footer();
 Links();
 
+$("#searchBtn").hide();
+
 let users = JSON.parse(localStorage.getItem("users"));
 let user_id = sessionStorage.getItem("user_id");
 
