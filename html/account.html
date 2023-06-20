@@ -22,19 +22,125 @@
     <span id="header"></span>
     <div class="container account">
       <h1>My Account</h1>
+      <hr />
       <div class="row">
         <div class="col-md-3 col-sm-12">
-          <h4>MEMBERSHIP & BILLING</h4>
-          <button type="button" class="btn">CANCEL MEMBERSHIP</button>
+          <h4 class="desc">MEMBERSHIP & BILLING</h4>
+          <button type="button" class="btn cancel">CANCEL MEMBERSHIP</button>
         </div>
-        <div class="col-md-9 col-sm-12"></div>
+        <div class="col-md-9 col-sm-12">
+          <table>
+            <tr>
+              <td id="email"></td>
+              <td class="Btn">Change email</td>
+            </tr>
+            <tr>
+              <td id="pass"></td>
+              <td class="Btn">Change password</td>
+            </tr>
+            <tr>
+              <td id="phone"></td>
+              <td class="Btn">Add phone number</td>
+            </tr>
+            <tr style="border-bottom: 1px solid black">
+              <td></td>
+              <td class="Btn">Email preferences</td>
+            </tr>
+            <tr>
+              <td id="payment"></td>
+              <td class="Btn">Update payment info</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="Btn">Billing details</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <h4 class="desc">PLAN DETAILS</h4>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <table>
+            <tr>
+              <td id="plan"></td>
+              <td class="Btn">Change plan</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <h4 class="desc">SETTINGS</h4>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <table>
+            <tr>
+              <td class="Btnleft">Test participation</td>
+            </tr>
+            <tr>
+              <td class="Btnleft">Activate a device</td>
+            </tr>
+            <tr>
+              <td class="Btnleft">Sign out of all devices</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <h4 class="desc">MY PROFILE</h4>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <table>
+            <tr>
+              <td><img src="../images/avatar.png" width="30" /></td>
+              <td class="Btn">Manage profiles</td>
+            </tr>
+            <tr>
+              <td class="Btnleft">Language</td>
+              <td class="Btnleft">Viewing activity</td>
+            </tr>
+            <tr>
+              <td class="Btnleft">Playback settings</td>
+              <td class="Btnleft">Ratings</td>
+            </tr>
+            <tr>
+              <td class="Btnleft">Subtitle appearance</td>
+              <td class="Btnleft">Reviews</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <h4 class="desc">GIFT & OFFERS</h4>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <table>
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter code or PIN"
+                />
+                <button type="button" class="btn redeem">Redeem</button>
+              </td>
+              <td class="Btn">Where to buy gift cards</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <span id="footer"></span>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="../js/mainPage/main.js" type="module"></script>
+  <script src="../js/account/main.js" type="module"></script>
 </html>

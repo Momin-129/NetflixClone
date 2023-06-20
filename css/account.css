@@ -12,3 +12,41 @@ body {
   padding: 45px;
   height: 100%;
 }
+.account .desc {
+  color: grey;
+}
+.account .cancel {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #f2f2f2;
+}
+.account table,
+tr {
+  width: 100%;
+}
+.account td {
+  width: 50%;
+}
+
+.account .Btn {
+  text-align: right;
+  color: blue;
+  cursor: pointer;
+}
+.account .Btnleft {
+  color: blue;
+  cursor: pointer;
+}
+
+.account input {
+  display: inline-block;
+  width: 50%;
+}
+.account .redeem {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #f2f2f2;
+}
