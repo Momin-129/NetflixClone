@@ -97,7 +97,6 @@ $(document).on("click", "#like", function () {
 });
 
 $(document).on("click", "#more", function () {
-  alert("IN HERE");
   let [id, trailer, type, genres] = $(this).parent().attr("value").split(",");
   showInfo(id, trailer, type, genres, "secondSection");
 });

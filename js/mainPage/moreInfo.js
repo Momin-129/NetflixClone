@@ -1,6 +1,7 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
 export function moreInfo(movie, trailer, similar, container, type, genres) {
+  alert("IN HERE Main Info");
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
   let favourites = users[user_id].favourites;
