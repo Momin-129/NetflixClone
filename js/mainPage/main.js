@@ -134,13 +134,15 @@ $("#movieShow").on("click", "#closeInfo", function () {
 $(".secondSection").on("mouseenter", ".item", function () {
   let [id, trailer, type, genres] = $(this).attr("value").split(",");
   hoverItem(id, trailer, type, genres);
+  let left = 0;
+  if ($(this).offset().left > 1600) left = 180;
   $(".hoverItem").css(
     "top",
     $(this).offset().top - $(".secondSection").offset().top - 40
   );
   $(".hoverItem").css(
     "left",
-    $(this).offset().left - $(".secondSection").offset().left
+    $(this).offset().left - $(".secondSection").offset().left - left
   );
 });
 

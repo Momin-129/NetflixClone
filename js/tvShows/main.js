@@ -119,6 +119,11 @@ $("#movieShow").on("click", "#closeInfo", function () {
 });
 
 $(".secondSection").on("mouseenter", ".item", function () {
+  let left = 0;
+  if ($(this).offset().left > 1600) left = 180;
+
+  console.log($(this).offset().left);
+
   let [id, trailer, type, genres] = $(this).attr("value").split(",");
   hoverItem(id, trailer, type, genres);
   $(".hoverItem").css(
@@ -127,7 +132,7 @@ $(".secondSection").on("mouseenter", ".item", function () {
   );
   $(".hoverItem").css(
     "left",
-    $(this).offset().left - $(".secondSection").offset().left
+    $(this).offset().left - $(".secondSection").offset().left - left
   );
 });
 

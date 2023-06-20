@@ -1,4 +1,9 @@
-import { fetchMovieDetails, fetchShowDetails } from "../fetch/fetch.js";
+import {
+  fetchMovieDetails,
+  fetchShowDetails,
+  MovieList,
+  TVList,
+} from "../fetch/fetch.js";
 
 import { setTrailerPoster } from "../mainPage/posters.js";
 
@@ -15,7 +20,20 @@ for (let item of favTV) {
   tvList.push(await fetchShowDetails(item).then((data) => data));
 }
 
+let movieGenres = await MovieList().then((data) => data.genres);
+let tvGenres = await TVList().then((data) => data.genres);
+let movieGenMap = new Map();
+let tvGenMap = new Map();
+movieGenres.forEach((element) => {
+  movieGenMap.set(element.id, element.name);
+});
+tvGenres.forEach((element) => {
+  tvGenMap.set(element.id, element.name);
+});
+
 function showPoster(item, section) {
+  let type = item.title ? "M O V I E" : "S E R I E S";
+
   let genres = [];
   if (item.genre_ids) genres = item.genre_ids;
   else {
@@ -23,7 +41,24 @@ function showPoster(item, section) {
       genres.push(genre.id);
     }
   }
-  let values = [item.id, item.trailer, item.type, genres.join("-")];
+
+  let genreList = genres;
+  if (type == "M O V I E") {
+    for (let i = 0; i < genreList.length; i++) {
+      let id = parseInt(genreList[i]);
+      let genreName = movieGenMap.get(id);
+      genreList[i] = genreName;
+    }
+    genreList = genreList.join(" . ");
+  } else {
+    for (let i = 0; i < genreList.length; i++) {
+      let id = parseInt(genreList[i]);
+      let genreName = tvGenMap.get(id);
+      genreList[i] = genreName;
+    }
+    genreList = genreList.join(" . ");
+  }
+  let values = [item.id, item.trailer, item.type, genreList];
   if (item.trailer != undefined && item.poster != undefined) {
     $(`#section${section}`).append(
       `
@@ -36,24 +71,6 @@ function showPoster(item, section) {
     );
   }
 }
-
-// function setTrailerPoster(item) {
-//   (async function () {
-//     let trailer = await fetchTrailer(item.id).then((data) => data.results);
-//     if (trailer.length > 0) {
-//       let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-//       item.trailer = randomMovie.key;
-//       item.type = "M O V I E";
-//       poster = await fetchPoster(item.id).then((data) => data.backdrops);
-//       for (let j of poster) {
-//         if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-//           item.poster = j.file_path;
-//           break;
-//         } else item.poster = j.file_path;
-//       }
-//     }
-//   })();
-// }
 
 for (let item of movieList) {
   const [trailer, poster] = await setTrailerPoster(item);
