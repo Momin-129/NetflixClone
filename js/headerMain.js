@@ -154,8 +154,8 @@ export function Header() {
     <a class="navbar-brand" href="javascript:void(0)">
       <img id="logo" src="${base_url}/images/logo.png" onclick="window.location.href='${base_url}';" />
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
+    <button id="collapseBtn" class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      Browse
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">

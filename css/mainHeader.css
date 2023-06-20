@@ -6,6 +6,14 @@
   z-index: 1000;
 }
 
+.navbar #collapseBtn {
+  outline: none;
+  border: none;
+}
+
+.navbar #collapseBtn:focus {
+  box-shadow: none;
+}
 .navbar .navbar-nav > li > a {
   color: white;
   cursor: pointer;
