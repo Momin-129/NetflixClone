@@ -6,6 +6,21 @@ Header();
 Footer();
 Links();
 
+var crypt = {
+  secret: "THESECRET",
+  encrypt: function (clear) {
+    var cipher = CryptoJS.AES.encrypt(clear, crypt.secret);
+    cipher = cipher.toString();
+    return cipher;
+  },
+
+  decrypt: function (cipher) {
+    var decipher = CryptoJS.AES.decrypt(cipher, crypt.secret);
+    decipher = decipher.toString(CryptoJS.enc.Utf8);
+    return decipher;
+  },
+};
+
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
 let email = localStorage.getItem("email");
 let user_id = localStorage.getItem("user_id") ?? 0;
@@ -40,6 +55,7 @@ $("#saveUser").on("click", function () {
   if (valid) {
     let email = $("#email").val();
     let pass = $("#password").val();
+    pass = crypt.encrypt(pass);
     let obj = {};
     obj.user_id = user_id;
     obj.email = email;
