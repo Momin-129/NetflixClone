@@ -37,3 +37,15 @@ $(".email").on("keydown", function () {
     valid = true;
   }
 });
+
+$(".email").change(function () {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  if ($(this).val().length == 0) $(this).css("border-color", "white");
+  else if (!emailReg.test($(this).val())) {
+    valid = false;
+    $(this).css("border-color", "red");
+  } else {
+    $(this).css("border-color", "green");
+    valid = true;
+  }
+});
