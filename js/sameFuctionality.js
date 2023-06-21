@@ -87,9 +87,11 @@ $("#movieShow").on("click", "#closeInfo", function () {
 
 $(".secondSection").on("mouseenter", ".item", function () {
   let [id, trailer, type, genres] = $(this).attr("value").split(",");
+
   hoverItem(id, trailer, type, genres);
+
   let left = 0;
-  if ($(this).offset().left > 1500) left = 180;
+  if ($(this).offset().left > 1500) left = 100;
   console.log($(this).offset().left);
   $(".hoverItem").css(
     "top",

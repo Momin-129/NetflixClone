@@ -101,7 +101,7 @@ export function hoverItem(id, trailer, type, genres) {
            >thumb_up</i>
           <i class="material-icons" id="more" data-toggle="tooltip" title="More Info"                     style="float:right;">arrow_drop_down_circle</i>
 
-          <p style="width:100%;word-wrap:break-word;padding:5px;font-size:12px;">${genres}</p>
+          <p style="width:100%;word-wrap:break-word;font-size:12px;">${genres}</p>
           
       </div>
   `);
