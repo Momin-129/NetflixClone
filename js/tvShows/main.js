@@ -24,11 +24,13 @@ if (date == 0 || curr_date != date) {
   randomTrailer = localStorage.getItem("trailerTV");
   randomTV = JSON.parse(localStorage.getItem("tv"));
 }
+
 let tvGenres = await TVList().then((data) => data.genres);
 let tvGenMap = new Map();
 tvGenres.forEach((element) => {
   tvGenMap.set(element.id, element.name);
 });
+
 let genres = [];
 genres = randomTV.genre_ids;
 let genreList = genres;
@@ -42,4 +44,3 @@ onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
 trailerInfo(randomTV, genreList);
 
 // Generate random trailer every day
-

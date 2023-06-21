@@ -11,7 +11,7 @@
 .navbar #signIn {
   font-size: calc(10px + 0.390625vw);
   color: white;
-  background-color: #ff0000;
+  background-color: #e60000;
 }
 
 @media only screen and (max-width: 600px) {

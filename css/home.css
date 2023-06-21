@@ -61,7 +61,7 @@ body {
   color: white;
   height: 90px;
   margin-bottom: 10px;
-  background-color: #ff0000;
+  background-color: #e60000;
 }
 
 .enjoy,
@@ -128,7 +128,6 @@ img {
 
 .faq .signUp {
   font-size: calc(20px + 0.390625vw);
-  /* text-align: center; */
 }
 
 .faq .signUp input {
@@ -152,7 +151,7 @@ img {
 .faq .signUp .btn {
   height: 70px;
   margin-bottom: 10px;
-  background-color: #ff0000;
+  background-color: #e60000;
 }
 
 @media only screen and (max-width: 600px) {

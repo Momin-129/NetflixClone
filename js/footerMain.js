@@ -2,11 +2,11 @@ export function Footer() {
   $("#footer").append(`
 
   <div class="container-fluid footer">
-    <div class="container">
-      <i class='fa fa-facebook-official' style='font-size:18px'></i>
-      <i class='fa fa-instagram' style='font-size:18px'></i>
-      <i class='fa fa-twitter' style='font-size:18px'></i>
-      <i class='fa fa-youtube-play' style='font-size:18px'></i>
+    <div class="container mt-5">
+      <i class='fa fa-facebook-official' style='font-size:24px'></i>
+      <i class='fa fa-instagram' style='font-size:24px'></i>
+      <i class='fa fa-twitter' style='font-size:24px'></i>
+      <i class='fa fa-youtube-play' style='font-size:24px'></i>
       <div class="row mt-5">
         <div class="col-md-3 col-sm-12">
           <ul>
