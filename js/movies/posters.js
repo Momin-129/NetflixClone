@@ -2,22 +2,21 @@ import {
   fetchBollyWood,
   fetchAnime,
   fetchComedy,
-  fetchPoster,
-  fetchTrailer,
   fetchTrending,
   fetchHorror,
   fetchSciFantasy,
 } from "../fetch/fetch.js";
 import { showPoster, setTrailerPoster } from "../mainPage/posters.js";
 
+// fetching different movies
 let movies = await fetchTrending().then((data) => data.results);
 let bollywood = await fetchBollyWood().then((data) => data.results);
 let comedy = await fetchComedy().then((data) => data.results);
 let anime = await fetchAnime().then((data) => data.results);
 let horror = await fetchHorror().then((data) => data.results);
 let scifi = await fetchSciFantasy().then((data) => data.results);
-let poster = "";
 
+// for loops to call for each individual item to set their trailer poster and gneres
 for (let item of movies) {
   const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
@@ -55,6 +54,7 @@ for (let item of comedy) {
   item.genre = genre;
 }
 
+// function to create posters for each indiviual item
 export function createPosters() {
   for (let item of movies) {
     showPoster(item, 1);
@@ -78,6 +78,7 @@ export function createPosters() {
     showPoster(item, 6);
   }
 
+  // owl-carousel handler
   (function ($) {
     "use strict";
     $(".owl-carousel").owlCarousel({

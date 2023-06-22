@@ -1,9 +1,4 @@
-import {
-  fetchMovieDetails,
-  fetchShowDetails,
-  MovieList,
-  TVList,
-} from "../fetch/fetch.js";
+import { fetchMovieDetails, fetchShowDetails } from "../fetch/fetch.js";
 
 import { setTrailerPoster } from "../mainPage/posters.js";
 
@@ -13,6 +8,8 @@ let favMovies = users[user_id].favourites;
 let favTV = users[user_id].favouritesTV;
 let movieList = [];
 let tvList = [];
+
+// getting list of favrouite movies and tv shows.
 for (let item of favMovies) {
   movieList.push(await fetchMovieDetails(item).then((data) => data));
 }
@@ -20,17 +17,7 @@ for (let item of favTV) {
   tvList.push(await fetchShowDetails(item).then((data) => data));
 }
 
-let movieGenres = await MovieList().then((data) => data.genres);
-let tvGenres = await TVList().then((data) => data.genres);
-let movieGenMap = new Map();
-let tvGenMap = new Map();
-movieGenres.forEach((element) => {
-  movieGenMap.set(element.id, element.name);
-});
-tvGenres.forEach((element) => {
-  tvGenMap.set(element.id, element.name);
-});
-
+// dispalying posters of movies and tv shows
 function showPoster(item, section) {
   let values = [item.id, item.trailer, item.type, item.genre];
   if (item.trailer != undefined && item.poster != undefined) {
@@ -46,6 +33,7 @@ function showPoster(item, section) {
   }
 }
 
+// looping through each individual item in both lists.
 for (let item of movieList) {
   const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
@@ -60,6 +48,7 @@ for (let item of tvList) {
   item.genre = genre;
 }
 
+// creating poster for each individual item.
 export function createPosters() {
   for (let item of movieList) {
     showPoster(item, 1);
@@ -69,6 +58,7 @@ export function createPosters() {
     showPoster(item, 1);
   }
 
+  // owl-carousel handler
   (function ($) {
     "use strict";
     $(".owl-carousel").owlCarousel({

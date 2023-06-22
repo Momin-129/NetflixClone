@@ -7,6 +7,7 @@ import {
 import { moreInfo } from "./moreInfo.js";
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
+// function to convert rgba format to hexacode
 export const rgba2hex = (rgba) =>
   `#${rgba
     .match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/)
@@ -19,6 +20,7 @@ export const rgba2hex = (rgba) =>
     )
     .join("")}`;
 
+// function to call moreInfo function to give movie or series details
 export function showInfo(id, trailer, type, genres, container) {
   (async function () {
     fetchSimilar(id).then((data) => data);
@@ -35,7 +37,8 @@ export function showInfo(id, trailer, type, genres, container) {
   })();
 }
 
-export function showMovie(trailer) {
+// function to play movie or series
+export function showContent(trailer) {
   $("#movieShow").append(`    
         <div class="container-fluid p-3" id="movieContainer">
           <i class="material-icons" id="closeInfo" >close</i>
@@ -49,20 +52,7 @@ export function showMovie(trailer) {
   onYouTubeIframeAPIReady(3, "displayMovie", trailer);
 }
 
-export function showTV(trailer) {
-  $("#movieShow").append(`    
-        <div class="container-fluid p-3" id="movieContainer">
-          <i class="material-icons" id="closeInfo" >close</i>
-          <div id="displayMovie"></div>
-          <div class="options" id="3">
-            <i class="material-icons playBtn" >play_arrow</i>
-            <i class="material-icons volume" >volume_off</i>
-          </div>
-        </div>
-    `);
-  onYouTubeIframeAPIReady(3, "displayMovie", trailer);
-}
-
+// function to create hover item.
 export function hoverItem(id, trailer, type, genres) {
   var viewportWidth = $(window).width();
   if (viewportWidth >= 1920) {
@@ -109,6 +99,7 @@ export function hoverItem(id, trailer, type, genres) {
   }
 }
 
+// function to set main trailer info.
 export function trailerInfo(movie, genres) {
   let name = movie.title ? movie.title : movie.name;
   let type = movie.title ? "M O V I E" : "S E R I E S";

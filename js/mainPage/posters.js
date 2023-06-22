@@ -14,6 +14,7 @@ import {
   fetchTVDetails,
 } from "../fetch/fetch.js";
 
+// fetching different movies and tv shows
 let movies = await fetchPopular().then((data) => data.results);
 let bollywood = await fetchBollyWood().then((data) => data.results);
 let comedy = await fetchComedy().then((data) => data.results);
@@ -22,6 +23,7 @@ let tv = await fetchPopularTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);
 let actionAdventure = await fetchActionAdventure().then((data) => data.results);
 
+// function to display different movies and shows in carousel
 export function showPoster(item, section) {
   let values = [item.id, item.trailer, item.type, item.genre];
   if (item.trailer != undefined && item.poster != undefined) {
@@ -35,6 +37,7 @@ export function showPoster(item, section) {
   }
 }
 
+// function to set trailer, poster an genres to movie and tv shows
 export async function setTrailerPoster(item) {
   let trailers, trailer;
   let posters, poster;
@@ -68,6 +71,7 @@ export async function setTrailerPoster(item) {
   return [trailer, poster, genreList];
 }
 
+// for loops to call for each individual item to set their trailer poster and gneres
 for (let item of movies) {
   const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
@@ -111,6 +115,7 @@ for (let item of animeTV) {
   item.genre = genre;
 }
 
+// function to create posters for each indiviual item
 export function createPosters() {
   for (let item of movies) {
     showPoster(item, 1);
@@ -138,6 +143,7 @@ export function createPosters() {
     showPoster(item, 7);
   }
 
+  // owl-carousel handler
   (function ($) {
     "use strict";
     $(".owl-carousel").owlCarousel({

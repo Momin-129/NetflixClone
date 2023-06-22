@@ -1,5 +1,9 @@
 import { createPosters } from "./posters.js";
-import { fetchPopularTV, fetchTrailerTV, TVList } from "../fetch/fetch.js";
+import {
+  fetchPopularTV,
+  fetchTrailerTV,
+  fetchTVDetails,
+} from "../fetch/fetch.js";
 import { trailerInfo } from "../mainPage/functions.js";
 import { onYouTubeIframeAPIReady } from "../mainPage/YouTubeApi.js";
 
@@ -8,13 +12,16 @@ let curr_date = new Date().getDate();
 let randomTrailer = "";
 let randomTV = "";
 
+// call function to create posters for carousel
 createPosters();
 
+// set a radom movie per day.
 let popularTV = await fetchPopularTV().then((data) => data.results);
 randomTV = popularTV[Math.floor(Math.random() * popularTV.length)];
 let trailer = await fetchTrailerTV(randomTV.id).then((data) => data.results);
 randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
 randomTV.trailer = randomTrailer;
+
 // Generate random trailer every day
 if (date == 0 || curr_date != date) {
   localStorage.setItem("tvdate", curr_date);
@@ -25,22 +32,16 @@ if (date == 0 || curr_date != date) {
   randomTV = JSON.parse(localStorage.getItem("tv"));
 }
 
-let tvGenres = await TVList().then((data) => data.genres);
-let tvGenMap = new Map();
-tvGenres.forEach((element) => {
-  tvGenMap.set(element.id, element.name);
-});
-
-let genres = [];
-genres = randomTV.genre_ids;
-let genreList = genres;
-for (let i = 0; i < genreList.length; i++) {
-  let id = parseInt(genreList[i]);
-  let genreName = tvGenMap.get(id);
-  genreList[i] = genreName;
+// to fetch genres of random trailer.
+let genreList = [];
+let genre = await fetchTVDetails(item.id).then((data) => data.genres);
+for (let item in genre) {
+  genreList.push(genre[item].name);
 }
 genreList = genreList.join(" . ");
-onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
-trailerInfo(randomTV, genreList);
 
-// Generate random trailer every day
+// creates iframe for video of random series
+onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
+
+// set information of random movie
+trailerInfo(randomTV, genreList);

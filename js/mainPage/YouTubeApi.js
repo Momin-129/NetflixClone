@@ -1,4 +1,6 @@
 let players = [];
+
+// creates an iframe with respective div id and youtube video key.
 export function onYouTubeIframeAPIReady(index, container, id) {
   let player = new YT.Player(container, {
     videoId: id,
@@ -14,6 +16,7 @@ export function onYouTubeIframeAPIReady(index, container, id) {
   players[index] = player;
 }
 
+// volume button functionality with respective sections
 $(".secondSection").on("click", ".volume", function () {
   let index = parseInt($(this).parent().attr("id"));
   if (players[index].isMuted()) {
@@ -59,6 +62,7 @@ $(".myList").on("click", ".volume", function () {
 });
 
 let play = true;
+// play button functionality in big screen.
 $("#movieShow").on("click", ".playBtn", function () {
   let index = parseInt($(this).parent().attr("id"));
   if (play) {

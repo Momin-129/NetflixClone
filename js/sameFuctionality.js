@@ -3,8 +3,7 @@ import { Footer } from "./footerMain.js";
 import { Links } from "./links.js";
 import {
   showInfo,
-  showMovie,
-  showTV,
+  showContent,
   hoverItem,
   rgba2hex,
 } from "./mainPage/functions.js";
@@ -26,12 +25,12 @@ Links();
 
 $(document).on("click", "#playMovie", function () {
   let [id, trailer] = $(this).parent().attr("value").split(",");
-  showMovie(trailer);
+  showContent(trailer);
 });
 
 $(document).on("click", "#playTV", function () {
   let [id, trailer] = $(this).parent().attr("value").split(",");
-  showTV(trailer);
+  showContent(trailer);
 });
 
 $(document).on("click", "#like", function () {

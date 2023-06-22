@@ -7,11 +7,13 @@ import {
 
 import { showPoster, setTrailerPoster } from "../mainPage/posters.js";
 
+// fetching different movies and tv shows.
 let movies = await fetchTrending().then((data) => data.results);
 let tv = await fetchTrendingTV().then((data) => data.results);
 let upcomingMovies = await fetchUpcoming().then((data) => data.results);
 let airingToday = await fetchAiringTodayTV().then((data) => data.results);
 
+// for loops to call for each individual item to set their trailer poster and gneres
 for (let item of movies) {
   const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
@@ -38,6 +40,7 @@ for (let item of tv) {
   item.genre = genre;
 }
 
+// function to create posters for each indiviual item
 export function createPosters() {
   for (let item of movies) {
     showPoster(item, 1);
@@ -53,6 +56,7 @@ export function createPosters() {
     showPoster(item, 4);
   }
 
+  // owl-carousel handler
   (function ($) {
     "use strict";
     $(".owl-carousel").owlCarousel({

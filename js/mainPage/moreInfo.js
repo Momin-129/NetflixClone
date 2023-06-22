@@ -1,5 +1,6 @@
 import { onYouTubeIframeAPIReady } from "./YouTubeApi.js";
 
+// function to create more inforamtion div of a movie or series.
 export function moreInfo(movie, trailer, similar, container, type, genres) {
   let users = JSON.parse(localStorage.getItem("users")) ?? [];
   let user_id = sessionStorage.getItem("user_id");
@@ -66,8 +67,10 @@ export function moreInfo(movie, trailer, similar, container, type, genres) {
         </div>
       </div>
 `);
+  // sets iframe video for selected movie or series in more info
   onYouTubeIframeAPIReady(1, "trailerVideo", trailer);
 
+  // for loop creates movies or series similar to selected movie or series.
   for (let item of similar) {
     if (
       !favourites.includes(item.id.toString()) &&
