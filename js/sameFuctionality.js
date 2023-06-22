@@ -93,7 +93,6 @@ $(".secondSection").on("mouseenter", ".item", function () {
 
   let left = 0;
   if ($(this).offset().left > 1500) left = 100;
-  console.log($(this).offset().left);
   $(".hoverItem").css(
     "top",
     $(this).offset().top - $(".secondSection").offset().top - 40

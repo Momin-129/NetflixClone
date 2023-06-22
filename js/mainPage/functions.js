@@ -65,7 +65,7 @@ export function showTV(trailer) {
 
 export function hoverItem(id, trailer, type, genres) {
   var viewportWidth = $(window).width();
-  if (viewportWidth >= 600) {
+  if (viewportWidth >= 1920) {
     let users = JSON.parse(localStorage.getItem("users")) ?? [];
     let user_id = sessionStorage.getItem("user_id");
     let favourites = users[user_id].favourites;
