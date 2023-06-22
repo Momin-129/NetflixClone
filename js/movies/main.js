@@ -9,13 +9,13 @@ let randomMovie = "";
 
 createPosters();
 
+let popularMovies = await fetchPopular().then((data) => data.results);
+randomMovie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
+let trailer = await fetchTrailer(randomMovie.id).then((data) => data.results);
+randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
 // Generate random trailer every day
 if (date == 0 || curr_date != date) {
   localStorage.setItem("moviedate", curr_date);
-  let popularMovies = await fetchPopular().then((data) => data.results);
-  randomMovie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
-  let trailer = await fetchTrailer(randomMovie.id).then((data) => data.results);
-  randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
   localStorage.setItem("movie", JSON.stringify(randomMovie));
   localStorage.setItem("trailerMovie", randomTrailer);
 } else {

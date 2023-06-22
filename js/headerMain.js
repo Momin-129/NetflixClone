@@ -152,7 +152,7 @@ export function Header() {
 <nav class="navbar navbar-expand-sm fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="javascript:void(0)">
-      <img id="logo" src="${base_url}/images/logo.png" onclick="window.location.href='${base_url}';" />
+      <img id="logo" src="${base_url}/images/logo.png" onclick="window.location.href='showMovies.html';" />
     </a>
     <button id="collapseBtn" class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       Browse

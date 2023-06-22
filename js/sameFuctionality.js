@@ -51,6 +51,7 @@ $(document).on("click", "#like", function () {
 });
 
 $(document).on("click", "#more", function () {
+  if ($(".hoverItem")) $(".hoverItem").remove();
   let [id, trailer, type, genres] = $(this).parent().attr("value").split(",");
   showInfo(id, trailer, type, genres, "secondSection");
 });

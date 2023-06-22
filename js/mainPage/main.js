@@ -10,14 +10,14 @@ let randomMovie = "";
 
 createPosters();
 
+let popularMovies = await fetchPopular().then((data) => data.results);
+randomMovie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
+let trailer = await fetchTrailer(randomMovie.id).then((data) => data.results);
+randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
+randomMovie.trailer = randomTrailer;
 // Generate random trailer every day
 if (date == 0 || curr_date != date) {
   localStorage.setItem("date", curr_date);
-  let popularMovies = await fetchPopular().then((data) => data.results);
-  randomMovie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
-  let trailer = await fetchTrailer(randomMovie.id).then((data) => data.results);
-  randomTrailer = trailer[Math.floor(Math.random() * trailer.length)].key;
-  randomMovie.trailer = randomTrailer;
   localStorage.setItem("home", JSON.stringify(randomMovie));
   localStorage.setItem("trailerHome", randomTrailer);
 } else {
@@ -44,4 +44,3 @@ onYouTubeIframeAPIReady(0, "backVideo", randomTrailer);
 trailerInfo(randomMovie, genreList);
 
 // Generate random trailer every day
-
