@@ -34,7 +34,7 @@ if (date == 0 || curr_date != date) {
 
 // to fetch genres of random trailer.
 let genreList = [];
-let genre = await fetchTVDetails(item.id).then((data) => data.genres);
+let genre = await fetchTVDetails(randomTV.id).then((data) => data.genres);
 for (let item in genre) {
   genreList.push(genre[item].name);
 }

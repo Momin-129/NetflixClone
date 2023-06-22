@@ -15,6 +15,7 @@
   box-shadow: none;
 }
 .navbar .navbar-nav > li > a {
+  mix-blend-mode: difference;
   color: white;
   cursor: pointer;
 }

@@ -1,22 +1,44 @@
 .footer {
-  height: max-content;
-  color: white;
-  background-color: black;
-  border-top: 10px solid gray;
+  background-color: #000000;
+  color: #ffffff;
 }
-
-.footer ul {
-  list-style: none;
+.list-unstyled li {
+  margin-top: 10px;
 }
-
-.footer li {
-  margin-top: 20px;
+.list-unstyled a {
+  color: #8d8d8d;
+  text-decoration: none;
 }
-
-.footer a {
-  color: grey;
+.list-unstyled a:hover {
+  text-decoration: underline;
 }
-
+.f-row {
+  padding-bottom: 4%;
+}
+.f-row h5 {
+  margin-bottom: 20px;
+}
+.copyright {
+  color: #8d8d8d;
+  padding-bottom: 15px;
+}
+.footer-button button {
+  background-color: #000000;
+  color: #8d8d8d;
+  outline: none;
+  border: 1px solid #8d8d8d;
+  margin-bottom: 10px;
+}
+.footer-button button:hover {
+  color: #fff;
+}
+.footer .icons i {
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
+.footer .icons i:hover {
+  cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
   .footer {
     padding: 5px 5px;

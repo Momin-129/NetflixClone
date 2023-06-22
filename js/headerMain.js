@@ -113,6 +113,11 @@ function filterData(query) {
       );
     }
   }
+  if (filterMovie.length == 0) {
+    $("#searchContent").append(
+      `<h2 class="text-white mt-5">Nothing matched the given keyword</h2>`
+    );
+  }
 }
 
 $(document).on("keyup", ".search input", function () {
