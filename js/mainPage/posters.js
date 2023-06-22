@@ -10,8 +10,8 @@ import {
   fetchTrailerTV,
   fetchAnimeTV,
   fetchActionAdventure,
-  MovieList,
-  TVList,
+  fetchMovieDetails,
+  fetchTVDetails,
 } from "../fetch/fetch.js";
 
 let movies = await fetchPopular().then((data) => data.results);
@@ -22,45 +22,8 @@ let tv = await fetchPopularTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);
 let actionAdventure = await fetchActionAdventure().then((data) => data.results);
 
-let movieGenres = await MovieList().then((data) => data.genres);
-let tvGenres = await TVList().then((data) => data.genres);
-let movieGenMap = new Map();
-let tvGenMap = new Map();
-movieGenres.forEach((element) => {
-  movieGenMap.set(element.id, element.name);
-});
-tvGenres.forEach((element) => {
-  tvGenMap.set(element.id, element.name);
-});
-
 export function showPoster(item, section) {
-  let type = item.title ? "M O V I E" : "S E R I E S";
-
-  let genres = [];
-  if (item.genre_ids) genres = item.genre_ids;
-  else {
-    for (let genre of item.genres) {
-      genres.push(genre.id);
-    }
-  }
-
-  let genreList = genres;
-  if (type == "M O V I E") {
-    for (let i = 0; i < genreList.length; i++) {
-      let id = parseInt(genreList[i]);
-      let genreName = movieGenMap.get(id);
-      genreList[i] = genreName;
-    }
-    genreList = genreList.join(" . ");
-  } else {
-    for (let i = 0; i < genreList.length; i++) {
-      let id = parseInt(genreList[i]);
-      let genreName = tvGenMap.get(id);
-      genreList[i] = genreName;
-    }
-    genreList = genreList.join(" . ");
-  }
-  let values = [item.id, item.trailer, item.type, genreList];
+  let values = [item.id, item.trailer, item.type, item.genre];
   if (item.trailer != undefined && item.poster != undefined) {
     $(`#section${section}`).append(
       `
@@ -75,15 +38,23 @@ export function showPoster(item, section) {
 export async function setTrailerPoster(item) {
   let trailers, trailer;
   let posters, poster;
+  let genre;
+  let genreList = [];
   item.type = item.title ? "M O V I E" : "S E R I E S";
+
   if (item.type == "M O V I E") {
     trailers = await fetchTrailer(item.id).then((data) => data.results);
     posters = await fetchPoster(item.id).then((data) => data.backdrops);
+    genre = await fetchMovieDetails(item.id).then((data) => data.genres);
   } else {
     trailers = await fetchTrailerTV(item.id).then((data) => data.results);
     posters = await fetchPosterTV(item.id).then((data) => data.backdrops);
+    genre = await fetchTVDetails(item.id).then((data) => data.genres);
   }
-
+  for (let item in genre) {
+    genreList.push(genre[item].name);
+  }
+  genreList = genreList.join(" . ");
   if (trailers.length > 0) {
     let randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
     trailer = randomTrailer.key;
@@ -94,43 +65,50 @@ export async function setTrailerPoster(item) {
       } else poster = j.file_path;
     }
   }
-  return [trailer, poster];
+  return [trailer, poster, genreList];
 }
 
 for (let item of movies) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of anime) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of bollywood) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of comedy) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of actionAdventure) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of tv) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of animeTV) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 
 export function createPosters() {

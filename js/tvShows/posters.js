@@ -1,8 +1,6 @@
 import {
   fetchIndianTV,
   fetchAnimeTV,
-  fetchPosterTV,
-  fetchTrailerTV,
   fetchKdramas,
   fetchMysteryTV,
   fetchTrendingTV,
@@ -15,43 +13,37 @@ let indianTV = await fetchIndianTV().then((data) => data.results);
 let animeTV = await fetchAnimeTV().then((data) => data.results);
 let kdramas = await fetchKdramas().then((data) => data.results);
 let mystery = await fetchMysteryTV().then((data) => data.results);
-let poster = "";
 
 for (let item of tvShows) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of indianTV) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of kdramas) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of mystery) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 
 for (let item of animeTV) {
-  let trailer = await fetchTrailerTV(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "S E R I E S";
-    poster = await fetchPosterTV(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
+  const [trailer, poster, genre] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
+  item.genre = genre;
 }
 
 export function createPosters() {

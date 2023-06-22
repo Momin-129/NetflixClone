@@ -19,44 +19,40 @@ let scifi = await fetchSciFantasy().then((data) => data.results);
 let poster = "";
 
 for (let item of movies) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of anime) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of bollywood) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of horror) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of scifi) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 for (let item of comedy) {
-  let trailer = await fetchTrailer(item.id).then((data) => data.results);
-  if (trailer.length > 0) {
-    let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
-    item.trailer = randomMovie.key;
-    item.type = "M O V I E";
-    poster = await fetchPoster(item.id).then((data) => data.backdrops);
-    for (let j of poster) {
-      if (j.iso_639_1 != null && j.iso_639_1 == "en") {
-        item.poster = j.file_path;
-        break;
-      } else item.poster = j.file_path;
-    }
-  }
+  const [trailer, poster, genre] = await setTrailerPoster(item);
+  item.trailer = trailer;
+  item.poster = poster;
+  item.genre = genre;
 }
 
 export function createPosters() {

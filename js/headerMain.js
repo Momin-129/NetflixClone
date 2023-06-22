@@ -4,6 +4,8 @@ import {
   fetchTrailerTV,
   fetchPoster,
   fetchPosterTV,
+  fetchMovieDetails,
+  fetchTVDetails,
 } from "./fetch/fetch.js";
 
 let base_url = localStorage.getItem("base_url");
@@ -65,14 +67,25 @@ function filterData(query) {
       let type = item.title ? "M O V I E" : "S E R I E S";
       let trailer = "";
       let poster = "";
-      if (type == "M O V I E")
+      let genre;
+      let genreList = [];
+      if (type == "M O V I E") {
         trailer = await fetchTrailer(item.id).then((data) => data.results);
-      else trailer = await fetchTrailerTV(item.id).then((data) => data.results);
+        genre = await fetchMovieDetails(item.id).then((data) => data.genres);
+      } else {
+        trailer = await fetchTrailerTV(item.id).then((data) => data.results);
+        genre = await fetchTVDetails(item.id).then((data) => data.genres);
+      }
+      for (let item in genre) {
+        genreList.push(genre[item].name);
+      }
+      genreList = genreList.join(" . ");
 
       if (trailer.length > 0) {
         let randomMovie = trailer[Math.floor(Math.random() * trailer.length)];
         item.trailer = randomMovie.key;
         item.type = type;
+        item.genre = genreList;
         if (type == "M O V I E")
           poster = await fetchPoster(item.id).then((data) => data.backdrops);
         else
@@ -87,7 +100,7 @@ function filterData(query) {
     })();
   }
   for (let item of filterMovie) {
-    let values = [item.id, item.trailer, item.type, ""];
+    let values = [item.id, item.trailer, item.type, item.genre];
     if (item.trailer != undefined && item.poster != undefined) {
       $(`#searchContent`).append(
         `
@@ -127,6 +140,7 @@ $(document).on("click", "#searchBtn", function () {
 });
 
 $(document).on("click", "#closeSearch", function () {
+  $(".search input").val("");
   $(".search input").css("display", "none");
   $(".search").css({
     width: "20%",

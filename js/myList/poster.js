@@ -32,33 +32,7 @@ tvGenres.forEach((element) => {
 });
 
 function showPoster(item, section) {
-  let type = item.title ? "M O V I E" : "S E R I E S";
-
-  let genres = [];
-  if (item.genre_ids) genres = item.genre_ids;
-  else {
-    for (let genre of item.genres) {
-      genres.push(genre.id);
-    }
-  }
-
-  let genreList = genres;
-  if (type == "M O V I E") {
-    for (let i = 0; i < genreList.length; i++) {
-      let id = parseInt(genreList[i]);
-      let genreName = movieGenMap.get(id);
-      genreList[i] = genreName;
-    }
-    genreList = genreList.join(" . ");
-  } else {
-    for (let i = 0; i < genreList.length; i++) {
-      let id = parseInt(genreList[i]);
-      let genreName = tvGenMap.get(id);
-      genreList[i] = genreName;
-    }
-    genreList = genreList.join(" . ");
-  }
-  let values = [item.id, item.trailer, item.type, genreList];
+  let values = [item.id, item.trailer, item.type, item.genre];
   if (item.trailer != undefined && item.poster != undefined) {
     $(`#section${section}`).append(
       `
@@ -73,15 +47,17 @@ function showPoster(item, section) {
 }
 
 for (let item of movieList) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 
 for (let item of tvList) {
-  const [trailer, poster] = await setTrailerPoster(item);
+  const [trailer, poster, genre] = await setTrailerPoster(item);
   item.trailer = trailer;
   item.poster = poster;
+  item.genre = genre;
 }
 
 export function createPosters() {

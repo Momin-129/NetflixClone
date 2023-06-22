@@ -215,4 +215,10 @@ export async function fetchSimilarTV(tv_id) {
   );
   return poster.json();
 }
+export async function fetchTVDetails(movie_id) {
+  let poster = await fetch(
+    ` https://api.themoviedb.org/3/tv/${movie_id}?api_key=${api_key}`
+  );
+  return poster.json();
+}
 // TV Section End
