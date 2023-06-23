@@ -1,16 +1,70 @@
 import { SearchIndian, SearchHollywood, SearchEngTV } from "./fetch/fetch.js";
 import {
+  fetchPopular,
+  fetchPopularTV,
   fetchTrailer,
   fetchTrailerTV,
+  fetchTVDetails,
+  fetchMovieDetails,
   fetchPoster,
   fetchPosterTV,
-  fetchMovieDetails,
-  fetchTVDetails,
 } from "./fetch/fetch.js";
 
 let base_url = localStorage.getItem("base_url");
 if (sessionStorage.getItem("user_id") == null) {
   window.location.href = base_url;
+}
+
+let date = localStorage.getItem("date") ?? 0;
+let cur_date = new Date().getDate();
+let trailer = "";
+let randomTrailer = "";
+let genre,
+  genreList = [];
+
+if (date == 0 || date != cur_date) {
+  let popularMovies = await fetchPopular().then((data) => data.results);
+  let popularTV = await fetchPopularTV().then((data) => data.results);
+
+  let home = popularMovies[Math.floor(Math.random() * popularMovies.length)];
+  trailer = await fetchTrailer(home.id).then((data) => data.results);
+  randomTrailer = trailer[Math.floor(Math.random() * trailer.length)];
+  genre = await fetchMovieDetails(home.id).then((data) => data.genres);
+  for (let item in genre) {
+    genreList.push(genre[item].name);
+  }
+  genreList = genreList.join(" . ");
+  home.trailer = randomTrailer.key;
+  home.genre = genreList;
+  genreList = [];
+
+  let movie = popularMovies[Math.floor(Math.random() * popularMovies.length)];
+  trailer = await fetchTrailer(movie.id).then((data) => data.results);
+  randomTrailer = trailer[Math.floor(Math.random() * trailer.length)];
+  genre = await fetchMovieDetails(movie.id).then((data) => data.genres);
+  for (let item in genre) {
+    genreList.push(genre[item].name);
+  }
+  genreList = genreList.join(" . ");
+  movie.trailer = randomTrailer.key;
+  movie.genre = genreList;
+  genreList = [];
+
+  let tv = popularTV[Math.floor(Math.random() * popularTV.length)];
+  trailer = await fetchTrailerTV(tv.id).then((data) => data.results);
+  randomTrailer = trailer[Math.floor(Math.random() * trailer.length)];
+  genre = await fetchTVDetails(tv.id).then((data) => data.genres);
+  for (let item in genre) {
+    genreList.push(genre[item].name);
+  }
+  genreList = genreList.join(" . ");
+  tv.trailer = randomTrailer.key;
+  tv.genre = genreList;
+
+  localStorage.setItem("date", cur_date);
+  localStorage.setItem("home", JSON.stringify(home));
+  localStorage.setItem("movie", JSON.stringify(movie));
+  localStorage.setItem("tv", JSON.stringify(tv));
 }
 
 $("#header").on("click", ".nav-link", function () {

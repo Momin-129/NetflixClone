@@ -7,6 +7,7 @@ import {
   hoverItem,
   rgba2hex,
 } from "./mainPage/functions.js";
+import {} from "./fetch/fetch.js";
 
 $("body").scroll(function () {
   if ($("body").scrollTop() >= 200) {
